@@ -16,7 +16,7 @@ exports.getAllProducts = (req, res) => {
 
 exports.getProduct = (req, res) => {
   const id = req.params.id * 1;
-  if (id > products.length)
+  if (id >= products.length)
     return res.status(404).json({
       status: "fail",
       message: "Invalid ID",
