@@ -14,7 +14,7 @@
 /build
 
 # Environment variable
-/env
+/config.env
 
 # misc
 .DS_Store
