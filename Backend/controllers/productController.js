@@ -2,12 +2,22 @@ const Product = require('../models/productModel');
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const allProduct = await Product.find();
+    // 1 (a) . Filtering
+    const { page, sort, limit, fields, ...queryObj } = req.query;
+
+    // 1 (b) . Advanced Filtering
+    let queryStr = JSON.stringify(queryObj);
+
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
+    let query = await Product.find(JSON.parse(queryStr));
+
+    // const allProduct = await Product.find();
     res.status(200).json({
       status: 'success',
-      results: allProduct.length,
+      results: query.length,
       data: {
-        allProduct,
+        allProduct: query,
       },
     });
   } catch (err) {
