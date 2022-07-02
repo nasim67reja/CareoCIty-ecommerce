@@ -1,65 +1,88 @@
-const fs = require("fs");
+const Product = require('../models/productModel');
 
-const products = JSON.parse(
-  fs.readFileSync(`${__dirname}/../data/product.json`, "utf-8")
-);
-
-exports.getAllProducts = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    results: products.length,
-    data: {
-      products,
-    },
-  });
-};
-
-exports.getProduct = (req, res) => {
-  const id = req.params.id * 1;
-  if (id >= products.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID",
+exports.getAllProducts = async (req, res) => {
+  try {
+    const allProduct = await Product.find();
+    res.status(200).json({
+      status: 'success',
+      results: allProduct.length,
+      data: {
+        allProduct,
+      },
     });
-
-  const product = products.find((product) => product.id === id);
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      product,
-    },
-  });
-};
-
-exports.createProduct = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    message: "This route is not yet defined",
-  });
-};
-
-exports.updateProduct = (req, res) => {
-  if (req.params.id * 1 > products.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid Id",
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: 'invalid',
     });
-
-  res.status(200).json({
-    status: "success",
-    message: "we will update later. Thanks for being with us",
-  });
+  }
 };
 
-exports.deleteProduct = (req, res) => {
-  if (req.params.id * 1 > products.length)
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid Id",
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        product,
+      },
     });
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: 'invalid',
+    });
+  }
+};
+
+exports.createProduct = async (req, res) => {
+  try {
+    const newProduct = await Product.create(req.body);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newProduct,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'Fail',
+      message: err,
+    });
+  }
+};
+
+exports.updateProduct = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        product,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'Fail',
+      message: err,
+    });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
