@@ -1,5 +1,7 @@
 const Product = require('../models/productModel');
 const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 
 exports.aliasTopProducts = (req, res, next) => {
   req.query.sort = '-ratingsAverage,price';
@@ -50,22 +52,32 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-exports.createProduct = async (req, res) => {
-  try {
-    const newProduct = await Product.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        tour: newProduct,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'Fail',
-      message: err,
-    });
-  }
-};
+exports.createProduct = catchAsync(async (req, res, next) => {
+  const newProduct = await Product.create(req.body);
+  res.status(201).json({
+    status: 'success',
+    data: {
+      tour: newProduct,
+    },
+  });
+});
+
+// exports.createProduct = async (req, res) => {
+//   try {
+//     const newProduct = await Product.create(req.body);
+//     res.status(201).json({
+//       status: 'success',
+//       data: {
+//         tour: newProduct,
+//       },
+//     });
+//   } catch (err) {
+//     res.status(400).json({
+//       status: 'Fail',
+//       message: err,
+//     });
+//   }
+// };
 
 exports.updateProduct = async (req, res) => {
   try {
