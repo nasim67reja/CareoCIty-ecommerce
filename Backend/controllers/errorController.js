@@ -58,16 +58,13 @@ module.exports = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === 'production') {
-    console.log('hit this line');
-    let error = { ...err };
-
+    // let error = { ...err };
+    let error = Object.assign(err);
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === 'ValidationError')
       error = handleValidationErrorDB(error);
-    else {
-      console.log('kono condition mane ni');
-    }
+
     sendErrorProd(error, res);
   }
 };
