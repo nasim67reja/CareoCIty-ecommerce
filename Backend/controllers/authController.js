@@ -45,16 +45,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   createSendToken(newUser, 201, res);
-
-  // const token = signToken(newUser._id);
-
-  // res.status(201).json({
-  //   status: 'success',
-  //   token,
-  //   data: {
-  //     User: newUser,
-  //   },
-  // });
 });
 
 // ////////////////////////////////////////////////
@@ -71,12 +61,6 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect email or password', 401));
 
   createSendToken(user, 200, res);
-  // const token = signToken(user._id);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  // });
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -115,6 +99,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.restrictTo =
   (...roles) =>
   (req, res, next) => {
+    // console.log(req.user);
     if (!roles.includes(req.user.role))
       return next(
         new AppError('You do not have permission to perform this action', 403)
@@ -183,13 +168,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   createSendToken(user, 200, res);
-
-  // const token = signToken(user._id);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  // });
 });
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
@@ -203,10 +181,4 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   createSendToken(user, 200, res);
-  // const token = signToken(user._id);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   token,
-  // });
 });

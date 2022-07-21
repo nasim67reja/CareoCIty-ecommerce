@@ -15,16 +15,24 @@ router
 
 router
   .route('/')
-  .get(authController.protect, productController.getAllProducts)
-  .post(productController.createProduct);
+  .get(productController.getAllProducts)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    productController.createProduct
+  );
 
 router
   .route('/:id')
   .get(productController.getProduct)
-  .patch(productController.updateProduct)
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    productController.updateProduct
+  )
   .delete(
     authController.protect,
-    authController.restrictTo('admin'),
+    authController.restrictTo('admin', 'lead-guide'),
     productController.deleteProduct
   );
 
