@@ -1,0 +1,45 @@
+.HeaderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #131921;
+  /* background-color: #232f3e; */
+  padding: 0 3rem;
+  color: white;
+}
+.logoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+.logo {
+  font-size: 2.5rem;
+}
+.description {
+  font-size: 1.6em;
+  opacity: 0.8;
+}
+
+.HeaderTop input {
+  padding: 5px 1rem;
+  min-width: 45rem;
+  border-radius: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  font-size: 1.6rem;
+}
+.nav li {
+  cursor: pointer;
+}
+
+.cart {
+  width: 2.5rem;
+  /* border: 2px solid yellow; */
+}

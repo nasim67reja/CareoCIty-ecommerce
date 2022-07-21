@@ -22,7 +22,7 @@ html {
 
 body {
   font-family: "Rubik", sans-serif;
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
 }
 
 a:link,
@@ -42,60 +42,8 @@ a:visited {
   border-bottom: 3px solid var(--main-color);
 }
 
-/* Hero - Skills */
-.logoList {
-  list-style: none;
-  display: flex;
-  gap: 2.6rem;
-  flex-wrap: wrap;
-}
-.logoList li {
-  width: 8rem;
-  height: 8rem;
-  box-shadow: var(--shadow-white-3);
-  background: var(--gradient-box-w);
-  border-radius: 5px;
-  padding: 1.5rem;
-  cursor: pointer;
-  position: relative;
-}
-.scale {
-  transform: scale(1.25);
-}
-.skill-show {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  z-index: 1;
-  font-size: 1.6rem;
-  color: var(--main-color);
-  padding: 5px;
-}
-.logoList img {
-  height: 100%;
-  width: 100%;
-}
-.less-opacity {
-  opacity: 0;
-}
-
-/* General */
-
-.container {
-  max-width: 136rem;
-  padding: 0 3rem;
-  margin: 0 auto;
-}
-.flex {
-  display: flex;
-}
-
-.grid {
-  display: grid;
-}
-.grid-2-cols {
-  grid-template-columns: repeat(2, 1fr);
-}
-.grid-3-cols {
-  grid-template-columns: repeat(3, 1fr);
+/* header */
+header {
+  /* padding: 0 3rem; */
+  background-color: #131921;
 }
