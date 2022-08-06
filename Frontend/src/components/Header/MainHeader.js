@@ -4,7 +4,7 @@ import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 const mainHeader = () => {
   return (
-    <header>
+    <header className="mt-10">
       <HeaderTop />
       <HeaderBottom />
     </header>
