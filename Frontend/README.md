@@ -1,7 +1,8 @@
-# Protfolio
+# CareoCity (frontend)
 
 ## Table of contents
 
+- [Build with](#build-with)
 - [The challenge](#the-challenge)
 - [Screenshot](#screenshot)
 - [Links](#links)
@@ -9,6 +10,10 @@
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
+
+### Build with
+
+- I have used [ion-icons](https://ionic.io/ionicons) in this project
 
 ### The challenge
 

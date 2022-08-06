@@ -1,12 +1,14 @@
-// import { Fragment } from "react";
-
 import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 const mainHeader = () => {
   return (
-    <header className="mt-10">
-      <HeaderTop />
-      <HeaderBottom />
+    <header className="bg-primary">
+      <div className="custom-container">
+        <HeaderTop />
+      </div>
+      <div className="hidden lg:block">
+        <HeaderBottom />
+      </div>
     </header>
   );
 };
