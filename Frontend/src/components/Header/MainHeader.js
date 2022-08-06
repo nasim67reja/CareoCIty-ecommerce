@@ -6,7 +6,7 @@ const mainHeader = () => {
       <div className="custom-container">
         <HeaderTop />
       </div>
-      <div className="hidden lg:block">
+      <div className="custom-container bg-secondary ">
         <HeaderBottom />
       </div>
     </header>
