@@ -21,7 +21,7 @@
 }
 
 /* html {
-  font-size: 62.5%;
+  font-size: 92.5%;
 } */
 
 body {
@@ -29,14 +29,8 @@ body {
   /* background-color: var(--color-primary); */
 }
 
-/* header */
-/* header { */
-/* padding: 0 3rem; */
-/* background-color: #131921; */
-/* } */
-
 .custom-container {
-  max-width: 120rem;
+  max-width: 110rem;
   margin: 0 auto;
   padding: 0 2rem;
 }
