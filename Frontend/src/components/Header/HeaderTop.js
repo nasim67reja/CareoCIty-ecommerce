@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HeaderTop.module.css";
 
 const HeaderTop = () => {
+  const [focusInput, setFocusInput] = useState(false);
+
   return (
     <div
       className="flex items-center
@@ -15,10 +17,14 @@ const HeaderTop = () => {
         <h2 className="own-class  text-2xl lg:text-3xl">CareoCity</h2>
         <p className="text-xs opacity-80">Quality Fun Shopping</p>
       </div>
-      <div className="relative hidden h-10 grow lg:flex">
+      <div
+        className={`relative hidden h-10 grow  rounded-lg ${
+          focusInput ? "outline outline-5 outline-offset-1 outline-outline" : ""
+        } lg:flex`}
+      >
         <select
           name="e-commerce"
-          className="cursor-pointer rounded-l-lg p-2 px-4 text-gray-500  focus:outline-outline"
+          className="cursor-pointer rounded-l-lg p-2 px-4 text-gray-500  focus:outline focus:outline-5 focus:outline-offset-1 focus:outline-outline"
         >
           <option value="">All Categories</option>
           <option value="dog">Dog</option>
@@ -26,20 +32,22 @@ const HeaderTop = () => {
           <option value="hamster">Hamster</option>
           <option value="parrot">Parrot</option>
           <option value="spider">Spider</option>
-          <option value="goldfish">Goldfish</option>
+          <option value="goldfish">Goldfish </option>
         </select>
         <input
           type="text"
-          className="w-full rounded-r-lg px-4 focus:outline-outline"
+          className="w-full rounded-r-lg px-4 focus:outline-none"
+          onFocus={() => setFocusInput(true)}
+          onBlur={() => setFocusInput(false)}
         />
-        <div
-          className={`${styles.customIcon} absolute right-0 flex h-full items-center justify-center rounded-r-lg bg-outline px-3 focus:outline-outline`}
+        <button
+          className={`${styles.customIcon} focus:outline-outline" absolute right-0 flex h-full items-center justify-center rounded-r-lg bg-outline px-3 focus:outline focus:outline-6 focus:outline-offset-1 focus:outline-outline`}
         >
           <ion-icon
             name="search-outline"
             style={{ color: "#232f3e" }}
           ></ion-icon>
-        </div>
+        </button>
       </div>
       <nav>
         <ul className="hidden list-none items-center  gap-6 lg:flex">

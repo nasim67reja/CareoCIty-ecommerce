@@ -6,6 +6,9 @@ export default function App() {
   return (
     <Fragment>
       <MainHeader></MainHeader>
+      <div className="mb-12 outline outline-4 outline-offset-2 outline-outline">
+        hello world
+      </div>
     </Fragment>
   );
 }

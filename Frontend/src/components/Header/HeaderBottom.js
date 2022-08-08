@@ -11,8 +11,10 @@ const HeaderBottom = () => {
               <li key={Math.random()} className="group  py-2">
                 <div className="flex items-center gap-2  text-white">
                   <Link to="/">{parentLink.name}</Link>
-                  {parentLink.sublinks && (
+                  {parentLink.sublinkArr || parentLink.sublinks ? (
                     <ion-icon name="chevron-down-outline"></ion-icon>
+                  ) : (
+                    ""
                   )}
                 </div>
                 {parentLink.sublinks && (
@@ -63,7 +65,7 @@ const HeaderBottom = () => {
                     {/* Blog */}
                     {parentLink.blog &&
                       parentLink.blog.map((eachBl) => (
-                        <div>
+                        <div key={Math.random()}>
                           <img
                             src={eachBl.img}
                             alt={eachBl.alt}
@@ -85,6 +87,17 @@ const HeaderBottom = () => {
                           </div>
                         </div>
                       ))}
+                  </div>
+                )}
+                {parentLink.sublinkArr && (
+                  <div className="absolute hidden rounded-b-lg shadow-lg group-hover:block">
+                    <ul className="flex flex-col gap-2  p-6">
+                      {parentLink.sublinkArr.map((contactLink) => (
+                        <li className="hover:text-blue-700">
+                          <Link to="/home">{contactLink}</Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </li>

@@ -8,6 +8,10 @@ module.exports = {
         secondary: "#232f3e",
         outline: "#febd69",
       },
+      outlineWidth: {
+        5: "5px",
+        6: "6px",
+      },
     },
   },
   plugins: [],
