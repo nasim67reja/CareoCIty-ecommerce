@@ -45,3 +45,19 @@ SELECT {
   padding-right: 2rem !important;
   background-color: white;
 }
+
+.custom-close {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+  transform: translateY(-20%);
+}
+
+.custom-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateY(0%);
+  transition: all 0.5s;
+}
