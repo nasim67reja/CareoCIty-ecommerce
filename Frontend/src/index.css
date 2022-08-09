@@ -51,13 +51,28 @@ SELECT {
   pointer-events: none;
   visibility: hidden;
   position: absolute;
-  transform: translateY(-20%);
+  top: 0;
+  transform: translateY(-5%);
 }
 
 .custom-open {
   opacity: 1;
+  position: relative;
   pointer-events: auto;
   visibility: visible;
   transform: translateY(0%);
   transition: all 0.5s;
+}
+
+/* .scroller::-webkit-scrollbar {
+  width: 2px;
+  background: blue;
+} */
+
+.scroller::-webkit-scrollbar {
+  height: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--grayish-blue);
+  background-clip: content-box;
+  background-color: var(--grayish-blue);
 }

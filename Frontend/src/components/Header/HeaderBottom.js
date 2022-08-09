@@ -2,17 +2,21 @@ import { Link } from "react-router-dom";
 import { BottomNav } from "./LinksEl";
 
 export const WrapperLi = (props) => {
-  const listClickHandler = () => {
+  const listClickHandler = (e) => {
     if (props.onGet) props.onGet[0](!props.onGet[1]);
+    props.onTest(+e.target.id);
   };
 
   return (
-    <li className="group cursor-pointer  ">
+    <li className={`group`}>
       <div
-        className={`flex items-center gap-2 py-2 ${props.classCustom}`}
+        className={`flex cursor-pointer items-center gap-2 py-2 ${props.classCustom}`}
         onClick={listClickHandler}
+        id={props.id}
       >
-        <Link to="/home">{props.parentLink.name}</Link>
+        <Link to="/home" className={`${props.classLink}`}>
+          {props.parentLink.name}
+        </Link>
         {props.parentLink.sublinkArr || props.parentLink.sublinks ? (
           <ion-icon name="chevron-down-outline"></ion-icon>
         ) : (
@@ -28,7 +32,9 @@ export const Sublink = ({ parentLink, classSub }) => {
   return (
     <>
       {parentLink.sublinks && (
-        <div className={`text-black transition-all duration-1000  ${classSub}`}>
+        <div
+          className={`text-black transition-all duration-1000  ${classSub} `}
+        >
           {parentLink.sublinks.map((links, i) => (
             <div key={i} className="p-3 group-hover:block">
               <h2 className="mb-6 border-b-[1px] border-blue-200 pb-2 text-2xl font-medium">
@@ -96,7 +102,7 @@ export const SublinkContact = ({ parentLink, classN }) => {
   return (
     <>
       {parentLink.sublinkArr && (
-        <div className={` rounded-b-lg ${classN} `}>
+        <div className={` rounded-b-lg  ${classN}`}>
           <ul className="flex flex-col gap-2  p-6">
             {parentLink.sublinkArr.map((contactLink, i) => (
               <li key={i}>

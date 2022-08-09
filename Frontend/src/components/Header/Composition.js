@@ -1,188 +1,40 @@
-// import { Link } from "react-router-dom";
-// import { BottomNav } from "./LinksEl";
+import React from "react";
 
-// const WrapperLi = (props) => {
-//   return <div className="border-2">{props.children}</div>;
-// };
-
-// const HeaderBottom = () => {
-//   return (
-//     <div className="fixed w-full bg-secondary">
-//       <div className="custom-container ">
-//         <nav>
-//           <ul className="flex gap-8 xl:gap-12">
-//             {BottomNav.map((parentLink) => (
-//               <li key={Math.random()} className="group  py-2">
-//                 <div className="flex items-center gap-2  text-white">
-//                   <Link to="/">{parentLink.name}</Link>
-//                   {parentLink.sublinkArr || parentLink.sublinks ? (
-//                     <ion-icon name="chevron-down-outline"></ion-icon>
-//                   ) : (
-//                     ""
-//                   )}
-//                 </div>
-//                 {parentLink.sublinks && (
-//                   <div className="absolute left-[5%] mt-2 hidden  w-[90%] cursor-pointer  grid-cols-2 gap-8 rounded-b-lg  px-8  py-4 pt-16 text-black shadow-lg transition-all duration-1000 group-hover:grid xl:grid-cols-4">
-//                     {parentLink.sublinks.map((links) => (
-//                       <div
-//                         key={Math.random()}
-//                         className="p-3 group-hover:block"
-//                       >
-//                         <h2 className="mb-6 border-b-[1px] border-blue-200 pb-2 text-2xl font-medium">
-//                           {links.title || links}
-//                         </h2>
-//                         <ul className="flex flex-col gap-4">
-//                           {links.title &&
-//                             links.links.map((singleEl) => (
-//                               <li
-//                                 key={Math.random()}
-//                                 className="transition-all hover:text-blue-400"
-//                               >
-//                                 <Link to="/home"> {singleEl}</Link>
-//                               </li>
-//                             ))}
-//                         </ul>
-//                       </div>
-//                     ))}
-//                     {parentLink.image && (
-//                       <div className="relative">
-//                         <img
-//                           src={parentLink.image.location}
-//                           alt={parentLink.image.alt}
-//                         />
-//                         {parentLink.extrainfo && (
-//                           <div className="absolute top-[30%] left-[5%] text-secondary">
-//                             <p>{parentLink.extrainfo.heading}</p>
-//                             <p className="my-4 text-2xl">
-//                               {parentLink.extrainfo.title}
-//                             </p>
-//                             <Link
-//                               to="/"
-//                               className="cursor-pointer rounded-md border-none bg-secondary px-4 py-2 text-white transition-all hover:bg-white hover:text-secondary"
-//                             >
-//                               SHOP NOW
-//                             </Link>
-//                           </div>
-//                         )}
-//                       </div>
-//                     )}
-//                     {/* Blog */}
-//                     {parentLink.blog &&
-//                       parentLink.blog.map((eachBl) => (
-//                         <div key={Math.random()}>
-//                           <img
-//                             src={eachBl.img}
-//                             alt={eachBl.alt}
-//                             className="mb-3 w-full"
-//                           />
-//                           <h3 className="font-medium"> {eachBl.title}</h3>
-//                           <div className="my-1 flex gap-6 text-[14px]">
-//                             <p>
-//                               <span className="mr-[0.5px]"> By </span>
-//                               <Link to="/" className="text-blue-700">
-//                                 {eachBl.author}
-//                               </Link>
-//                             </p>
-//                             <p className="text-[0.9rem]">{eachBl.date}</p>
-//                           </div>
-//                           <div className="mb-4">{eachBl.description}</div>
-//                           <div className="hover:text-blue-700">
-//                             <Link to="/">Read moer</Link>
-//                           </div>
-//                         </div>
-//                       ))}
-//                   </div>
-//                 )}
-//                 {parentLink.sublinkArr && (
-//                   <div className="absolute hidden rounded-b-lg shadow-lg group-hover:block">
-//                     <ul className="flex flex-col gap-2  p-6">
-//                       {parentLink.sublinkArr.map((contactLink) => (
-//                         <li className="hover:text-blue-700">
-//                           <Link to="/home">{contactLink}</Link>
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   </div>
-//                 )}
-//               </li>
-//             ))}
-//           </ul>
-//         </nav>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default HeaderBottom;
-
-import { useState } from "react";
-
-const NewCom = ({ id, upcomingMonth }) => {
-  const [monthSelected, setMonthSelected] = useState(false);
-
-  const selectMonth = (id) => {
-    monthSelected ? setMonthSelected(false) : setMonthSelected(true);
-    console.log(id);
-  };
-
+const Composition = () => {
   return (
-    <div
-      id={id}
-      onClick={() => selectMonth(id)}
-      style={{
-        width: "50px",
-        height: "50px",
-        border: "1px solid black",
-        backgroundColor: monthSelected ? "green" : "white",
-      }}
-    >
-      {upcomingMonth.month}
+    <div className="snap-x snap-proximity">
+      <div className="snap-center">
+        <img
+          alt="hi"
+          src="https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
+        />
+      </div>
+      <div className="snap-center">
+        <img
+          alt="hi"
+          src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
+        />
+      </div>
+      <div className="snap-center">
+        <img
+          alt="hi"
+          src="https://images.unsplash.com/photo-1622890806166-111d7f6c7c97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
+        />
+      </div>
+      <div className="snap-center">
+        <img
+          alt="hi"
+          src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
+        />
+      </div>
+      <div className="nap-center">
+        <img
+          alt="hi"
+          src="https://images.unsplash.com/photo-1575424909138-46b05e5919ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
+        />
+      </div>
     </div>
   );
 };
 
-const Test = () => {
-  function getNext12MonthsWithYear() {
-    var now = new Date();
-    var month = now.getMonth();
-    var year = now.getFullYear();
-
-    var names = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    var res = [];
-    for (var i = 0; i < 12; ++i) {
-      res.push({ month: names[month] + " " + year, status: -1 });
-      if (++month === 12) {
-        month = 0;
-        ++year;
-      }
-    }
-    return res;
-  }
-
-  let upcomingMonths = getNext12MonthsWithYear();
-  console.log(upcomingMonths);
-
-  return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      {upcomingMonths.map((upcomingMonth, id) => (
-        <NewCom key={id} id={id} upcomingMonth={upcomingMonth} />
-      ))}
-    </div>
-  );
-};
-
-export default Test;
+export default Composition;
