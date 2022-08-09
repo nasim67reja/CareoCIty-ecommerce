@@ -11,7 +11,6 @@ module.exports = {
       },
       outlineWidth: {
         5: "5px",
-        6: "6px",
       },
     },
   },

@@ -1,40 +1,77 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { AiOutlineVerticalRight, AiOutlineVerticalLeft } from "react-icons/ai";
 
-const Composition = () => {
+const featuredProducts = [
+  "/images/pic1.jpg",
+  "/images/pic2.jpg",
+  "/images/pic3.jpg",
+];
+
+let count = 0;
+let slideInterval;
+export default function Slider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const slideRef = useRef();
+
+  const removeAnimation = () => {
+    slideRef.current.classList.remove("fade-anim");
+  };
+
+  useEffect(() => {
+    slideRef.current.addEventListener("animationend", removeAnimation);
+    slideRef.current.addEventListener("mouseenter", pauseSlider);
+    slideRef.current.addEventListener("mouseleave", startSlider);
+
+    startSlider();
+    return () => {
+      pauseSlider();
+    };
+    // eslint-disable-next-line
+  }, []);
+
+  const startSlider = () => {
+    slideInterval = setInterval(() => {
+      handleOnNextClick();
+    }, 3000);
+  };
+
+  const pauseSlider = () => {
+    clearInterval(slideInterval);
+  };
+
+  const handleOnNextClick = () => {
+    count = (count + 1) % featuredProducts.length;
+    setCurrentIndex(count);
+    slideRef.current.classList.add("fade-anim");
+  };
+  const handleOnPrevClick = () => {
+    const productsLength = featuredProducts.length;
+    count = (currentIndex + productsLength - 1) % productsLength;
+    setCurrentIndex(count);
+    slideRef.current.classList.add("fade-anim");
+  };
+
   return (
-    <div className="snap-x snap-proximity">
-      <div className="snap-center">
-        <img
-          alt="hi"
-          src="https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
-        />
+    <div ref={slideRef} className="relative w-full select-none">
+      <div className="aspect-w-16 aspect-h-9">
+        <img src={featuredProducts[currentIndex]} alt="" />
       </div>
-      <div className="snap-center">
-        <img
-          alt="hi"
-          src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
-        />
-      </div>
-      <div className="snap-center">
-        <img
-          alt="hi"
-          src="https://images.unsplash.com/photo-1622890806166-111d7f6c7c97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
-        />
-      </div>
-      <div className="snap-center">
-        <img
-          alt="hi"
-          src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
-        />
-      </div>
-      <div className="nap-center">
-        <img
-          alt="hi"
-          src="https://images.unsplash.com/photo-1575424909138-46b05e5919ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80"
-        />
+
+      <div className="absolute top-1/2 flex w-full -translate-y-1/2 transform items-center justify-between px-3">
+        <button
+          className="cursor-pointer rounded-full bg-black bg-opacity-50 p-1 text-white transition hover:bg-opacity-100"
+          onClick={handleOnPrevClick}
+        >
+          <AiOutlineVerticalRight size={30} />
+        </button>
+        <button
+          className="cursor-pointer rounded-full bg-black bg-opacity-50 p-1 text-white transition hover:bg-opacity-100"
+          onClick={handleOnNextClick}
+        >
+          <AiOutlineVerticalLeft size={30} />
+        </button>
       </div>
     </div>
   );
-};
-
-export default Composition;
+}
