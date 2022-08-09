@@ -27,6 +27,9 @@
 body {
   font-family: "Rubik", sans-serif;
   /* background-color: var(--color-primary); */
+  /* background-color: #13192199; */
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
 }
 
 .custom-container {
@@ -46,24 +49,6 @@ SELECT {
   background-color: white;
 }
 
-.custom-close {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  transform: translateY(-5%);
-}
-
-.custom-open {
-  opacity: 1;
-  position: relative;
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateY(0%);
-  transition: all 0.5s;
-}
-
 /* .scroller::-webkit-scrollbar {
   width: 2px;
   background: blue;
@@ -75,4 +60,16 @@ SELECT {
   border: 1px solid var(--grayish-blue);
   background-clip: content-box;
   background-color: var(--grayish-blue);
+}
+
+.ani {
+  animation: example 0.5s ease-in-out;
+}
+@keyframes example {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }

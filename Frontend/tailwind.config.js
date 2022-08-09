@@ -7,6 +7,7 @@ module.exports = {
         primary: "#131921",
         secondary: "#232f3e",
         outline: "#febd69",
+        ovarlay: "#13192199",
       },
       outlineWidth: {
         5: "5px",
