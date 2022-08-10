@@ -102,7 +102,7 @@ export const SublinkContact = ({ parentLink, classN }) => {
   return (
     <>
       {parentLink.sublinkArr && (
-        <div className={` rounded-b-lg  ${classN}`}>
+        <div className={`  e rounded-b-lg  ${classN}`}>
           <ul className="flex flex-col gap-2  p-6">
             {parentLink.sublinkArr.map((contactLink, i) => (
               <li key={i}>
@@ -120,7 +120,7 @@ export const SublinkContact = ({ parentLink, classN }) => {
 
 const HeaderBottom = () => {
   return (
-    <div className="fixed w-full bg-secondary">
+    <div className="w-full bg-secondary">
       <div className="custom-container ">
         <nav>
           <ul className="flex gap-8 xl:gap-12">
@@ -133,13 +133,15 @@ const HeaderBottom = () => {
                 <Sublink
                   parentLink={parentLink}
                   classSub={
-                    "absolute left-[5%] grid-cols-2 w-[90%] gap-8 rounded-b-lg cursor-pointer shadow-lg px-8 py-4 pt-12 group-hover:grid xl:grid-cols-4 hidden"
+                    "absolute left-[5%] grid-cols-2 w-[90%] gap-8 rounded-b-lg cursor-pointer shadow-lg px-8 py-4 pt-12 group-hover:grid xl:grid-cols-4 hidden z-50 bg-white"
                   }
                 />
 
                 <SublinkContact
                   parentLink={parentLink}
-                  classN={"hidden absolute group-hover:block shadow-lg"}
+                  classN={
+                    "hidden absolute group-hover:block shadow-lg z-50 bg-white"
+                  }
                 />
               </WrapperLi>
             ))}

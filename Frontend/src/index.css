@@ -23,7 +23,7 @@ body {
 }
 
 .custom-container {
-  max-width: 110rem;
+  max-width: 130rem;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -73,5 +73,18 @@ SELECT {
   }
   to {
     transform: translateX(0%);
+  }
+}
+
+.custom-ani {
+  animation: example1 1.5s ease-in-out;
+}
+
+@keyframes example1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

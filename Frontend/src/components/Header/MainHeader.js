@@ -3,7 +3,7 @@ import HeaderBottom from "./HeaderBottom";
 import MobileHeader from "./MobileHeader";
 const mainHeader = () => {
   return (
-    <header className=" mb-[220rem] bg-primary">
+    <header className="bg-primary">
       <div className="custom-container ">
         <HeaderTop />
       </div>
