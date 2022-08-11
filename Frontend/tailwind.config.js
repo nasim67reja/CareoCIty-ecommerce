@@ -8,6 +8,7 @@ module.exports = {
         secondary: "#232f3e",
         outline: "#febd69",
         ovarlay: "#13192199",
+        backg: "#EAEDED",
       },
       outlineWidth: {
         5: "5px",
