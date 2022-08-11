@@ -4,6 +4,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap");
 
+:root {
+  --primary-bg: #eaeded;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +20,7 @@
 
 body {
   font-family: "Rubik", sans-serif;
-  /* background-color: var(--color-primary); */
+  background-color: var(--primary-bg);
   /* background-color: #13192199; */
   /* overflow-x: hidden;
   overflow-y: hidden; */
@@ -87,4 +91,25 @@ SELECT {
   to {
     opacity: 1;
   }
+}
+
+.testclass {
+  height: 23rem;
+  min-width: 20rem;
+}
+
+.sec::-webkit-scrollbar {
+  /* width: 26px; */
+  height: 0px;
+  background-color: red;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 20px;
+}
+body::-webkit-scrollbar-thumb {
+  width: 6px;
+  height: 20px;
+  background-color: blue;
 }
