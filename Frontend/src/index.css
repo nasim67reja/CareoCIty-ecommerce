@@ -94,8 +94,8 @@ SELECT {
 }
 
 .testclass {
-  height: 23rem;
-  min-width: 20rem;
+  height: 22rem;
+  min-width: 16rem;
 }
 
 .sec::-webkit-scrollbar {
