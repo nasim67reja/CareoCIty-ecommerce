@@ -25,6 +25,15 @@ body {
   /* overflow-x: hidden;
   overflow-y: hidden; */
 }
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 20px;
+}
+body::-webkit-scrollbar-thumb {
+  width: 6px;
+  height: 20px;
+  background-color: blue;
+}
 
 .custom-container {
   max-width: 130rem;
@@ -36,7 +45,8 @@ body {
 
 /* Top */
 .customIcon ion-icon,
-.customI ion-icon {
+.customI ion-icon,
+.sliderIcon ion-icon {
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -53,11 +63,6 @@ SELECT {
   padding-right: 2rem !important;
   background-color: white;
 }
-
-/* .scroller::-webkit-scrollbar {
-  width: 2px;
-  background: blue;
-} */
 
 .scroller::-webkit-scrollbar {
   height: 10px;
@@ -93,23 +98,17 @@ SELECT {
   }
 }
 
+/* Main BOdy */
 .testclass {
   height: 22rem;
   min-width: 16rem;
+}
+.sliderIcon ion-icon {
+  color: orange;
 }
 
 .sec::-webkit-scrollbar {
   /* width: 26px; */
   height: 0px;
   background-color: red;
-}
-
-body::-webkit-scrollbar {
-  width: 10px;
-  height: 20px;
-}
-body::-webkit-scrollbar-thumb {
-  width: 6px;
-  height: 20px;
-  background-color: blue;
 }

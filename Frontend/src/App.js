@@ -14,7 +14,6 @@ export default function App() {
       <Hero />
       <MainBody />
       <Footer />
-      <div>hi</div>
     </Fragment>
   );
 }
