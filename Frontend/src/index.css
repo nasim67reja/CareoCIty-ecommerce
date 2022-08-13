@@ -46,7 +46,8 @@ body::-webkit-scrollbar-thumb {
 /* Top */
 .customIcon ion-icon,
 .customI ion-icon,
-.sliderIcon ion-icon {
+.sliderIcon ion-icon,
+.sliderIconarr ion-icon {
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -106,10 +107,15 @@ SELECT {
 .sliderIcon ion-icon {
   color: orange;
 }
+.sliderIconarr ion-icon {
+  color: black;
+}
+.sliderIconarr:hover ion-icon {
+  color: white;
+  transition: all 0.3s;
+}
 
 .sec::-webkit-scrollbar {
-  /* width: 26px; */
   height: 0px;
   width: 0px;
-  /* background-color: red; */
 }
