@@ -22,10 +22,10 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: var(--primary-bg);
   /* background-color: #13192199; */
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   width: 10px;
   height: 20px;
 }
@@ -33,7 +33,7 @@ body::-webkit-scrollbar-thumb {
   width: 6px;
   height: 20px;
   background-color: blue;
-}
+} */
 
 .custom-container {
   max-width: 130rem;
@@ -101,7 +101,7 @@ SELECT {
 /* Main BOdy */
 .testclass {
   height: 22rem;
-  min-width: 16rem;
+  width: 16rem;
 }
 .sliderIcon ion-icon {
   color: orange;
@@ -110,5 +110,6 @@ SELECT {
 .sec::-webkit-scrollbar {
   /* width: 26px; */
   height: 0px;
-  background-color: red;
+  width: 0px;
+  /* background-color: red; */
 }
