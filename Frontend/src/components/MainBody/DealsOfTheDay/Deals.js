@@ -31,6 +31,7 @@ const Deals = () => {
   );
   const Man = products.filter((products) => products.categories === "Man");
   const Women = products.filter((products) => products.categories === "Women");
+  const Home = products.filter((products) => products.categories === "Home");
 
   return (
     <>
@@ -39,6 +40,7 @@ const Deals = () => {
       </div>
       <Slider data={Man} />
       <Slider data={Women} />
+      <Slider data={Home} />
     </>
   );
 };
