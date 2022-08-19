@@ -41,13 +41,13 @@ const SingleProduct = ({
           )}
         </div>
         <img
-          src={mouseEnter ? product.imgH : product.img}
+          src={mouseEnter ? product.images[0] : product.images[1]}
           alt=""
           className="mb-4 w-full cursor-pointer "
           onMouseEnter={() => setMouseEnter(true)}
           onMouseLeave={() => setMouseEnter(false)}
         />
-        <p className="text-sm">{product.title}</p>
+        <p className="text-sm">{product.name}</p>
         <p className="text-sm text-orange-500">{product.price}</p>
       </div>
     </div>
@@ -55,6 +55,7 @@ const SingleProduct = ({
 };
 
 const Slider = ({ data }) => {
+  // console.log(products.data?.products[0].categories);
   const [numOfClick, setNumOfClick] = useState(0);
   const [widthparent, setWidthParent] = useState(0);
   const parentWidth = useRef(null);
@@ -82,7 +83,7 @@ const Slider = ({ data }) => {
   return (
     <div className=" mx-auto max-w-[110rem]  rounded-lg  bg-white">
       <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
-        <h2 className="fontm text-xl">Deal of the Day</h2>
+        <h2 className="fontm text-xl">{data.categories}</h2>
         <button className="rounded border bg-blue-600 px-3 py-2 text-white transition-all hover:bg-white hover:text-primary">
           View all
         </button>
