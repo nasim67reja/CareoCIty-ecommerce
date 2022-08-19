@@ -55,7 +55,6 @@ const SingleProduct = ({
 };
 
 const Slider = ({ data }) => {
-  // console.log(products.data?.products[0].categories);
   const [numOfClick, setNumOfClick] = useState(0);
   const [widthparent, setWidthParent] = useState(0);
   const parentWidth = useRef(null);
@@ -83,7 +82,7 @@ const Slider = ({ data }) => {
   return (
     <div className=" mx-auto max-w-[110rem]  rounded-lg  bg-white">
       <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
-        <h2 className="fontm text-xl">{data.categories}</h2>
+        <h2 className="fontm text-xl">{data[0]?.categories}</h2>
         <button className="rounded border bg-blue-600 px-3 py-2 text-white transition-all hover:bg-white hover:text-primary">
           View all
         </button>
