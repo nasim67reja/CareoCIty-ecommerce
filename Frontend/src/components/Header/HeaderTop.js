@@ -14,12 +14,10 @@ export const Search = (props) => {
         className="cursor-pointer rounded-l-lg p-2 px-4 text-gray-500  focus:outline focus:outline-5 focus:outline-offset-0 focus:outline-outline"
       >
         <option value="">All Categories</option>
-        <option value="dog">Dog</option>
-        <option value="cat">Cat</option>
-        <option value="hamster">Hamster</option>
-        <option value="parrot">Parrot</option>
-        <option value="spider">Spider</option>
-        <option value="goldfish">Goldfish </option>
+        <option value="Electronics">Electronics</option>
+        <option value="Man">Man</option>
+        <option value="Women">Women</option>
+        <option value="Home">Home</option>
       </select>
       <input
         type="text"

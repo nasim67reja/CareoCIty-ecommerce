@@ -1,8 +1,8 @@
 import { Fragment } from "react";
-import Footer from "./Components/Footer/Footer";
-import MainHeader from "./Components/Header/MainHeader";
-import Hero from "./Components/Hero/Hero";
-import MainBody from "./Components/MainBody/MainBody";
+import Footer from "./components/Footer/Footer";
+import MainHeader from "./components/Header/MainHeader";
+import Hero from "./components/Hero/Hero";
+import MainBody from "./components/MainBody/MainBody";
 // import Composition from "./Components/Header/Composition";
 // import Slider from "./Components/Hero/Slider";
 // import { Routes, Route, Navigate } from "react-router-dom";
