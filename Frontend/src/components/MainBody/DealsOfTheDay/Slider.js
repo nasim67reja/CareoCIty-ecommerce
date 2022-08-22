@@ -43,6 +43,7 @@ const SingleProduct = ({
         <img
           src={mouseEnter ? product.images[0] : product.images[1]}
           alt=""
+          crossOrigin="anonymous"
           className="mb-4 h-[73%] w-full cursor-pointer"
           onMouseEnter={() => setMouseEnter(true)}
           onMouseLeave={() => setMouseEnter(false)}

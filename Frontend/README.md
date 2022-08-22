@@ -1,5 +1,9 @@
 # CareoCity (frontend)
 
+### Problem I faced
+
+- `crossorigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
+
 ## Table of contents
 
 - [Build with](#build-with)
