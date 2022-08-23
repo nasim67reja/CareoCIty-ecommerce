@@ -1,7 +1,7 @@
 import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import MobileHeader from "./MobileHeader";
-const mainHeader = () => {
+const MainHeader = () => {
   return (
     <header className="bg-primary">
       <div className="custom-container ">
@@ -17,4 +17,4 @@ const mainHeader = () => {
   );
 };
 
-export default mainHeader;
+export default MainHeader;

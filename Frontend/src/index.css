@@ -119,3 +119,11 @@ SELECT {
   height: 0px;
   width: 0px;
 }
+
+/* login form */
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  cursor: not-allowed;
+}

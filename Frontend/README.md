@@ -4,6 +4,8 @@
 
 - `crossorigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
 
+- set `autoFocus` attribute in an input element. then By default the input element will be focused
+
 ## Table of contents
 
 - [Build with](#build-with)

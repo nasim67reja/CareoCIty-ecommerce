@@ -1,24 +1,8 @@
 /* Log in */
-.custom-btn-bg {
-  background: #f3d078;
-  background: -webkit-linear-gradient(top, #f7dfa5, #f0c14b);
-  background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
-  border-width: 1px;
-  border-style: solid;
-  border-color: #adb1b8 #a2a6ac #8d9096;
-  border-radius: 5px;
-}
 
 .custom-form input:focus {
   outline: none;
   box-shadow: 1px 1px 10px 5px #f3d078;
-}
-input {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #8d9096;
-
-  border-radius: 4px;
 }
 
 .a-divider {

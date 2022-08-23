@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import LoginForm from "../components/Authentication/LoginForm";
 import "./login.css";
 
@@ -29,12 +30,15 @@ const Login = () => {
               </a>
             </div>
           </div>
-          <div class="a-divider a-divider-break">
+          <div className="a-divider a-divider-break">
             <h5>New to Careocity?</h5>
           </div>
-          <button className="mt-8 block w-full rounded-md border border-[#8d9096] bg-[#e7e9ec96] py-2 text-center transition-all hover:bg-[#e7e9ec]">
+          <Link
+            to="/signup"
+            className="mt-8 block w-full rounded-md border border-loginBorder bg-[#e7e9ec96] py-2 text-center transition-all hover:bg-[#e7e9ec]"
+          >
             Create your Careocity account
-          </button>
+          </Link>
         </div>
       </div>
     </Fragment>

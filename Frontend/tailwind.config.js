@@ -10,6 +10,9 @@ module.exports = {
         outline: "#febd69",
         ovarlay: "#13192199",
         backg: "#EAEDED",
+        gradientTo: "#f0c14b",
+        gradientFrom: "#f7dfa5",
+        loginBorder: "#adb1b8",
       },
       outlineWidth: {
         5: "5px",
