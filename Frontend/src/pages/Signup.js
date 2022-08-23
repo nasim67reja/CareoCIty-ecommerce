@@ -4,8 +4,8 @@ import SignUpForm from "../components/Authentication/SignUpForm";
 const Signup = () => {
   return (
     <>
-      <div>
-        <div className="mx-auto mt-5 max-w-[28rem] ">
+      <div className=" w-full bg-white py-5 shadow-md">
+        <div className="mx-auto  max-w-[28rem] ">
           <h2 className="mb-6 text-center text-3xl font-medium text-secondary">
             CareoCity
           </h2>

@@ -43,8 +43,8 @@ const LoginForm = () => {
 
       if (data.status === "success") navigate("/");
     } catch (error) {
-      // console.log(error);
-      setError(error.message);
+      console.log(error);
+      setError("Something wrong");
     }
   };
 

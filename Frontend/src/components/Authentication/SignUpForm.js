@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useForm from "../../hook/useForm";
 
 const SignUpForm = () => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const {
     value: enteredName,
     valueInputHasError: nameInputHasError,
@@ -27,13 +32,41 @@ const SignUpForm = () => {
     reset: resetPasswordInput,
   } = useForm((value) => value.length > 5);
   const {
-    value: enteredPassword2,
+    value: enteredPasswordConfirm,
     valueInputHasError: password2InputHasError,
     setValueInputHasError: setPassword2InputHasError,
     enteredValueIsValid: enteredPassword2IsValid,
     valueChangeHandler: password2ChangeHandler,
     reset: resetPassword2Input,
   } = useForm((value) => value.length > 5);
+
+  const signUpPostCall = async () => {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/v1/users/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: enteredName,
+            email: enteredEmail,
+            password: enteredPassword,
+            passwordConfirm: enteredPasswordConfirm,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      setError(data.message);
+
+      if (data.status === "success") navigate("/");
+    } catch (error) {
+      console.log(error);
+      setError("Something wrong !");
+    }
+  };
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
@@ -49,6 +82,7 @@ const SignUpForm = () => {
       !enteredPassword2IsValid
     )
       return;
+    signUpPostCall();
 
     resetEmailInput("");
     resetPasswordInput("");
@@ -116,7 +150,7 @@ const SignUpForm = () => {
           id="password2"
           name="password2"
           onChange={password2ChangeHandler}
-          value={enteredPassword2}
+          value={enteredPasswordConfirm}
           className="mt-2 rounded-lg border border-loginBorder p-2"
         />
         {password2InputHasError && (
@@ -135,14 +169,14 @@ const SignUpForm = () => {
         </button>
       </div>
 
-      {/* {error && (
-        <p className="flex w-fit gap-2 bg-red-50 px-3 text-lg text-red-600">
+      {error && (
+        <p className="flex w-fit gap-2 bg-red-50 px-3 text-sm text-red-600">
           <span>
             <ion-icon name="warning-outline"></ion-icon>
           </span>
           <span>{error}</span>
         </p>
-      )} */}
+      )}
     </form>
   );
 };

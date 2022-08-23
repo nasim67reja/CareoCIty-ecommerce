@@ -20,7 +20,7 @@
 
 body {
   font-family: "Rubik", sans-serif;
-  /* background-color: var(--primary-bg); */
+  background-color: var(--primary-bg);
   /* background-color: #13192199; */
   overflow-x: hidden;
   /* overflow-y: hidden; */
