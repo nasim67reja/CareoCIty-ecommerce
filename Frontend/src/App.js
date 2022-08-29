@@ -6,6 +6,9 @@ import Login from "./pages/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 export default function App() {
   return (

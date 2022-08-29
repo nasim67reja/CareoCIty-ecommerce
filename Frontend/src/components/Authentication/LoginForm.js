@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useInput from "../../hook/UseInput";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginForm = () => {
   const [error, setError] = useState("");
@@ -25,26 +26,44 @@ const LoginForm = () => {
     reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
 
-  const asyncPostCall = async () => {
+  // const asyncPostCall = async () => {
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:8000/api/v1/users/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //       body: JSON.stringify({
+  //         email: enteredEmail,
+  //         password: enteredPassword,
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+  //     setError(data.message);
+
+  //     if (data.status === "success") navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //     setError("Something wrong");
+  //   }
+  // };
+
+  //////////////////////////////////////////////////
+  const axiosPostCall = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/v1/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const { data } = await axios.post(
+        "http://127.0.0.1:8000/api/v1/users/login",
+        {
           email: enteredEmail,
           password: enteredPassword,
-        }),
-      });
-
-      const data = await response.json();
-      setError(data.message);
-
-      if (data.status === "success") navigate("/");
+        }
+      );
+      console.log(`data: `, data);
+      console.log(data.token);
     } catch (error) {
-      console.log(error);
-      setError("Something wrong");
+      console.log(`error: `, error);
     }
   };
 
@@ -56,7 +75,8 @@ const LoginForm = () => {
       return;
     }
 
-    asyncPostCall();
+    // asyncPostCall();
+    axiosPostCall();
 
     resetPasswordInput();
     resetEmailInput();

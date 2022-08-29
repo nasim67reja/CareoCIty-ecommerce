@@ -15,7 +15,7 @@ const Deals = () => {
       const response = await fetch("http://127.0.0.1:8000/api/v1/products");
       if (!response.ok) throw new Error("Something went Wrong");
       const data = await response.json();
-      setProducts(data.data.products);
+      setProducts(data.data.data);
     } catch (error) {
       // setError(error.message);
       console.log(error);
@@ -32,7 +32,7 @@ const Deals = () => {
       );
       if (!response.ok) throw new Error("Something went Wrong");
       const data = await response.json();
-      setTopRated(data.data.products);
+      setTopRated(data.data.data);
     } catch (error) {
       // setError(error.message);
       console.log(error);
@@ -44,7 +44,7 @@ const Deals = () => {
     fetchAllProductsHandler();
     fetchTopRatedProductsHandler();
   }, [fetchAllProductsHandler, fetchTopRatedProductsHandler]);
-
+  // let Electronics, Man, Women, Home;
   const Electronics = products.filter(
     (products) => products.categories === "Electronics"
   );
