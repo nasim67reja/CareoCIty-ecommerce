@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -52,7 +53,9 @@ const HeaderTop = () => {
 
       <nav>
         <ul className="hidden list-none items-center  gap-6 lg:flex">
-          <li className="cursor-pointer text-white">Login& Register</li>
+          <li className="cursor-pointer text-white">
+            <Link to="/login">Login& Register</Link>
+          </li>
           <li className="cursor-pointer text-white">More</li>
           <li className="styles.customI cursor-pointer text-white">
             <ion-icon name="cart-outline"></ion-icon>

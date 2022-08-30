@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 // import { deal, topRated } from "./Data";
 import Slider from "./Slider";
@@ -12,13 +13,11 @@ const Deals = () => {
     // setIsLoading(true);
     // setError(null);
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/v1/products");
-      if (!response.ok) throw new Error("Something went Wrong");
-      const data = await response.json();
+      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/products");
       setProducts(data.data.data);
     } catch (error) {
       // setError(error.message);
-      console.log(error);
+      console.log(`error: `, error);
     }
     // setIsLoading(false);
   }, []);
@@ -27,11 +26,9 @@ const Deals = () => {
     // setIsLoading(true);
     // setError(null);
     try {
-      const response = await fetch(
+      const { data } = await axios.get(
         "http://127.0.0.1:8000/api/v1/products/top-10-rated"
       );
-      if (!response.ok) throw new Error("Something went Wrong");
-      const data = await response.json();
       setTopRated(data.data.data);
     } catch (error) {
       // setError(error.message);
@@ -44,7 +41,7 @@ const Deals = () => {
     fetchAllProductsHandler();
     fetchTopRatedProductsHandler();
   }, [fetchAllProductsHandler, fetchTopRatedProductsHandler]);
-  // let Electronics, Man, Women, Home;
+
   const Electronics = products.filter(
     (products) => products.categories === "Electronics"
   );
@@ -58,7 +55,6 @@ const Deals = () => {
         <Slider data={Electronics} />
       </div>
       <Slider data={topRated} title={"Top Rated"} />
-
       <Slider data={Man} />
       <Slider data={Women} />
       <Slider data={Home} />

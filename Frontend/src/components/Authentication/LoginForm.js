@@ -26,31 +26,6 @@ const LoginForm = () => {
     reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
 
-  // const asyncPostCall = async () => {
-  //   try {
-  //     const response = await fetch("http://127.0.0.1:8000/api/v1/users/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include",
-  //       body: JSON.stringify({
-  //         email: enteredEmail,
-  //         password: enteredPassword,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-  //     setError(data.message);
-
-  //     if (data.status === "success") navigate("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //     setError("Something wrong");
-  //   }
-  // };
-
-  //////////////////////////////////////////////////
   const axiosPostCall = async () => {
     try {
       const { data } = await axios.post(
@@ -60,10 +35,10 @@ const LoginForm = () => {
           password: enteredPassword,
         }
       );
-      console.log(`data: `, data);
-      console.log(data.token);
+      if (data.status === "success") navigate("/");
     } catch (error) {
-      console.log(`error: `, error);
+      // console.log(`error: `, error);
+      setError(error.response.data.message);
     }
   };
 
@@ -75,7 +50,6 @@ const LoginForm = () => {
       return;
     }
 
-    // asyncPostCall();
     axiosPostCall();
 
     resetPasswordInput();
