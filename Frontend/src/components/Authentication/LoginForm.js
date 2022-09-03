@@ -35,7 +35,12 @@ const LoginForm = () => {
           password: enteredPassword,
         }
       );
-      if (data.status === "success") navigate("/");
+      if (data.status === "success") {
+        setTimeout(() => {
+          navigate("/");
+          // window.location.assign("/");
+        }, 1500);
+      }
     } catch (error) {
       // console.log(`error: `, error);
       setError(error.response.data.message);

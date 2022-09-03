@@ -61,7 +61,12 @@ const SignUpForm = () => {
       const data = await response.json();
       setError(data.message);
 
-      if (data.status === "success") navigate("/");
+      if (data.status === "success") {
+        setTimeout(() => {
+          navigate("/");
+          // window.location.assign("/");
+        }, 1500);
+      }
     } catch (error) {
       console.log(error);
       setError("Something wrong !");
