@@ -1,7 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { authActions } from "../../store";
 
 const footer = [
   {
@@ -51,16 +49,10 @@ const footer = [
 ];
 
 const Footer = () => {
-  const authenticated = useSelector((state) => state.isAuthenticated);
-  const dispatch = useDispatch();
-  const reduxHandler = () => {
-    dispatch(authActions.login());
-  };
   return (
     <footer className="bg-primary text-white">
       <div className="cursor-pointer bg-tertiary py-4 text-center">
-        {authenticated && <div>hello world</div>}
-        <button onClick={reduxHandler}>BACK TO TOP</button>
+        <button>BACK TO TOP</button>
       </div>
       <div className="border-b border-tertiary bg-secondary">
         <div className="mx-auto max-w-[105rem] px-3">
