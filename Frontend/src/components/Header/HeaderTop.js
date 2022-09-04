@@ -74,7 +74,7 @@ const HeaderTop = () => {
         <ul className="hidden list-none items-center  gap-6 lg:flex">
           <li className="cursor-pointer text-white">
             {loggedInUser.user && (
-              <Link to="/">
+              <Link to="/account">
                 {loggedInUser.user.data.data.photo ? (
                   <img
                     crossOrigin="anonymous"
