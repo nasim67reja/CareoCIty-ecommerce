@@ -13,6 +13,7 @@ module.exports = {
         gradientTo: "#f0c14b",
         gradientFrom: "#f7dfa5",
         loginBorder: "#adb1b8",
+        customBorder: "#ddd",
       },
       outlineWidth: {
         5: "5px",

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import UserImage from "../UserImage";
 
 const AccountHead = () => {
   const loggedInUser = useSelector((state) => state.user);
@@ -8,23 +9,9 @@ const AccountHead = () => {
     <>
       {loggedInUser.user && (
         <div>
-          <div className="flex max-w-[12rem] items-center justify-center gap-4  rounded-sm bg-white p-4 shadow-lg">
+          <div className="flex max-w-[12rem] items-center justify-center gap-4  rounded-sm bg-white p-4 shadow-lg ">
             <div>
-              {loggedInUser.user.data.data.photo ? (
-                <img
-                  crossOrigin="anonymous"
-                  src={loggedInUser.user.data.data.photo}
-                  alt="userPhoto"
-                  className="h-[3rem] rounded-full"
-                />
-              ) : (
-                <span>
-                  <ion-icon
-                    name="person-circle-outline"
-                    size="large"
-                  ></ion-icon>
-                </span>
-              )}
+              <UserImage imgHeight="h-14" />
             </div>
             <div className="flex flex-col">
               <span
