@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import UserImage from "../UserImage";
@@ -6,6 +7,30 @@ const PersonalInfo = () => {
   const loggedInUser = useSelector((state) => state.user);
 
   const [personalInfoShow, setPersonalInfoShow] = useState(false);
+  const [enteredName, setEnteredName] = useState("");
+
+  const updateName = async () => {
+    try {
+      const { data } = await axios.patch(
+        "http://127.0.0.1:8000/api/v1/users/updateMe",
+        {
+          name: enteredName,
+        }
+      );
+      if (data.status === "success") {
+        setTimeout(() => {
+          document.location.reload();
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(`error: `, error);
+      // setError(error.response.data.message);
+    }
+  };
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    updateName();
+  };
 
   return (
     <div className="mb-8 border-b border-customBorder ">
@@ -31,7 +56,7 @@ const PersonalInfo = () => {
       )}
 
       {personalInfoShow && (
-        <form className=" p-3">
+        <form className=" p-3" onSubmit={formSubmissionHandler}>
           <div className="mb-6 flex flex-col gap-2">
             <label htmlFor="name">Name</label>
             <input
@@ -40,6 +65,8 @@ const PersonalInfo = () => {
               type="text"
               id="name"
               name="name"
+              onChange={(e) => setEnteredName(e.target.value)}
+              value={enteredName}
             />
           </div>
           <button className="rounded-sm bg-secondary py-1 px-4 text-white">
