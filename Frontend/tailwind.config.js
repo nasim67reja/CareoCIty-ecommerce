@@ -17,6 +17,9 @@ module.exports = {
       outlineWidth: {
         5: "5px",
       },
+      maxWidth: {
+        pf: "80rem",
+      },
     },
   },
   plugins: [],

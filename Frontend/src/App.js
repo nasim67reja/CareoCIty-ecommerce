@@ -7,7 +7,7 @@ import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import MainBody from "./components/MainBody/MainBody";
-
+import Profile from "./components/Account/AccountInfo/Profile";
 axios.defaults.withCredentials = true;
 
 export default function App() {
@@ -16,7 +16,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<MainBody />} />
-          <Route path="account" element={<Account />} />
+          <Route path="account" element={<Account />}>
+            <Route index element={<Profile />} />
+          </Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

@@ -8,7 +8,7 @@ const AccountHead = () => {
     <>
       {loggedInUser.user && (
         <div>
-          <div className="m-3 flex max-w-[12rem] items-center justify-center gap-4  rounded-sm bg-white p-4 shadow-lg">
+          <div className="flex max-w-[12rem] items-center justify-center gap-4  rounded-sm bg-white p-4 shadow-lg">
             <div>
               {loggedInUser.user.data.data.photo ? (
                 <img
