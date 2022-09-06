@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/currentUser";
+import UserImage from "../Account/UserImage";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -71,25 +72,11 @@ const HeaderTop = () => {
       <Search classes={"hidden   grow  lg:flex "} classesBtn={"hi"} />
 
       <nav>
-        <ul className="hidden list-none items-center  gap-6 lg:flex">
+        <ul className="hidden list-none items-center  gap-6 lg:flex ">
           <li className="cursor-pointer text-white">
             {loggedInUser.user && (
               <Link to="/account">
-                {loggedInUser.user.data.data.photo ? (
-                  <img
-                    crossOrigin="anonymous"
-                    src={loggedInUser.user.data.data.photo}
-                    alt="userPhoto"
-                    className="h-[2.2rem] rounded-full"
-                  />
-                ) : (
-                  <span>
-                    <ion-icon
-                      name="person-circle-outline"
-                      size="large"
-                    ></ion-icon>
-                  </span>
-                )}
+                <UserImage imgHeight="h-9" />
               </Link>
             )}
             {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
