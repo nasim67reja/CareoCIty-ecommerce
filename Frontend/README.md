@@ -24,3 +24,9 @@ setTimeout(() => {
 ```
 
 for more check [this](https://www.freecodecamp.org/news/refresh-the-page-in-javascript-js-reload-window-tutorial/)
+
+- When I was trying to delete the user account by user, i was facing a problem it was not working
+  Because i was forgot to do this `await user.save({ validateBeforeSave: false });`
+  it took me almost 1 hour to figure out this
+
+- `httpOnly:true` means we can not manipulate cookie in browser

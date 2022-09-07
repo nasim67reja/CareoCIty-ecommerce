@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import AccountHead from "../components/Account/AccountNav/AccountHead";
 import AccountNav from "../components/Account/AccountNav/AccountNav";
+import LogOut from "../components/Account/AccountNav/LogOut";
 
 const Account = () => {
   return (
@@ -10,12 +11,7 @@ const Account = () => {
         <div className="relative flex flex-col gap-4 ">
           <AccountHead />
           <AccountNav />
-          <button className="absolute bottom-4 left-2 rounded-md bg-white py-2 px-4">
-            <span className="mr-3">
-              <ion-icon name="log-out-outline"></ion-icon>
-            </span>
-            <span>Log Out</span>
-          </button>
+          <LogOut />
         </div>
         <Outlet />
       </div>
