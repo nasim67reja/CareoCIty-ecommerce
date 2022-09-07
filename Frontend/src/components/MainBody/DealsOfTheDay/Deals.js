@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 // import { deal, topRated } from "./Data";
 import Slider from "./Slider";
+import { productsActions } from "../../../store/allProducts";
 
 const Deals = () => {
   const [products, setProducts] = useState([]);
@@ -9,12 +11,15 @@ const Deals = () => {
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState(null);
 
+  const dispatch = useDispatch();
+
   const fetchAllProductsHandler = useCallback(async () => {
     // setIsLoading(true);
     // setError(null);
     try {
       const { data } = await axios.get("http://127.0.0.1:8000/api/v1/products");
       setProducts(data.data.data);
+      dispatch(productsActions.storeProducts(data.data.data));
     } catch (error) {
       // setError(error.message);
       console.log(`error: `, error);
@@ -54,7 +59,7 @@ const Deals = () => {
       <div className=" mt-[-15rem]">
         <Slider data={Electronics} />
       </div>
-      <Slider data={topRated} title={"Top Rated"} />
+      <Slider data={topRated} title={"Top Rated"} route="top-rated" />
       <Slider data={Man} />
       <Slider data={Women} />
       <Slider data={Home} />

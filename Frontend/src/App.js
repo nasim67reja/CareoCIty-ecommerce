@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
+import Categories from "./pages/Categories";
 import MainBody from "./components/MainBody/MainBody";
 import AccountInfo from "./components/Account/AccountInfo/AccountInfo";
 import Profile from "./components/Account/AccountInfo/Profile";
@@ -21,6 +22,7 @@ export default function App() {
             <Route index element={<Profile />} />
             <Route path=":accountId" element={<AccountInfo />} />
           </Route>
+          <Route path=":categoriesId" element={<Categories />}></Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
