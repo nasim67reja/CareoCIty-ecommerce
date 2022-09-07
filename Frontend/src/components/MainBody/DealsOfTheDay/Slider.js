@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const SingleProduct = ({
+export const SingleProduct = ({
   product,
   i,
   numOfClick,
