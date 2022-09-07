@@ -69,7 +69,10 @@ const PersonalInfo = () => {
               value={enteredName}
             />
           </div>
-          <button className="rounded-sm bg-secondary py-1 px-4 text-white">
+          <button
+            type="submit"
+            className="rounded-sm bg-secondary py-1 px-4 text-white"
+          >
             save
           </button>
         </form>
@@ -104,6 +107,38 @@ const ProfilePic = () => {
 
 const MyPass = () => {
   const [passShown, setPassShown] = useState(false);
+  const [enteredCurPass, setEnteredCurPass] = useState("");
+  const [enteredNewPass, setEnteredNewPass] = useState("");
+  const [enteredConPass, setEnteredConPass] = useState("");
+
+  const [showResponse, setShowResponse] = useState(null);
+
+  const updateMyPass = async () => {
+    try {
+      const { data } = await axios.patch(
+        "http://127.0.0.1:8000/api/v1/users/updateMyPassword",
+        {
+          passwordCurrent: enteredCurPass,
+          password: enteredNewPass,
+          passwordConfirm: enteredConPass,
+        }
+      );
+      if (data.status === "success") {
+        setShowResponse("Updated Successfully ✔");
+        setTimeout(() => {
+          document.location.reload();
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(`error: `, error);
+      setShowResponse(error.response.data.message);
+    }
+  };
+
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    updateMyPass();
+  };
 
   return (
     <div className="mb-8 border-b border-customBorder pb-4">
@@ -119,10 +154,94 @@ const MyPass = () => {
         )}
       </div>
 
-      <div className="max-w-[15rem] border border-loginBorder bg-backg py-3 px-3 opacity-70">
-        ***************
-      </div>
+      {!passShown && (
+        <div className="max-w-[15rem] border border-loginBorder bg-backg py-3 px-3 opacity-70">
+          ***************
+        </div>
+      )}
+
+      {passShown && (
+        <form className=" p-3" onSubmit={formSubmissionHandler}>
+          <div className="mb-6 flex flex-col gap-2">
+            <label htmlFor="passCurrent">Current Password</label>
+            <input
+              className="max-w-[15rem] bg-backg px-4 py-2 focus:outline-none"
+              type="password"
+              id="passCurrent"
+              name="passCurrent"
+              onChange={(e) => setEnteredCurPass(e.target.value)}
+              value={enteredCurPass}
+            />
+          </div>
+          <div className="mb-6 flex flex-col gap-2">
+            <label htmlFor="passNew">New Password</label>
+            <input
+              className="max-w-[15rem] bg-backg px-4 py-2 focus:outline-none"
+              type="password"
+              id="passNew"
+              name="passNew"
+              onChange={(e) => setEnteredNewPass(e.target.value)}
+              value={enteredNewPass}
+            />
+          </div>
+          <div className="mb-6 flex flex-col gap-2">
+            <label htmlFor="passConfirm">Confirm Password</label>
+            <input
+              className="max-w-[15rem] bg-backg px-4 py-2 focus:outline-none"
+              type="password"
+              id="passConfirm"
+              name="passConfirm"
+              onChange={(e) => setEnteredConPass(e.target.value)}
+              value={enteredConPass}
+            />
+          </div>
+          <div className="flex items-center gap-6">
+            <button
+              type="submit"
+              className="rounded-sm bg-secondary py-1 px-4 text-white"
+            >
+              Update
+            </button>
+            <p className="text-green-600">{showResponse}</p>
+          </div>
+        </form>
+      )}
     </div>
+  );
+};
+
+const DeleteAcc = () => {
+  const [formIsShown, setFormIsShown] = useState(false);
+  return (
+    <>
+      <button
+        className="mb-7 cursor-pointer text-blue-500"
+        onClick={() => setFormIsShown(true)}
+      >
+        Delete Your Account
+      </button>
+      {formIsShown && (
+        <form>
+          <div className="mb-6 flex flex-col gap-2">
+            <label htmlFor="deleteAcc">Current Password</label>
+            <input
+              className="max-w-[15rem] bg-backg px-4 py-2 focus:outline-none"
+              type="password"
+              id="deleteAcc"
+              name="deleteAcc"
+              // onChange={(e) => setEnteredCurPass(e.target.value)}
+              // value={enteredCurPass}
+            />
+          </div>
+          <button
+            type="submit"
+            className="rounded-sm bg-secondary py-1 px-4 text-white"
+          >
+            Confirm Delete
+          </button>
+        </form>
+      )}
+    </>
   );
 };
 
@@ -133,9 +252,7 @@ const Profile = () => {
       <ProfilePic />
       <MyPass />
 
-      <button className="cursor-pointer text-blue-500">
-        Delete Your Account
-      </button>
+      <DeleteAcc />
     </div>
   );
 };
