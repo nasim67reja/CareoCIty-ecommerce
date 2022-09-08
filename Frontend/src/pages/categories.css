@@ -1,3 +1,8 @@
 .custom-grid {
   grid-template-columns: 25% 75%;
 }
+
+.category ion-icon {
+  width: 20px;
+  height: 20px;
+}

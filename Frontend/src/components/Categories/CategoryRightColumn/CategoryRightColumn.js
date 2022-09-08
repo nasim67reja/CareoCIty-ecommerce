@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import CateProd from "./CateProd";
+import CateHeader from "./CateHeader";
 
 const CategoryRightColumn = ({ params }) => {
   const [products, setProducts] = useState("");
@@ -37,7 +38,8 @@ const CategoryRightColumn = ({ params }) => {
   );
 
   return (
-    <div>
+    <div className="h">
+      <CateHeader />
       <CateProd category={Category} />
     </div>
   );
