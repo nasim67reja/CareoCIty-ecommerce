@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Product from "../Product";
 
 export const SingleProduct = ({
   product,
@@ -10,8 +11,6 @@ export const SingleProduct = ({
   data,
 }) => {
   const [width, setWidth] = useState(0);
-  const [mouseEnter, setMouseEnter] = useState(false);
-  const [clicked, setClicked] = useState(false);
   const element = useRef(null);
 
   useEffect(() => {
@@ -27,31 +26,8 @@ export const SingleProduct = ({
       style={{ transform: `translateX(${exactWidth}px)` }}
       className="testclass absolute top-0 left-0 h-full transition-all duration-500"
     >
-      <div
-        className="relative flex h-full w-full  flex-col  items-center gap-1 "
-        ref={element}
-      >
-        <div
-          className="sliderIcon absolute top-3 right-3 cursor-pointer"
-          onClick={() => setClicked((prevSt) => !prevSt)}
-        >
-          {clicked ? (
-            <ion-icon name="heart" size="large"></ion-icon>
-          ) : (
-            <ion-icon name="heart-outline" size="large"></ion-icon>
-          )}
-        </div>
-        <img
-          src={mouseEnter ? product.images[0] : product.images[1]}
-          alt=""
-          crossOrigin="anonymous"
-          className="mb-4 h-[73%] w-full cursor-pointer"
-          onMouseEnter={() => setMouseEnter(true)}
-          onMouseLeave={() => setMouseEnter(false)}
-        />
-        <p className="text-sm">{product.name}</p>
-        <p className="text-sm text-orange-500">{product.price}</p>
-        <p>{product.ratingsAverage}</p>
+      <div className="h-[23rem] w-full" ref={element}>
+        <Product product={product} customClass="mb-4 h-[16rem]" />
       </div>
     </div>
   );
@@ -107,7 +83,7 @@ const Slider = ({ data, title, route }) => {
         </div>
 
         <div
-          className="sec relative mb-10  h-[23rem] overflow-scroll scroll-smooth"
+          className="sec relative mb-10  h-[24rem] overflow-scroll scroll-smooth "
           ref={parentWidth}
         >
           {data.map((product, i) => (
