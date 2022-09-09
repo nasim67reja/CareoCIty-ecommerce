@@ -1,27 +1,10 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import CateProd from "./CateProd";
 import CateHeader from "./CateHeader";
+import { useSelector } from "react-redux";
 
 const CategoryRightColumn = ({ params }) => {
-  const [products, setProducts] = useState("");
-
-  const fetchAllProductsHandler = useCallback(async () => {
-    // setIsLoading(true);
-    // setError(null);
-    try {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/products");
-      setProducts(data.data.data);
-    } catch (error) {
-      // setError(error.message);
-      console.log(`error: `, error);
-    }
-    // setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    fetchAllProductsHandler();
-  }, [fetchAllProductsHandler]);
+  const products = useSelector((state) => state.allProducts.allProducts);
 
   const Electronics =
     products &&

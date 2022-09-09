@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 const CateHeader = () => {
-  const [gridIsActive, setGridIsActive] = useState(true);
+  let gridIsActive = true;
 
   let [searchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
 
   const gridViewHandler = () => {
-    setGridIsActive(true);
+    gridIsActive = true;
 
     if (searchParams.getAll("view").includes("grid")) return;
     navigate(
@@ -22,7 +21,8 @@ const CateHeader = () => {
   };
 
   const listViewHandler = () => {
-    setGridIsActive(false);
+    gridIsActive = false;
+
     if (searchParams.getAll("view").includes("list")) return;
     navigate(
       `${location.pathname}${
@@ -33,9 +33,7 @@ const CateHeader = () => {
     );
   };
 
-  useEffect(() => {
-    if (searchParams.get("view") === "list") setGridIsActive(false);
-  }, [searchParams]);
+  if (searchParams.get("view") === "list") gridIsActive = false;
 
   const filterHandler = () => {
     if (searchParams.get("filter")) return;

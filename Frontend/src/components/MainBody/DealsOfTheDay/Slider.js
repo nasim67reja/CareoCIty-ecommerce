@@ -39,11 +39,13 @@ const Slider = ({ data, title, route }) => {
   const parentWidth = useRef(null);
 
   useEffect(() => {
-    setWidthParent(parentWidth.current.offsetWidth);
-    window.addEventListener("resize", () => {
+    if (data) {
       setWidthParent(parentWidth.current.offsetWidth);
-    });
-  }, []);
+      window.addEventListener("resize", () => {
+        setWidthParent(parentWidth.current.offsetWidth);
+      });
+    }
+  }, [data]);
 
   const increaseTranslateXHandler = () => {
     setNumOfClick((prevSt) => (prevSt = prevSt + 1));
@@ -59,47 +61,51 @@ const Slider = ({ data, title, route }) => {
   if (numOfClick > 0) setNumOfClick(0);
 
   return (
-    <div className=" mx-auto max-w-[110rem]  rounded-lg  bg-white">
-      <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
-        <h2 className="fontm text-xl">{title || data[0]?.categories}</h2>
-        <button className="rounded border bg-blue-600 px-3 py-2 text-white transition-all hover:bg-white hover:text-primary">
-          <Link to={`/${route || data[0]?.categories}`}>View all</Link>
-        </button>
-      </div>
+    <>
+      {data && (
+        <div className=" mx-auto max-w-[110rem]  rounded-lg  bg-white">
+          <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
+            <h2 className="fontm text-xl">{title || data[0]?.categories}</h2>
+            <button className="rounded border bg-blue-600 px-3 py-2 text-white transition-all hover:bg-white hover:text-primary">
+              <Link to={`/${route || data[0]?.categories}`}>View all</Link>
+            </button>
+          </div>
 
-      <div className="group relative w-full ">
-        <div
-          className="sliderIconarr absolute left-0 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-r-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
-          onClick={increaseTranslateXHandler}
-        >
-          <ion-icon name="chevron-back-outline" size="large"></ion-icon>
-        </div>
+          <div className="group relative w-full ">
+            <div
+              className="sliderIconarr absolute left-0 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-r-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
+              onClick={increaseTranslateXHandler}
+            >
+              <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+            </div>
 
-        <div
-          className="sliderIconarr absolute -right-1 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-l-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
-          onClick={decreaseTranslateXHandler}
-        >
-          <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
-        </div>
+            <div
+              className="sliderIconarr absolute -right-1 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-l-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
+              onClick={decreaseTranslateXHandler}
+            >
+              <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+            </div>
 
-        <div
-          className="sec relative mb-10  h-[24rem] overflow-scroll scroll-smooth "
-          ref={parentWidth}
-        >
-          {data.map((product, i) => (
-            <SingleProduct
-              product={product}
-              key={i}
-              i={i}
-              numOfClick={numOfClick}
-              widthparent={widthparent}
-              onGetOffScreenEl={maxNumOfClickHandler}
-              data={data}
-            />
-          ))}
+            <div
+              className="sec relative mb-10  h-[24rem] overflow-scroll scroll-smooth "
+              ref={parentWidth}
+            >
+              {data.map((product, i) => (
+                <SingleProduct
+                  product={product}
+                  key={i}
+                  i={i}
+                  numOfClick={numOfClick}
+                  widthparent={widthparent}
+                  onGetOffScreenEl={maxNumOfClickHandler}
+                  data={data}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
