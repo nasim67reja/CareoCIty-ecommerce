@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const CategoryNav = () => {
   const [category, setCategory] = useState("");
+  const location = useLocation();
   const getProductCategory = useCallback(async () => {
     // setIsLoading(true);
     // setError(null);
@@ -31,7 +32,8 @@ const CategoryNav = () => {
           category.map((el, i) => (
             <li key={i} className="border-b border-customBorder">
               <NavLink
-                to={`/${el._id}`}
+                // to={`/${el._id}`}
+                to={`/${el._id}${location.search}`}
                 className="block w-full  py-2 px-4"
                 style={({ isActive }) => {
                   return {

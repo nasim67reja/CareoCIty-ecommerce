@@ -1,10 +1,4 @@
-import { useState } from "react";
-import {
-  useSearchParams,
-  useLocation,
-  useNavigate,
-  Link,
-} from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 const CateHeader = () => {
   let gridIsActive = true;
@@ -13,44 +7,38 @@ const CateHeader = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const gridViewHandler = () => {
-    gridIsActive = true;
+  const createNavigate = (view, boolean) => {
+    gridIsActive = boolean;
 
-    if (searchParams.getAll("view").includes("grid")) return;
-    navigate(
-      `${location.pathname}${
-        location.search && !searchParams.get("view")
-          ? location.search + "&"
-          : "?"
-      }view=grid`
-    );
-  };
-
-  const listViewHandler = () => {
-    gridIsActive = false;
-
-    if (searchParams.getAll("view").includes("list")) return;
-    navigate(
-      `${location.pathname}${
-        location.search && !searchParams.get("view")
-          ? location.search + "&"
-          : "?"
-      }view=list`
-    );
+    if (searchParams.get("sort") && searchParams.get("view")) {
+      navigate(
+        `${location.pathname}?view=${view}&sort=${searchParams.get("sort")}`
+      );
+    } else if (searchParams.get("sort")) {
+      navigate(
+        `${location.pathname}?view=${view}&sort=${searchParams.get("sort")}`
+      );
+    } else {
+      navigate(`${location.pathname}?view=${view}`);
+    }
   };
 
   if (searchParams.get("view") === "list") gridIsActive = false;
 
-  const filterHandler = () => {
-    if (searchParams.get("filter")) return;
-    navigate(
-      `${location.pathname}${
-        location.search ? location.search + "&" : "?"
-      }sort=asc`
-    );
-  };
-  const selectHandler = (e) => {
-    console.log(e.target.value);
+  const sortingHandler = (e) => {
+    const value = e.target.value;
+
+    if (searchParams.get("sort") && searchParams.get("view")) {
+      navigate(
+        `${location.pathname}?sort=${value}&view=${searchParams.get("view")}`
+      );
+    } else if (searchParams.get("view")) {
+      navigate(
+        `${location.pathname}?sort=${value}&view=${searchParams.get("view")}`
+      );
+    } else {
+      navigate(`${location.pathname}?sort=${value}`);
+    }
   };
 
   return (
@@ -60,7 +48,7 @@ const CateHeader = () => {
           className={`category flex cursor-pointer items-center justify-center rounded-sm  p-2 ${
             gridIsActive ? "bg-blue-600 text-white" : "border border-orange-400"
           }`}
-          onClick={gridViewHandler}
+          onClick={() => createNavigate("grid", true)}
         >
           <ion-icon name="grid-outline"></ion-icon>
         </span>
@@ -70,7 +58,7 @@ const CateHeader = () => {
               ? "bg-blue-600 text-white"
               : "border border-orange-400"
           }`}
-          onClick={listViewHandler}
+          onClick={() => createNavigate("list", false)}
         >
           <ion-icon name="list-outline" size="large"></ion-icon>
         </span>
@@ -81,7 +69,7 @@ const CateHeader = () => {
         <select
           name="sorting"
           className="flex-grow cursor-pointer rounded-sm border border-orange-500 py-2 px-4 text-sm transition-all duration-300 focus:outline-orange-500"
-          onChange={selectHandler}
+          onChange={sortingHandler}
         >
           <option value="Featuerd">Featured</option>
           <option value="Price,low to high">Price,low to high</option>
