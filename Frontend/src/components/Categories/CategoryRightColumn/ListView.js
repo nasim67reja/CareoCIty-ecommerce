@@ -1,22 +1,27 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const ListView = ({ product }) => {
   const [hoverOnImage, setHoverOnImage] = useState(true);
   const [clicked, setClicked] = useState(false);
+  const location = useLocation();
+
   return (
     <>
       {product && (
-        <div className="grid grid-cols-[28%_68%]   gap-8 border border-customBorder">
+        <li className="grid grid-cols-[28%_68%]   gap-8 border border-customBorder">
           <div className="relative">
-            <img
-              src={hoverOnImage ? product.images[1] : product.images[0]}
-              crossOrigin="anonymous"
-              alt={product.name}
-              className="h-[22rem] w-full"
-              onMouseEnter={() => setHoverOnImage(false)}
-              onMouseLeave={() => setHoverOnImage(true)}
-            />
+            <Link to={`${location.pathname}/${product.name}`}>
+              <img
+                src={hoverOnImage ? product.images[1] : product.images[0]}
+                crossOrigin="anonymous"
+                alt={product.name}
+                className="h-[22rem] w-full"
+                onMouseEnter={() => setHoverOnImage(false)}
+                onMouseLeave={() => setHoverOnImage(true)}
+              />
+            </Link>
             <span
               className="categoryIcon absolute top-2 right-2 cursor-pointer"
               onClick={() => setClicked(true)}
@@ -38,7 +43,7 @@ const ListView = ({ product }) => {
               Add to cart
             </button>
           </div>
-        </div>
+        </li>
       )}
     </>
   );

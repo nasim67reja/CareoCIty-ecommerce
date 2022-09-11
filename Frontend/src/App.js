@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import Categories from "./pages/Categories";
+import ProductDetails from "./pages/ProductDetails";
 import MainBody from "./components/MainBody/MainBody";
 import AccountInfo from "./components/Account/AccountInfo/AccountInfo";
 import Profile from "./components/Account/AccountInfo/Profile";
@@ -41,6 +42,10 @@ export default function App() {
             <Route path=":accountId" element={<AccountInfo />} />
           </Route>
           <Route path=":categoriesId" element={<Categories />}></Route>
+          <Route
+            path=":categoriesId/:productId"
+            element={<ProductDetails />}
+          ></Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

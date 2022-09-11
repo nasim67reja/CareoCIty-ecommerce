@@ -137,3 +137,16 @@ button:disabled:active {
   width: 20px;
   height: 20px;
 }
+
+/* REMOVE ARROW/SPINNERS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
