@@ -65,10 +65,10 @@ const HeaderTop = () => {
         <ion-icon name="menu-outline"></ion-icon>
         <ion-icon name="search-outline"></ion-icon>
       </div>
-      <div className="text-white">
+      <Link to="/" className="cursor-pointer text-white">
         <h2 className="own-class  text-2xl lg:text-3xl">CareoCity</h2>
         <p className="text-xs opacity-80">Quality Fun Shopping</p>
-      </div>
+      </Link>
       <Search classes={"hidden   grow  lg:flex "} classesBtn={"hi"} />
 
       <nav>

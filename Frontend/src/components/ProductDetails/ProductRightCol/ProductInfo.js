@@ -1,24 +1,42 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const ProductInfo = () => {
   const params = useParams();
   const products = useSelector((state) => state.allProducts.allProducts);
-  if (!products) return;
-  const [product] =
-    products && products.filter((product) => product.name === params.productId);
+  // if (!products) return;
+  const [product] = products
+    ? products.filter((product) => product.name === params.productId)
+    : "";
+
+  const [imgSrc, setImgSrc] = useState(product ? product.images[1] : "");
 
   return (
-    <div className="grid grid-cols-2  bg-white">
+    <div className="grid grid-cols-2  bg-white ">
       {products && (
         <>
-          <div>
+          <div className="flex flex-col gap-4 ">
             <img
               crossOrigin="anonymous"
-              src={product.images[1]}
+              src={imgSrc ? imgSrc : product.images[1]}
               alt={product.name}
             />
+            <div className="flex gap-4 px-4">
+              {product.images.map((image, i) => (
+                <img
+                  key={i}
+                  crossOrigin="anonymous"
+                  src={image}
+                  alt={product.name}
+                  className="h-28 w-24 cursor-pointer"
+                  onClick={(e) => {
+                    setImgSrc(e.target.src);
+                  }}
+                />
+              ))}
+            </div>
           </div>
           <div className="py-2 pl-10">
             <h2 className="text-3xl">{product.name}</h2>
@@ -56,7 +74,7 @@ const ProductInfo = () => {
                     className="w-10 border border-customBorder px-3 focus:outline-none"
                     type="number"
                     min="1"
-                    value="1"
+                    // value="1"
                   />
                   <button className="border border-customBorder px-3">+</button>
                 </div>
