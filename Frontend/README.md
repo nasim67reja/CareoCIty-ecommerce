@@ -2,7 +2,7 @@
 
 ### Problem I faced
 
-- `crossorigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
+- `crossOrigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
 
 - set `autoFocus` attribute in an input element. then By default the input element will be focused
 
@@ -30,3 +30,6 @@ for more check [this](https://www.freecodecamp.org/news/refresh-the-page-in-java
   it took me almost 1 hour to figure out this
 
 - `httpOnly:true` means we can not manipulate cookie in browser
+
+- working with query param was a biggest difficulty for me but after spending 2 days,
+  I have figure out it properly

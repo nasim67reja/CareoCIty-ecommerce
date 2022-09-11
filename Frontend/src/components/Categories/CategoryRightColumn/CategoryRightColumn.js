@@ -16,9 +16,10 @@ const CategoryRightColumn = ({ params }) => {
   const Home =
     products && products.filter((products) => products.categories === "Home");
 
-  const [Category] = [Electronics, Man, Women, Home].filter(
-    (product) => product[0]?.categories === params
-  );
+  const [Category] = [Electronics, Man, Women, Home].filter((product) => {
+    if (!product) return null;
+    return product[0]?.categories === params;
+  });
 
   return (
     <div className="h">
