@@ -1,18 +1,40 @@
 import React from "react";
+import { useState } from "react";
 
 const ListView = ({ product }) => {
+  const [hoverOnImage, setHoverOnImage] = useState(true);
+  const [clicked, setClicked] = useState(false);
   return (
     <>
       {product && (
-        <div className="grid grid-cols-[30%_75%] gap-4">
-          <div>
-            <img src={product.images[1]} crossOrigin="anonymous" alt="" />
+        <div className="grid grid-cols-[28%_68%]   gap-8 border border-customBorder">
+          <div className="relative">
+            <img
+              src={hoverOnImage ? product.images[1] : product.images[0]}
+              crossOrigin="anonymous"
+              alt={product.name}
+              className="h-[22rem] w-full"
+              onMouseEnter={() => setHoverOnImage(false)}
+              onMouseLeave={() => setHoverOnImage(true)}
+            />
+            <span
+              className="categoryIcon absolute top-2 right-2 cursor-pointer"
+              onClick={() => setClicked(true)}
+            >
+              {clicked ? (
+                <ion-icon name="heart"></ion-icon>
+              ) : (
+                <ion-icon name="heart-outline"></ion-icon>
+              )}
+            </span>
           </div>
-          <div>
-            <h3>{product.name}</h3>
-            <p>{product.price}</p>
-            <p>{product.summary}</p>
-            <button className="mt-6 rounded-sm bg-white py-1 px-3">
+          <div className="w-full px-2 py-6">
+            <h3 className="text-xl">{product.name}</h3>
+            <p className="my-2 object-cover text-sm font-semibold text-orange-500 opacity-80">
+              {product.price}$
+            </p>
+            <p className="text-sm">{product.summary}</p>
+            <button className="mt-6 rounded-sm border border-orange-500 py-1 px-3  text-sm">
               Add to cart
             </button>
           </div>

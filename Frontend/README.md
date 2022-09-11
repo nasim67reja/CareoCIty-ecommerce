@@ -33,3 +33,5 @@ for more check [this](https://www.freecodecamp.org/news/refresh-the-page-in-java
 
 - working with query param was a biggest difficulty for me but after spending 2 days,
   I have figure out it properly
+
+- Custom grid template column `grid-cols-20/80` for more check [this](https://stackoverflow.com/questions/67242334/tailwind-css-how-to-make-a-grid-with-two-columns-where-the-1st-column-has-20)

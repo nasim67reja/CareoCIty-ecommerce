@@ -20,9 +20,9 @@ const CateProd = ({ category }) => {
           ))}
         </ul>
       ) : (
-        <ul className="mx-auto flex flex-wrap items-center justify-center gap-3">
+        <ul className="mx-auto flex flex-col  gap-8">
           {category?.map((product, i) => (
-            <ListView product={product} />
+            <ListView product={product} key={i} />
           ))}
         </ul>
       )}

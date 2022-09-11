@@ -47,15 +47,12 @@ body::-webkit-scrollbar-thumb {
 .customIcon ion-icon,
 .customI ion-icon,
 .sliderIcon ion-icon,
-.sliderIconarr ion-icon {
+.sliderIconarr ion-icon,
+.categoryIcon ion-icon {
   cursor: pointer;
   width: 24px;
   height: 24px;
   color: white;
-}
-.category ion-icon {
-  width: 20px;
-  height: 20px;
 }
 
 SELECT {
@@ -130,4 +127,13 @@ button:disabled,
 button:disabled:hover,
 button:disabled:active {
   cursor: not-allowed;
+}
+
+/* ION ICON */
+.categoryIcon ion-icon {
+  color: orange;
+}
+.category ion-icon {
+  width: 20px;
+  height: 20px;
 }

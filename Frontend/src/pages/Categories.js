@@ -8,7 +8,7 @@ const Categories = () => {
   // let content = params.categoriesId;
 
   return (
-    <div className="mx-auto grid max-w-st grid-cols-[25%_75%] gap-10  px-4 py-12">
+    <div className="mx-auto grid max-w-st grid-cols-[25%_75%] gap-10  px-16 py-12">
       <CategoryLeftColumn />
       <CategoryRightColumn params={params.categoriesId} />
     </div>
