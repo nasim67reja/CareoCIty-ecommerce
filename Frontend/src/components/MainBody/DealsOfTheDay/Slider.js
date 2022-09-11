@@ -42,7 +42,7 @@ const Slider = ({ data, title, route }) => {
     if (data) {
       setWidthParent(parentWidth.current.offsetWidth);
       window.addEventListener("resize", () => {
-        setWidthParent(parentWidth.current.offsetWidth);
+        setWidthParent(parentWidth.current?.offsetWidth);
       });
     }
   }, [data]);

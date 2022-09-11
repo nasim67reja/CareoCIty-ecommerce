@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import UserImage from "../UserImage";
 
 const PersonalInfo = () => {
@@ -213,30 +212,6 @@ const MyPass = () => {
 
 const DeleteAcc = () => {
   const [formIsShown, setFormIsShown] = useState(false);
-  const [enteredPass, setEnteredPass] = useState("");
-  const [showResponse, setShowResponse] = useState("");
-
-  const navigate = useNavigate();
-
-  const deleteAccount = async () => {
-    try {
-      await axios.patch("http://127.0.0.1:8000/api/v1/users/deleteMe", {
-        password: enteredPass,
-      });
-      setShowResponse("Deleted Successfully ✔");
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
-    } catch (error) {
-      console.log(`error: `, error);
-      setShowResponse(error.response.data.message);
-    }
-  };
-
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
-    deleteAccount();
-  };
   return (
     <>
       <button
@@ -246,28 +221,24 @@ const DeleteAcc = () => {
         Delete Your Account
       </button>
       {formIsShown && (
-        <form className=" p-3" onSubmit={formSubmissionHandler}>
+        <form>
           <div className="mb-6 flex flex-col gap-2">
-            <label htmlFor="deleteAcc">Please provide your password</label>
+            <label htmlFor="deleteAcc">Current Password</label>
             <input
               className="max-w-[15rem] bg-backg px-4 py-2 focus:outline-none"
               type="password"
               id="deleteAcc"
               name="deleteAcc"
-              onChange={(e) => setEnteredPass(e.target.value)}
-              value={enteredPass}
+              // onChange={(e) => setEnteredCurPass(e.target.value)}
+              // value={enteredCurPass}
             />
           </div>
-
-          <div className="flex items-center gap-6">
-            <button
-              type="submit"
-              className="rounded-sm bg-secondary py-1 px-4 text-white"
-            >
-              Confirm Delete
-            </button>
-            <p className="text-green-600">{showResponse}</p>
-          </div>
+          <button
+            type="submit"
+            className="rounded-sm bg-secondary py-1 px-4 text-white"
+          >
+            Confirm Delete
+          </button>
         </form>
       )}
     </>
