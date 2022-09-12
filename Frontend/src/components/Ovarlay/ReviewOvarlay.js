@@ -2,11 +2,19 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { overlayActions } from "../../store/ovarlay";
 
 const ReviewOvarlay = () => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
+  const params = useParams();
+  const products = useSelector((state) => state.allProducts.allProducts);
+  // if (!products) return;
+  const [product] = products
+    ? products.filter((product) => product.name === params.productId)
+    : "";
+  // console.log(product?._id);
 
   const dispatch = useDispatch();
   const reviewOvarlayIsVisible = useSelector(
@@ -17,19 +25,20 @@ const ReviewOvarlay = () => {
   const postReview = async () => {
     try {
       const { data } = await axios.post(
-        `http://127.0.0.1:8000/api/v1/products/631ed0b0406aefd50ab6c19b/reviews`,
+        `http://127.0.0.1:8000/api/v1/products/${product?._id}/reviews`,
         {
           review: review,
           rating: +rating,
         }
       );
-      if (data.status === "success") {
-        setTimeout(() => {
-          document.location.reload();
-        }, 1500);
-      }
+      // console.log(data);
+      // if (data.status === "success") {
+      //   setTimeout(() => {
+      //     document.location.reload();
+      //   }, 1500);
+      // }
     } catch (error) {
-      console.log(`error: `, error);
+      console.log(`error: `, error.response);
       //   setError(error.response.data.message);
     }
   };

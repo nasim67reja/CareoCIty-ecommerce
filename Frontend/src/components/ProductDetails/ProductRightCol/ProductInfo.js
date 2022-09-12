@@ -1,17 +1,38 @@
+import axios from "axios";
 import React from "react";
+import { useCallback } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Product from "../../MainBody/Product";
 import Reviews from "./Reviews";
+import { productsActions } from "../../../store/allProducts";
 
 const ProductInfo = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.allProducts.allProducts);
-  // if (!products) return;
+
   const [product] = products
     ? products.filter((product) => product.name === params.productId)
     : "";
+
+  const getProduct = useCallback(async () => {
+    if (product) {
+      try {
+        const { data } = await axios.get(
+          `http://127.0.0.1:8000/api/v1/products/${product._id}`
+        );
+        dispatch(productsActions.storeProduct(data.data.data));
+      } catch (error) {
+        console.log(`error: `, error.response);
+      }
+    }
+  }, [product, dispatch]);
+  useEffect(() => {
+    getProduct();
+  }, [getProduct]);
 
   const randomNum = Math.ceil(Math.random() * 4);
   const productCategory = products

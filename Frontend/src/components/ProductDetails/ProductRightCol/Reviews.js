@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Backdrop from "../../Ovarlay/Backdrop";
 import { overlayActions } from "../../../store/ovarlay";
 import ReviewOvarlay from "../../Ovarlay/ReviewOvarlay";
 
 const Reviews = () => {
+  // const product = useSelector((state) => state.allProducts.Product);
+  // console.log(product);
+
   const dispatch = useDispatch();
   const writeReviewHandler = () => {
     dispatch(overlayActions.backdropVisible());
