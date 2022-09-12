@@ -32,11 +32,11 @@ const ReviewOvarlay = () => {
         }
       );
       // console.log(data);
-      // if (data.status === "success") {
-      //   setTimeout(() => {
-      //     document.location.reload();
-      //   }, 1500);
-      // }
+      if (data.status === "success") {
+        setTimeout(() => {
+          document.location.reload();
+        }, 1500);
+      }
     } catch (error) {
       console.log(`error: `, error.response);
       //   setError(error.response.data.message);
@@ -44,7 +44,6 @@ const ReviewOvarlay = () => {
   };
   const fromSubmissionHandler = (event) => {
     event.preventDefault();
-    console.log(review, rating);
     postReview();
   };
   return (
@@ -73,7 +72,8 @@ const ReviewOvarlay = () => {
                   id="rating"
                   name="email"
                   min="1"
-                  max={5}
+                  max="5"
+                  step="any"
                   className="mt-2 rounded-lg border border-loginBorder p-2 focus:outline-none"
                   onChange={(e) => setRating(e.target.value)}
                 />
