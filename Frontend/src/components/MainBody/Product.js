@@ -16,7 +16,13 @@ const Product = ({ product, customClass }) => {
           <ion-icon name="heart-outline" size="large"></ion-icon>
         )}
       </div>
-      <Link to={`/${product.categories}/${product.name}`} className="w-full">
+      <Link
+        to={`/${product.categories}/${product.name}`}
+        className="w-full"
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
         <img
           src={mouseEnter ? product.images[0] : product.images[1]}
           alt=""

@@ -35,3 +35,36 @@ for more check [this](https://www.freecodecamp.org/news/refresh-the-page-in-java
   I have figure out it properly
 
 - Custom grid template column `grid-cols-20/80` for more check [this](https://stackoverflow.com/questions/67242334/tailwind-css-how-to-make-a-grid-with-two-columns-where-the-1st-column-has-20)
+
+### react-router scroll to top on every transition
+
+- I have an issue when navigating into another page, its position will remain like the page before. So it won't
+  scroll to top automatically. I've also tried to use window.scrollTo(0, 0) on onChange router. I've also used
+  scrollBehavior to fix this issue but it didn't work.
+
+- for this problem , i have implemented a solution where each link i add this
+
+```js
+<Link
+        to={`/${product.categories}/${product.name}`}
+        className="w-full"
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
+
+```
+
+- here is a nice solution for this problem
+
+```js
+const Wrapper = ({ children }) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children;
+};
+```
+
+For more check [this](https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition)

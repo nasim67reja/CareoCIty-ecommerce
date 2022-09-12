@@ -7,6 +7,7 @@ module.exports = {
         primary: "#131921",
         secondary: "#232f3e",
         tertiary: "#37475a",
+        textColor: "#888",
         outline: "#febd69",
         ovarlay: "#13192199",
         backg: "#EAEDED",

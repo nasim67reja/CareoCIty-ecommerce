@@ -21,8 +21,16 @@ const ProductInfo = () => {
 
   const [imgSrc, setImgSrc] = useState(product ? product.images[1] : "");
 
+  const [descriptionIsShown, setDescriptionIsShown] = useState(true);
+  const [reviewIsShown, setReviewIsShown] = useState(false);
+  const [shippingIsShown, setShippingIsShown] = useState(false);
+
+  const hiddenClasses = "hidden";
+  const activeClasses =
+    "block border border-customBorder p-4 text-sm text-textColor rounded-sm";
+
   return (
-    <div>
+    <div className="bg-white px-4">
       <div className="grid grid-cols-2  bg-white ">
         {products && (
           <>
@@ -69,11 +77,11 @@ const ProductInfo = () => {
                   <ion-icon name="star-outline"></ion-icon>
                   <ion-icon name="star-outline"></ion-icon>
                 </span>
-                <span className="text-[#888]">
+                <span className="text-textColor">
                   {product.ratingsQuantity} review
                 </span>
               </div>
-              <p className="text-sm text-[#888]">{product.summary}</p>
+              <p className="text-sm text-textColor">{product.description}</p>
               <ul className="mt-8 flex flex-col gap-6">
                 <li className="flex items-center gap-20">
                   <div className="text-sm font-semibold">Quantity :</div>
@@ -121,6 +129,100 @@ const ProductInfo = () => {
             </div>
           </>
         )}
+      </div>
+      <div className="mt-14 mb-6">
+        <div className="my-4 flex gap-2">
+          <button
+            className={`rounded-sm border border-orange-400 px-5 py-2 text-sm transition-all hover:bg-blue-600 hover:text-white ${
+              descriptionIsShown ? "bg-blue-600 text-white" : ""
+            }`}
+            onClick={() => {
+              setDescriptionIsShown(true);
+              setReviewIsShown(false);
+              setShippingIsShown(false);
+            }}
+          >
+            Description
+          </button>
+          <button
+            className={`rounded-sm border border-orange-400 px-5 py-2 text-sm transition-all hover:bg-blue-600 hover:text-white ${
+              reviewIsShown ? "bg-blue-600 text-white" : ""
+            }`}
+            onClick={() => {
+              setDescriptionIsShown(false);
+              setReviewIsShown(true);
+              setShippingIsShown(false);
+            }}
+          >
+            Reviews
+          </button>
+          <button
+            className={`rounded-sm border border-orange-400 px-5 py-2 text-sm transition-all hover:bg-blue-600 hover:text-white ${
+              shippingIsShown ? "bg-blue-600 text-white" : ""
+            }`}
+            onClick={() => {
+              setDescriptionIsShown(false);
+              setReviewIsShown(false);
+              setShippingIsShown(true);
+            }}
+          >
+            Shipping Details
+          </button>
+        </div>
+
+        <div
+          className={`${descriptionIsShown ? activeClasses : hiddenClasses}`}
+        >
+          {product?.summary}
+        </div>
+        <div className={`${reviewIsShown ? activeClasses : hiddenClasses}`}>
+          Reviews Box
+        </div>
+        <div
+          className={`px-6 ${shippingIsShown ? activeClasses : hiddenClasses}`}
+        >
+          <h3 className="my-3  text-base text-textColor">Returns Policy</h3>
+          <p>
+            You may return most new, unopened items within 30 days of delivery
+            for a full refund. We'll also pay the return shipping costs if the
+            return is a result of our error (you received an incorrect or
+            defective item, etc.).
+          </p>
+          <p className="my-3">
+            You should expect to receive your refund within four weeks of giving
+            your package to the return shipper, however, in many cases you will
+            receive a refund more quickly. This time period includes the transit
+            time for us to receive your return from the shipper (5 to 10
+            business days), the time it takes us to process your return once we
+            receive it (3 to 5 business days), and the time it takes your bank
+            to process our refund request (5 to 10 business days).
+          </p>
+          <p>
+            If you need to return an item, simply login to your account, view
+            the order using the 'Complete Orders' link under the My Account menu
+            and click the Return Item(s) button. We'll notify you via e-mail of
+            your refund once we've received and processed the returned item.
+          </p>
+          <h3 className="my-3  text-base text-textColor"> Shipping</h3>
+          <p>
+            We can ship to virtually any address in the world. Note that there
+            are restrictions on some products, and some products cannot be
+            shipped to international destinations.
+          </p>
+          <p className="my-3">
+            When you place an order, we will estimate shipping and delivery
+            dates for you based on the availability of your items and the
+            shipping options you choose. Depending on the shipping provider you
+            choose, shipping date estimates may appear on the shipping quotes
+            page.
+          </p>
+          <p>
+            Please also note that the shipping rates for many items we sell are
+            weight-based. The weight of any such item can be found on its detail
+            page. To reflect the policies of the shipping companies we use, all
+            weights will be rounded up to the next full pound.
+          </p>
+        </div>
       </div>
       <div>
         <h3 className="my-8 text-xl">Related Products</h3>

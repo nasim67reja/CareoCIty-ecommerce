@@ -51,7 +51,12 @@ const footer = [
 const Footer = () => {
   return (
     <footer className="bg-primary text-white">
-      <div className="cursor-pointer bg-tertiary py-4 text-center">
+      <div
+        className="cursor-pointer bg-tertiary py-4 text-center"
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
         <button>BACK TO TOP</button>
       </div>
       <div className="border-b border-tertiary bg-secondary">
