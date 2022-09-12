@@ -68,3 +68,37 @@ const Wrapper = ({ children }) => {
 ```
 
 For more check [this](https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition)
+
+### React.createPortal()
+
+- at first import this `import ReactDOM from "react-dom";`
+- then write the component
+
+```js
+const Ovarlay = () => {
+  return <div>I am backdrop from backdrop-root</div>;
+};
+```
+
+- then inject this as you want
+
+```js
+{
+  ReactDOM.createPortal(<Ovarlay />, document.getElementById("backdrop-root"));
+}
+```
+
+- in `public >index.html` file write this `<div id="backdrop-root"></div>`
+- now you will find your ovarlay element in here no matter
+  where in the react component you put the ovarlay component
+
+### Prevent scroll when modal is open
+
+```js
+useEffect(() => {
+  if (backdrop) document.body.style.overflow = "hidden";
+  else document.body.style.overflow = "unset";
+}, [backdrop]);
+```
+
+- for more check [this](https://stackoverflow.com/questions/54989513/react-prevent-scroll-when-modal-is-open)
