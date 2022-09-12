@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Product from "../../MainBody/Product";
+import Reviews from "./Reviews";
 
 const ProductInfo = () => {
   const params = useParams();
@@ -176,7 +177,7 @@ const ProductInfo = () => {
           {product?.summary}
         </div>
         <div className={`${reviewIsShown ? activeClasses : hiddenClasses}`}>
-          Reviews Box
+          <Reviews />
         </div>
         <div
           className={`px-6 ${shippingIsShown ? activeClasses : hiddenClasses}`}
