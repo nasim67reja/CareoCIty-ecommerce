@@ -21,8 +21,8 @@ const Reviews = () => {
     (Date.now() - new Date(product?.reviews[0]?.createdAt).getTime()) /
       (1000 * 60)
   );
-  console.log(product?.reviews[0]?.createdAt);
-  console.log(new Date(Date.now()).toISOString());
+  // console.log(product?.reviews[0]?.createdAt);
+  // console.log(new Date(Date.now()).toISOString());
   if (minutes > 59) hour = Math.floor(minutes / 60);
   if (hour > 23) day = Math.floor(hour / 24);
   if (day > 6) week = Math.floor(day / 7);
