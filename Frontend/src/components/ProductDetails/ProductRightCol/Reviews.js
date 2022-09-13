@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Backdrop from "../../Ovarlay/Backdrop";
+import Backdrop from "../../Reuse/Backdrop";
 import { overlayActions } from "../../../store/ovarlay";
-import ReviewOvarlay from "../../Ovarlay/ReviewOvarlay";
+import ReviewOvarlay from "../../Reuse/ReviewOvarlay";
 import RatingStar from "../../Reuse/RatingStar";
 
 const Reviews = () => {
@@ -14,6 +14,19 @@ const Reviews = () => {
     dispatch(overlayActions.backdropVisible());
     dispatch(overlayActions.reviewOvarlayIsVisible());
   };
+
+  let hour, day, week, year;
+
+  const minutes = Math.floor(
+    (Date.now() - new Date(product?.reviews[0]?.createdAt).getTime()) /
+      (1000 * 60)
+  );
+
+  if (minutes > 59) hour = Math.floor(minutes / 60);
+  if (hour > 23) day = Math.floor(hour / 24);
+  if (day > 6) week = Math.floor(day / 7);
+  if (week > 51) year = Math.floor(week / 52);
+
   return (
     <div>
       <div
@@ -69,9 +82,25 @@ const Reviews = () => {
               )}
             </div>
             <div>
-              <h3 className="mb-1 text-base text-[#333]">{review.user.name}</h3>
-              <RatingStar rating={review.rating} />
-              <p className="mt-6 text-sm">{review.review}</p>
+              <h3 className="mb-1 text-base font-semibold text-[#333]">
+                {review.user.name}
+              </h3>
+              <div className="flex gap-4">
+                <RatingStar rating={review.rating} />
+                {/* <span>{minutes} minutes ago</span> */}
+                {year ? (
+                  <span>{year} year ago</span>
+                ) : week ? (
+                  <span>{week} week ago</span>
+                ) : day ? (
+                  <span>{day} day ago</span>
+                ) : hour ? (
+                  <span>{hour} hour ago</span>
+                ) : (
+                  <span>{minutes} minutes ago</span>
+                )}
+              </div>
+              <p className="mt-6 text-sm text-[#333]">{review.review}</p>
             </div>
           </div>
         ))}

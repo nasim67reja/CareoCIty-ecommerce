@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Product from "../../MainBody/Product";
+import Product from "../../Reuse/Product";
 import Reviews from "./Reviews";
 import { productsActions } from "../../../store/allProducts";
 import RatingStar from "../../Reuse/RatingStar";
@@ -171,7 +171,14 @@ const ProductInfo = () => {
               setShippingIsShown(false);
             }}
           >
-            Reviews
+            <span> Reviews</span>
+            <span
+              className={`ml-2  ${
+                reviewIsShown ? "text-white" : "text-orange-500"
+              }`}
+            >
+              ({product?.ratingsQuantity})
+            </span>
           </button>
           <button
             className={`rounded-sm border border-orange-400 px-5 py-2 text-sm transition-all hover:bg-blue-600 hover:text-white ${

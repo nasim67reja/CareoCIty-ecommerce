@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import RatingStar from "../../Reuse/RatingStar";
 
 const ListView = ({ product }) => {
   const [hoverOnImage, setHoverOnImage] = useState(true);
@@ -12,7 +13,12 @@ const ListView = ({ product }) => {
       {product && (
         <li className="grid grid-cols-[28%_68%]   gap-8 border border-customBorder">
           <div className="relative">
-            <Link to={`${location.pathname}/${product.name}`}>
+            <Link
+              to={`${location.pathname}/${product.name}`}
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              }}
+            >
               <img
                 src={hoverOnImage ? product.images[1] : product.images[0]}
                 crossOrigin="anonymous"
@@ -35,11 +41,27 @@ const ListView = ({ product }) => {
           </div>
           <div className="w-full px-2 py-6">
             <h3 className="text-xl">{product.name}</h3>
-            <p className="my-2 object-cover text-sm font-semibold text-orange-500 opacity-80">
-              {product.price}$
-            </p>
+
+            <div className="my-2 flex items-center gap-4">
+              <span className="text-sm text-[#0e5ec1]">${product.price}</span>
+              {product.priceDiscount > 0 ? (
+                <del className="text-sm text-[#bcbcbc]">
+                  ${product.price + product.priceDiscount}
+                </del>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="my-2 flex gap-1">
+              <span>
+                <RatingStar rating={product.ratingsAverage}></RatingStar>
+              </span>
+              <span className="text-sm text-[#888]">
+                ({product.ratingsQuantity}) review
+              </span>
+            </div>
             <p className="text-sm">{product.summary}</p>
-            <button className="mt-6 rounded-sm border border-orange-500 py-1 px-3  text-sm">
+            <button className="mt-6 rounded-sm border border-orange-500 py-2 px-4  text-sm transition-all hover:bg-blue-500 hover:text-white">
               Add to cart
             </button>
           </div>

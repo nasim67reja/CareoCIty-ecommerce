@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Product from "../Product";
+import Product from "../../Reuse/Product";
 
 export const SingleProduct = ({
   product,

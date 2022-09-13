@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import Product from "../../MainBody/Product";
+import Product from "../../Reuse/Product";
 import ListView from "./ListView";
 
 const CateProd = ({ category }) => {
