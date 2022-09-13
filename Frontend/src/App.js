@@ -9,6 +9,8 @@ import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import Categories from "./pages/Categories";
 import ProductDetails from "./pages/ProductDetails";
+// import Cart from "./pages/CartPage";
+import CartPage from "./pages/CartPage";
 import MainBody from "./components/MainBody/MainBody";
 import AccountInfo from "./components/Account/AccountInfo/AccountInfo";
 import Profile from "./components/Account/AccountInfo/Profile";
@@ -37,6 +39,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<MainBody />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="account" element={<Account />}>
             <Route index element={<Profile />} />
             <Route path=":accountId" element={<AccountInfo />} />

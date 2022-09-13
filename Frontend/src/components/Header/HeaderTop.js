@@ -83,7 +83,9 @@ const HeaderTop = () => {
           </li>
           <li className="cursor-pointer text-white">More</li>
           <li className="styles.customI cursor-pointer text-white">
-            <ion-icon name="cart-outline"></ion-icon>
+            <Link to="/cart">
+              <ion-icon name="cart-outline"></ion-icon>
+            </Link>
           </li>
         </ul>
         <div className="customIcon flex gap-4 lg:hidden">
