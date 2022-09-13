@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Backdrop from "../../Ovarlay/Backdrop";
 import { overlayActions } from "../../../store/ovarlay";
 import ReviewOvarlay from "../../Ovarlay/ReviewOvarlay";
+import RatingStar from "../../Reuse/RatingStar";
 
 const Reviews = () => {
   const product = useSelector((state) => state.allProducts.Product);
@@ -23,7 +24,9 @@ const Reviews = () => {
         <div className="flex justify-between">
           {product && product.ratingsQuantity ? (
             <div className="flex gap-2 text-orange-400">
-              <span>({product.ratingsAverage})</span>
+              <span>
+                <RatingStar rating={product.ratingsAverage} />
+              </span>
               <span>based on {product.ratingsQuantity} review</span>
             </div>
           ) : (
@@ -44,9 +47,9 @@ const Reviews = () => {
         product.reviews.map((review, i) => (
           <div
             key={i}
-            className="grid grid-cols-[7%_80%] gap-4 border-b border-customBorder py-4"
+            className="grid grid-cols-[8%_80%] gap-4 border-b border-customBorder py-4 lg:grid-cols-[6%_80%] xl:grid-cols-[5%_80%]"
           >
-            <div>
+            <div className="h-12 w-12">
               {review.user.photo ? (
                 <img
                   src={review.user.photo}
@@ -66,8 +69,8 @@ const Reviews = () => {
               )}
             </div>
             <div>
-              <h3 className="text-base text-[#333]">{review.user.name}</h3>
-              <span className="text-sm text-orange-400">{review.rating}</span>
+              <h3 className="mb-1 text-base text-[#333]">{review.user.name}</h3>
+              <RatingStar rating={review.rating} />
               <p className="mt-6 text-sm">{review.review}</p>
             </div>
           </div>

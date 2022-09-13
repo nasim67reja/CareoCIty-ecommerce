@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import Product from "../../MainBody/Product";
 import Reviews from "./Reviews";
 import { productsActions } from "../../../store/allProducts";
+import RatingStar from "../../Reuse/RatingStar";
 
 const ProductInfo = () => {
   const params = useParams();
@@ -92,13 +93,7 @@ const ProductInfo = () => {
                 )}
               </div>
               <div className="mb-6 flex items-center gap-4">
-                <span className="text-orange-500">
-                  <ion-icon name="star-outline"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
-                  <ion-icon name="star-outline"></ion-icon>
-                </span>
+                <RatingStar rating={product.ratingsAverage} />
                 <span className="text-textColor">
                   {product.ratingsQuantity} review
                 </span>
