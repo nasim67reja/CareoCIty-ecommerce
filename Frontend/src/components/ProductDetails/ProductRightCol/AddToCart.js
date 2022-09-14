@@ -9,7 +9,7 @@ const AddToCart = ({ productId, quantity }) => {
 
   const postCartItem = async () => {
     try {
-      const { data } = await axios.post(" http://127.0.0.1:8000/api/v1/carts", {
+      await axios.post(" http://127.0.0.1:8000/api/v1/carts", {
         product: productId,
         quantity,
       });

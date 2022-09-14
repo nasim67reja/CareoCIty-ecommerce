@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import RatingStar from "../../Reuse/RatingStar";
+import RatingStar from "../Reuse/RatingStar";
 
 const CartItem = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
@@ -51,7 +51,9 @@ const CartItem = ({ item }) => {
         $ {quantity * item.product.price}
       </div>
       <div className="flex items-center border-b border-customBorder py-5">
-        <ion-icon name="trash-outline"></ion-icon>
+        <span className="cursor-pointer">
+          <ion-icon name="trash-outline"></ion-icon>
+        </span>
       </div>
     </>
   );
