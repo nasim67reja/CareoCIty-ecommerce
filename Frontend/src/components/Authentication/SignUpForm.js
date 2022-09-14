@@ -64,6 +64,7 @@ const SignUpForm = () => {
       if (data.status === "success") {
         setTimeout(() => {
           navigate("/");
+          document.location.reload();
           // window.location.assign("/");
         }, 1500);
       }

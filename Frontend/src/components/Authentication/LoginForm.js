@@ -38,7 +38,7 @@ const LoginForm = () => {
       if (data.status === "success") {
         setTimeout(() => {
           navigate("/");
-          // window.location.assign("/");
+          document.location.reload();
         }, 1500);
       }
     } catch (error) {

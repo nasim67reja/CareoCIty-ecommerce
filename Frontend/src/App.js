@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import Login from "./pages/Login";
@@ -15,16 +15,47 @@ import MainBody from "./components/MainBody/MainBody";
 import AccountInfo from "./components/Account/AccountInfo/AccountInfo";
 import Profile from "./components/Account/AccountInfo/Profile";
 import { productsActions } from "./store/allProducts";
+import { itemActions } from "./store/cartItem";
 
 axios.defaults.withCredentials = true; //it's for getting and storing cookies in browser for future request
 
 export default function App() {
   const dispatch = useDispatch();
+  const curUserId = useSelector((state) => state.user.user)?.data.data.id;
+
+  const fetchAllCartItem = useCallback(async () => {
+    if (curUserId) {
+      try {
+        const { data } = await axios.get(
+          `http://127.0.0.1:8000/api/v1/users/${curUserId}/carts`
+        );
+        data.data.data.forEach((el) => {
+          dispatch(
+            itemActions.storeItemFromServer({
+              cartId: el.id,
+              id: el.product.id,
+              image: el.product.images[0],
+              name: el.product.name,
+              rating: el.product.ratingsAverage,
+              price: el.product.price,
+              quantity: el.quantity,
+              change: false,
+              new: true,
+            })
+          );
+        });
+      } catch (error) {
+        console.log(`error: `, error);
+      }
+    }
+  }, [dispatch, curUserId]);
 
   const fetchAllProductsHandler = useCallback(async () => {
     try {
       const { data } = await axios.get("http://127.0.0.1:8000/api/v1/products");
-      dispatch(productsActions.storeProducts(data.data.data));
+      data.data.data.forEach((el) => {
+        dispatch(productsActions.storeProducts(data.data.data));
+      });
     } catch (error) {
       console.log(`error: `, error);
     }
@@ -32,7 +63,8 @@ export default function App() {
 
   useEffect(() => {
     fetchAllProductsHandler();
-  }, [fetchAllProductsHandler]);
+    fetchAllCartItem();
+  }, [fetchAllProductsHandler, fetchAllCartItem]);
 
   return (
     <Fragment>

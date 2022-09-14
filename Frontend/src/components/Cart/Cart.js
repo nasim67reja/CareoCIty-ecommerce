@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
 const Cart = () => {
-  const curUserCart = useSelector((state) => state.user.user)?.data.data
-    .cartItems;
+  const cartItems = useSelector((state) => state.cart.cart);
+
   return (
     <div className="mx-auto max-w-st px-4 py-6">
       <div className="grid grid-cols-[32%_17%_17%_17%_17%]  bg-white text-[#828282]">
@@ -13,8 +13,7 @@ const Cart = () => {
             <h2 className="text-sm font-medium">{el}</h2>
           </div>
         ))}
-        {curUserCart &&
-          curUserCart.map((el, i) => <CartItem item={el} key={i} />)}
+        {cartItems && cartItems.map((el, i) => <CartItem item={el} key={i} />)}
       </div>
     </div>
   );
