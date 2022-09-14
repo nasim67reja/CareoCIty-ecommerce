@@ -29,6 +29,21 @@ const itemSlice = createSlice({
         (Element) => Element.id !== action.payload
       );
     },
+    increaseItem(state, action) {
+      const existingItem = state.cart.find((el) => el.id === action.payload.id);
+      existingItem.quantity = action.payload.quantity + 1;
+    },
+    decreaseItem(state, action) {
+      const existingItem = state.cart.find((el) => el.id === action.payload.id);
+      existingItem.quantity = action.payload.quantity - 1;
+    },
+    UpdateItem(state, action) {
+      console.log(action.payload);
+      const existingItem = state.cart.find(
+        (el) => el.id === action.payload.item.id
+      );
+      existingItem.quantity = +action.payload.value;
+    },
   },
 });
 
