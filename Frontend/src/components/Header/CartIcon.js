@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { itemActions } from "../../store/cartItem";
 
-const CartItem = ({ item }) => {
+export const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   const deleteItemFromCart = async () => {
@@ -61,37 +61,74 @@ const CartIcon = () => {
       .reduce((prev, cur) => prev + cur, 0);
 
   return (
-    <>
-      {cartItems.length > 0 && (
-        <li className="customI group relative translate-y-[2px] cursor-pointer text-white">
-          <div className="absolute -right-3 -top-3 rounded-full bg-orange-400 px-2 py-[1px]">
-            {cartTotalItem}
+    <li className="group">
+      {/* <CartIcon /> */}
+
+      <div className="customI relative translate-y-2 cursor-pointer  pb-2 text-white">
+        <span className="absolute -right-3 -top-3 rounded-full bg-orange-400 px-2 py-[1px]">
+          {cartTotalItem}
+        </span>
+        <Link to="/cart" className="">
+          <ion-icon name="cart-outline"></ion-icon>
+        </Link>
+      </div>
+      {ovarlayCartIsShown && (
+        <div className="absolute right-2 top-14 z-50 hidden w-96 rounded-sm bg-white px-6 py-6 text-primary shadow-md group-hover:block">
+          <div className="flex flex-col   ">
+            {cartItems.map((item, i) => (
+              <CartItem key={i} item={item} />
+            ))}
           </div>
-          <Link to="/cart" className="">
-            <ion-icon name="cart-outline"></ion-icon>
+          <div className="flex justify-between ">
+            <h2 className="mb-4 font-semibold">SUBTOTAL</h2>
+            <p className="text-[#828282]">$ {totalPrice}</p>
+          </div>
+          <Link
+            to="/cart"
+            className=" float-right rounded-sm border border-customBorder bg-blue-600 px-3 py-1 text-white transition-all hover:bg-white hover:text-primary"
+          >
+            view cart
           </Link>
-          {ovarlayCartIsShown && (
-            <div className="absolute right-0 z-[100] hidden w-96  rounded-sm bg-white px-6 py-6 text-primary shadow-md group-hover:block">
-              <div className="mb-4 flex flex-col gap-3 ">
-                {cartItems.map((item, i) => (
-                  <CartItem key={i} item={item} />
-                ))}
-              </div>
-              <div className="flex justify-between">
-                <h2 className="mb-4 font-semibold">SUBTOTAL</h2>
-                <p className="text-[#828282]">$ {totalPrice}</p>
-              </div>
-              <Link
-                to="/cart"
-                className="float-right rounded-sm bg-blue-600 px-3 py-1 text-white"
-              >
-                view cart
-              </Link>
-            </div>
-          )}
-        </li>
+        </div>
       )}
-    </>
+      {/*  */}
+    </li>
+    // <div>
+    //   {cartItems.length > 0 && (
+    //     <div className="customI   translate-y-[2px] cursor-pointer text-white">
+    //       <div className="relative">
+    //         <div className="absolute -right-3 -top-3 rounded-full bg-orange-400 px-2 py-[1px]">
+    //           {cartTotalItem}
+    //         </div>
+    //         <Link to="/cart" className="">
+    //           <ion-icon name="cart-outline"></ion-icon>
+    //         </Link>
+    //       </div>
+    //       <div className="absolute  top-0 left-0 bg-white text-black">
+    //         hello world
+    //       </div>
+    //       {ovarlayCartIsShown && (
+    //         <div className="absolute right-0  top-0  z-50 w-96 rounded-sm bg-white px-6 py-6 text-primary shadow-md group-hover:block">
+    //           <div className="flex flex-col   ">
+    //             {cartItems.map((item, i) => (
+    //               <CartItem key={i} item={item} />
+    //             ))}
+    //           </div>
+    //           <div className="flex justify-between ">
+    //             <h2 className="mb-4 font-semibold">SUBTOTAL</h2>
+    //             <p className="text-[#828282]">$ {totalPrice}</p>
+    //           </div>
+    //           <Link
+    //             to="/cart"
+    //             className=" float-right rounded-sm border border-customBorder bg-blue-600 px-3 py-1 text-white transition-all hover:bg-white hover:text-primary"
+    //           >
+    //             view cart
+    //           </Link>
+    //         </div>
+    //       )}
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 

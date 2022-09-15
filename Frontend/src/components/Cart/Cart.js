@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItem";
 
-const Cart = () => {
+const Cart = ({ customClass }) => {
   const cartItems = useSelector((state) => state.cart.cart);
   const total =
     cartItems &&
@@ -13,7 +13,7 @@ const Cart = () => {
   let isLoading = true;
   if (cartItems.length > 0) isLoading = false;
   return (
-    <div className="mx-auto min-h-screen max-w-st px-4 py-12">
+    <div className={`mx-auto  px-4 py-12 ${customClass}`}>
       {isLoading ? (
         <div className="flex min-h-screen items-center justify-center">
           <div>Loading..</div>

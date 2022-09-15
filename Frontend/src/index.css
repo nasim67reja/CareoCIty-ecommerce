@@ -22,7 +22,7 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: var(--primary-bg);
   /* background-color: #13192199; */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 /* body::-webkit-scrollbar {
   width: 10px;
@@ -137,7 +137,7 @@ button:disabled:active {
   height: 20px;
 }
 .closeIcon ion-icon {
-  color: blue;
+  color: #333;
   width: 24px;
   height: 24px;
 }

@@ -10,6 +10,7 @@ const LogOut = () => {
 
       setTimeout(() => {
         navigate("/login");
+        document.location.reload();
       }, 500);
     } catch (error) {
       console.log(`error: `, error);

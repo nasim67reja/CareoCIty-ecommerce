@@ -2,9 +2,13 @@ import { useState } from "react";
 import useInput from "../../hook/UseInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Bars } from "react-loader-spinner";
 
 const LoginForm = () => {
   const [error, setError] = useState("");
+  const [isLoading, setIsloading] = useState(false);
+  const [successful, setSuccessful] = useState("");
+
   const navigate = useNavigate();
 
   const {
@@ -26,7 +30,7 @@ const LoginForm = () => {
     reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
 
-  const axiosPostCall = async () => {
+  const logIn = async () => {
     try {
       const { data } = await axios.post(
         "http://127.0.0.1:8000/api/v1/users/login",
@@ -35,15 +39,22 @@ const LoginForm = () => {
           password: enteredPassword,
         }
       );
-      if (data.status === "success") {
-        setTimeout(() => {
-          navigate("/");
-          document.location.reload();
-        }, 1500);
-      }
+
+      setIsloading(false);
+      setSuccessful("Log in successfully");
+
+      setTimeout(() => {
+        navigate("/");
+        document.location.reload();
+        setSuccessful("");
+      }, 1000);
     } catch (error) {
       // console.log(`error: `, error);
+      setIsloading(false);
       setError(error.response.data.message);
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 
@@ -55,10 +66,8 @@ const LoginForm = () => {
       return;
     }
 
-    axiosPostCall();
-
-    resetPasswordInput();
-    resetEmailInput();
+    setIsloading(true);
+    logIn();
   };
 
   return (
@@ -76,7 +85,9 @@ const LoginForm = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           value={enteredEmail}
-          className="mt-2 rounded-lg border border-loginBorder p-2"
+          className={`mt-2 rounded-lg border border-loginBorder p-2 ${
+            isLoading ? "opacity-70" : ""
+          }`}
         />
         {emailInputHasError && (
           <p className="mt-2 text-sm text-red-600">Please provide your email</p>
@@ -91,7 +102,9 @@ const LoginForm = () => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
           value={enteredPassword}
-          className="mt-2 rounded-lg border border-loginBorder p-2"
+          className={`mt-2 rounded-lg border border-loginBorder p-2 ${
+            isLoading ? "opacity-70" : ""
+          }`}
         />
         {passwordInputHasError && (
           <p className="mt-2 text-sm text-red-600">
@@ -103,18 +116,41 @@ const LoginForm = () => {
       <div className="form-actions">
         <button
           type="submit"
-          className="mt-4 w-full rounded-lg border border-loginBorder bg-gradient-to-b from-gradientFrom to-gradientTo py-2"
+          className={`mt-4  w-full  justify-center rounded-lg border border-loginBorder  py-2 ${
+            isLoading
+              ? "flex cursor-not-allowed bg-[#ccc]"
+              : "bg-gradient-to-b from-gradientFrom to-gradientTo "
+          }`}
         >
-          Log in
+          {isLoading ? (
+            <Bars
+              height="24"
+              width="80"
+              // color="#4fa94d"
+              color="#21dd1e"
+              ariaLabel="bars-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          ) : (
+            "Log in"
+          )}
         </button>
       </div>
 
       {error && (
-        <p className="flex w-fit gap-2 bg-red-50 px-3 text-lg text-red-600">
-          <span>
+        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-red-500 px-3 py-2 text-lg text-white">
+          <span className="translate-y-[2px]">
             <ion-icon name="warning-outline"></ion-icon>
           </span>
           <span>{error}</span>
+        </p>
+      )}
+      {successful && (
+        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-green-500 px-3 py-2 text-lg text-white">
+          <span className="translate-y-[2px]">✔</span>
+          <span>{successful}</span>
         </p>
       )}
     </form>

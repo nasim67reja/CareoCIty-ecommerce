@@ -9,7 +9,7 @@ const AccountHead = () => {
     <>
       {loggedInUser.user && (
         <div>
-          <div className="flex max-w-[12rem] items-center justify-center gap-4  rounded-sm bg-white p-4 shadow-lg ">
+          <div className="flex w-full items-center  gap-4  rounded-sm bg-white p-4 shadow-lg ">
             <div>
               <UserImage imgHeight="h-14" />
             </div>

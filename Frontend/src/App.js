@@ -16,12 +16,26 @@ import AccountInfo from "./components/Account/AccountInfo/AccountInfo";
 import Profile from "./components/Account/AccountInfo/Profile";
 import { productsActions } from "./store/allProducts";
 import { itemActions } from "./store/cartItem";
+import { userActions } from "./store/currentUser";
 
 axios.defaults.withCredentials = true; //it's for getting and storing cookies in browser for future request
 
 export default function App() {
   const dispatch = useDispatch();
   const curUserId = useSelector((state) => state.user.user)?.data.data.id;
+
+  const getUser = useCallback(async () => {
+    try {
+      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/users/me");
+      dispatch(userActions.storeUser(data));
+    } catch (error) {
+      console.log(`error: `, error);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
 
   const fetchAllCartItem = useCallback(async () => {
     if (curUserId) {
@@ -84,7 +98,6 @@ export default function App() {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route path="*" element={<div>Invalid route</div>} />
       </Routes>
     </Fragment>

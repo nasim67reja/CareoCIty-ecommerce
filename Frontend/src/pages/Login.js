@@ -6,7 +6,7 @@ import "./login.css";
 const Login = () => {
   return (
     <Fragment>
-      <div className=" w-full bg-white py-5 shadow-md">
+      <div className="w-full bg-white py-5 pt-10 shadow-md">
         <div className="mx-auto max-w-[28rem] ">
           <h2 className="mb-6 text-center text-3xl font-medium text-secondary">
             CareoCity

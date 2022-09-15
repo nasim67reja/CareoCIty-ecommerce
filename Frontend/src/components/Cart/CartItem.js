@@ -68,11 +68,11 @@ const CartItem = ({ item }) => {
     <>
       {item && (
         <>
-          <div className="flex gap-4 border-b border-customBorder py-3 pr-6">
+          <div className="flex gap-4 border-b border-customBorder py-6 pr-6">
             <div className="w-1/4 md:w-[15%] lg:w-[12%]">
               <img
                 src={item.image}
-                alt=""
+                alt={item.name}
                 crossOrigin="anonymous"
                 className="w-full xl:w-[80%]"
               />

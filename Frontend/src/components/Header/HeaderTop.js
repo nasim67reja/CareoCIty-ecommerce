@@ -1,8 +1,6 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../store/currentUser";
+import { useSelector } from "react-redux";
 import UserImage from "../Account/UserImage";
 import CartIcon from "./CartIcon";
 
@@ -41,21 +39,7 @@ export const Search = (props) => {
 };
 
 const HeaderTop = () => {
-  const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user);
-
-  const getUser = useCallback(async () => {
-    try {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/users/me");
-      dispatch(userActions.storeUser(data));
-    } catch (error) {
-      console.log(`error: `, error);
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    getUser();
-  }, [getUser]);
 
   return (
     <div

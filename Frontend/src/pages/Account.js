@@ -6,8 +6,8 @@ import LogOut from "../components/Account/AccountNav/LogOut";
 
 const Account = () => {
   return (
-    <div className="mx-auto  w-screen max-w-pf  p-4">
-      <div className="mt-8 flex gap-20">
+    <div className="mx-auto  max-w-[100rem]  px-4 py-12">
+      <div className="mt-8 grid grid-cols-[20%_80%] justify-start gap-20">
         <div className="relative flex flex-col gap-4 ">
           <AccountHead />
           <AccountNav />
