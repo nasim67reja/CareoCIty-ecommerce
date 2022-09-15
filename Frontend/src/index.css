@@ -136,6 +136,11 @@ button:disabled:active {
   width: 20px;
   height: 20px;
 }
+.closeIcon ion-icon {
+  color: blue;
+  width: 24px;
+  height: 24px;
+}
 
 /* REMOVE ARROW/SPINNERS */
 /* Chrome, Safari, Edge, Opera */

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/currentUser";
 import UserImage from "../Account/UserImage";
+import CartIcon from "./CartIcon";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -43,7 +44,7 @@ const HeaderTop = () => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user);
 
-  const axiosPostCall = useCallback(async () => {
+  const getUser = useCallback(async () => {
     try {
       const { data } = await axios.get("http://127.0.0.1:8000/api/v1/users/me");
       dispatch(userActions.storeUser(data));
@@ -53,8 +54,8 @@ const HeaderTop = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    axiosPostCall();
-  }, [axiosPostCall]);
+    getUser();
+  }, [getUser]);
 
   return (
     <div
@@ -69,7 +70,7 @@ const HeaderTop = () => {
         <h2 className="own-class  text-2xl lg:text-3xl">CareoCity</h2>
         <p className="text-xs opacity-80">Quality Fun Shopping</p>
       </Link>
-      <Search classes={"hidden   grow  lg:flex "} classesBtn={"hi"} />
+      <Search classes={"hidden grow lg:flex "} classesBtn={"hi"} />
 
       <nav>
         <ul className="hidden list-none items-center  gap-6 lg:flex ">
@@ -82,11 +83,7 @@ const HeaderTop = () => {
             {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
           </li>
           <li className="cursor-pointer text-white">More</li>
-          <li className="styles.customI cursor-pointer text-white">
-            <Link to="/cart">
-              <ion-icon name="cart-outline"></ion-icon>
-            </Link>
-          </li>
+          <CartIcon />
         </ul>
         <div className="customIcon flex gap-4 lg:hidden">
           <ion-icon name="cart-outline"></ion-icon>
