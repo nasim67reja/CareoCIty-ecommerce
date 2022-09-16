@@ -30,10 +30,13 @@ export const Search = (props) => {
         onFocus={() => setFocusInput(true)}
         onBlur={() => setFocusInput(false)}
       />
-      <button
-        className={`${props.classesBtn} customIcon focus:outline-outline" absolute right-0 flex h-full items-center justify-center rounded-r-lg bg-outline px-3 focus:outline focus:outline-5 focus:outline-offset-0 focus:outline-outline`}
-      >
-        <ion-icon name="search-outline" style={{ color: "#232f3e" }}></ion-icon>
+      <button className="customIcon absolute right-0 flex h-full items-center justify-center rounded-r-lg bg-outline px-3  focus:outline focus:outline-5 focus:outline-offset-0 focus:outline-outline">
+        <span className="w-6 translate-y-[2px]">
+          <ion-icon
+            name="search-outline"
+            style={{ color: "#232f3e" }}
+          ></ion-icon>
+        </span>
       </button>
     </div>
   );
@@ -47,10 +50,11 @@ const HeaderTop = () => {
   return (
     <div
       className="flex items-center
-     justify-between gap-12 py-2"
+     justify-between gap-12  py-1 md:py-2"
     >
-      <div className="customIcon flex  gap-6  lg:hidden">
+      <div className="customIcon flex translate-y-1  gap-3 md:gap-6  lg:hidden">
         <span
+          className="w-5 sm:w-6"
           onClick={() => {
             dispatch(overlayActions.mobileMenuOpenHandler());
             dispatch(overlayActions.backdropVisible());
@@ -59,36 +63,36 @@ const HeaderTop = () => {
           <ion-icon name="menu-outline"></ion-icon>
         </span>
         <span
-          onClick={() => dispatch(overlayActions.mobileSearchMenuOpenHandler())}
+          className="w-5 sm:w-6"
+          onClick={() => {
+            dispatch(overlayActions.searchMenuOpenHandler());
+            dispatch(overlayActions.backdropVisible());
+          }}
         >
           <ion-icon name="search-outline"></ion-icon>
         </span>
       </div>
       <Link to="/" className="cursor-pointer text-white">
-        <h2 className="own-class  text-2xl lg:text-3xl">CareoCity</h2>
-        <p className="text-xs opacity-80">Quality Fun Shopping</p>
+        <h2 className="text-[1.1rem] sm:text-xl md:text-2xl">CareoCity</h2>
+        <p className="text-[0.65rem] opacity-80">Quality Fun Shopping</p>
       </Link>
       <Search classes="hidden grow lg:flex " classesBtn="hi" />
 
       <nav>
-        <ul className=" flex list-none  items-center gap-6 ">
+        <ul className=" flex list-none  items-center gap-3 md:gap-4 ">
           <li className="cursor-pointer text-white">
             {loggedInUser.user && (
               <Link to="/account">
-                <UserImage imgHeight="h-9" />
+                <UserImage imgHeight="h-7 md:h-8" />
               </Link>
             )}
             {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
           </li>
-          <li className="hidden cursor-pointer text-white lg:block">More</li>
+          <li className="hidden cursor-pointer text-sm text-white lg:block">
+            More
+          </li>
           <CartIcon />
         </ul>
-        <div className="customIcon  hidden gap-4 ">
-          {/* <ion-icon name="cart-outline"></ion-icon> */}
-          <CartIcon />
-
-          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-        </div>
       </nav>
     </div>
   );

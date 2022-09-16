@@ -62,13 +62,11 @@ const CartIcon = () => {
 
   return (
     <li className="group">
-      {/* <CartIcon /> */}
-
       <div className="customI relative translate-y-2 cursor-pointer  pb-2 text-white">
-        <span className="absolute -right-3 -top-3 rounded-full bg-orange-400 px-2 py-[1px]">
+        <span className="absolute -right-2 -top-2 rounded-full bg-orange-500 px-2 py-[2px] text-xs md:-right-[10px] md:-top-[10px] md:py-[1px] md:text-sm">
           {cartTotalItem}
         </span>
-        <Link to="/cart" className="">
+        <Link to="/cart" className="cartIcon inline-block w-6 md:w-7">
           <ion-icon name="cart-outline"></ion-icon>
         </Link>
       </div>

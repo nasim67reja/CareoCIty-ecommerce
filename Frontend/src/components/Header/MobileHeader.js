@@ -4,54 +4,56 @@ import { Sublink, SublinkContact, WrapperLi } from "./HeaderBottom";
 import { Search } from "./HeaderTop";
 import { useDispatch, useSelector } from "react-redux";
 import { overlayActions } from "../../store/ovarlay";
+import UserImage from "../Account/UserImage";
 
 const MobileHeader = () => {
   const [openContact, setOpenContact] = useState(false);
   const [idNum, setIdNum] = useState("");
+  const curUserName = useSelector((state) => state.user.user?.data.data.name);
 
   const dispatch = useDispatch();
 
-  const { mobileMenuIsVisible, mobileSearchMenuIsVisible } = useSelector(
+  const { menuIsVisible, searchMenuIsVisible } = useSelector(
     (state) => state.overlay
   );
   return (
     <>
-      {mobileMenuIsVisible || mobileSearchMenuIsVisible ? (
-        <div className="scroller  ani absolute top-0  z-10 h-screen w-[50%] overflow-y-auto bg-white shadow-xl">
-          {mobileSearchMenuIsVisible && (
+      {menuIsVisible || searchMenuIsVisible ? (
+        <div className="scroller  ani absolute top-0  z-10 h-screen w-[60%] overflow-y-auto bg-white shadow-xl">
+          {searchMenuIsVisible && (
             <div className="p-2">
               <span
                 className="absolute right-2 top-2 cursor-pointer"
-                onClick={() =>
-                  dispatch(overlayActions.mobileSearchMenuOpenHandler())
-                }
+                onClick={() => {
+                  dispatch(overlayActions.searchMenuHiddenHandler());
+                  dispatch(overlayActions.backdropHidden());
+                }}
               >
                 <ion-icon name="close-outline" size="large"></ion-icon>
               </span>
-              <Search classes={"flex mt-20 border-2 "} />
+              <Search classes="flex mt-20 border-2 " />
             </div>
           )}
-          {mobileMenuIsVisible && (
+          {menuIsVisible && (
             <>
-              <h2 className="relative flex  items-center gap-6 bg-secondary p-6 text-white">
+              <div className="customIcon relative flex  items-center gap-6 bg-secondary p-4 text-white">
                 <span>
-                  <ion-icon
-                    name="person-circle-outline"
-                    size="large"
-                  ></ion-icon>
+                  <UserImage imgHeight="h-7 sm:h-9" />
                 </span>
-                <span> Hi, Nasim Reja</span>
+                <span> Hi, {curUserName}</span>
                 <span
-                  className="absolute right-2 top-2 cursor-pointer"
-                  onClick={() =>
-                    dispatch(overlayActions.mobileMenuOpenHandler())
-                  }
+                  className="absolute right-2 top-4 w-6 cursor-pointer"
+                  onClick={() => {
+                    dispatch(overlayActions.mobileMenuHiddenHandler());
+                    dispatch(overlayActions.backdropHidden());
+                  }}
                 >
                   <ion-icon name="close-outline" size="large"></ion-icon>
                 </span>
-              </h2>
+              </div>
+
               <nav>
-                <ul className="flex flex-col gap-2 px-4 py-8">
+                <ul className="flex flex-col gap-2  p-4">
                   {BottomNav.map((parentLink, i) => (
                     <WrapperLi
                       key={i}

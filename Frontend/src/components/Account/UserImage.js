@@ -11,7 +11,7 @@ const UserImage = ({ imgHeight }) => {
           crossOrigin="anonymous"
           src={loggedInUser.user.data.data.photo}
           alt="userPhoto"
-          className={`${imgHeight} h rounded-full`}
+          className={`${imgHeight} rounded-full`}
         />
       ) : (
         <span>

@@ -141,6 +141,10 @@ button:disabled:active {
   width: 24px;
   height: 24px;
 }
+.cartIcon ion-icon,
+.customIcon ion-icon {
+  width: 100%;
+}
 
 /* REMOVE ARROW/SPINNERS */
 /* Chrome, Safari, Edge, Opera */
