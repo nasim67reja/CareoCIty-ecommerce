@@ -17,7 +17,6 @@ const LoginForm = () => {
     hasError: passwordInputHasError,
     valueChangeHandler: passwordChangeHandler,
     inputBlurHandler: passwordBlurHandler,
-    reset: resetPasswordInput,
     setIsTouched,
   } = useInput((value) => value.trim() !== "");
 
@@ -27,18 +26,14 @@ const LoginForm = () => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value) => value.includes("@"));
 
   const logIn = async () => {
     try {
-      const { data } = await axios.post(
-        "http://127.0.0.1:8000/api/v1/users/login",
-        {
-          email: enteredEmail,
-          password: enteredPassword,
-        }
-      );
+      await axios.post("http://127.0.0.1:8000/api/v1/users/login", {
+        email: enteredEmail,
+        password: enteredPassword,
+      });
 
       setIsloading(false);
       setSuccessful("Log in successfully");
@@ -73,9 +68,9 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={formSubmissionHandler}
-      className="custom-form flex flex-col gap-4"
+      className="custom-form flex flex-col gap-3 lg:gap-4"
     >
-      <div className={` flex flex-col`}>
+      <div className="flex flex-col text-sm lg:text-base">
         <label htmlFor="email">Your E-Mail</label>
         <input
           autoFocus
@@ -85,15 +80,17 @@ const LoginForm = () => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
           value={enteredEmail}
-          className={`mt-2 rounded-lg border border-loginBorder p-2 ${
+          className={`mt-2 rounded-lg border border-loginBorder p-2 text-xs lg:text-base ${
             isLoading ? "opacity-70" : ""
           }`}
         />
         {emailInputHasError && (
-          <p className="mt-2 text-sm text-red-600">Please provide your email</p>
+          <p className="mt-2 text-xs text-red-600 lg:text-sm">
+            Please provide your email
+          </p>
         )}
       </div>
-      <div className={`flex flex-col`}>
+      <div className="flex flex-col text-sm lg:text-base">
         <label htmlFor="password">Your Password</label>
         <input
           type="password"
@@ -102,12 +99,12 @@ const LoginForm = () => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
           value={enteredPassword}
-          className={`mt-2 rounded-lg border border-loginBorder p-2 ${
+          className={`mt-2 rounded-lg border border-loginBorder p-2 text-xs lg:text-base  ${
             isLoading ? "opacity-70" : ""
           }`}
         />
         {passwordInputHasError && (
-          <p className="mt-2 text-sm text-red-600">
+          <p className="mt-2 text-xs text-red-600 lg:text-sm">
             Please provide your password
           </p>
         )}
@@ -116,10 +113,10 @@ const LoginForm = () => {
       <div className="form-actions">
         <button
           type="submit"
-          className={`mt-4  w-full  justify-center rounded-lg border border-loginBorder  py-2 ${
+          className={`mt-2 w-full justify-center rounded-lg  border  py-1 text-sm lg:mt-4 lg:py-2  lg:text-base ${
             isLoading
-              ? "flex cursor-not-allowed bg-[#ccc]"
-              : "bg-gradient-to-b from-gradientFrom to-gradientTo "
+              ? "flex cursor-not-allowed border-[#ccc] bg-[#ccc]"
+              : "border-loginBorder bg-gradient-to-b from-gradientFrom to-gradientTo"
           }`}
         >
           {isLoading ? (
@@ -140,7 +137,7 @@ const LoginForm = () => {
       </div>
 
       {error && (
-        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-red-500 px-3 py-2 text-lg text-white">
+        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-red-500 px-3 py-2 text-xs text-white md:text-sm lg:text-lg">
           <span className="translate-y-[2px]">
             <ion-icon name="warning-outline"></ion-icon>
           </span>
@@ -148,7 +145,7 @@ const LoginForm = () => {
         </p>
       )}
       {successful && (
-        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-green-500 px-3 py-2 text-lg text-white">
+        <p className=" absolute top-0 left-0 flex w-full justify-center gap-2 bg-green-500 px-3 py-2  text-xs text-white md:text-sm lg:text-lg">
           <span className="translate-y-[2px]">✔</span>
           <span>{successful}</span>
         </p>
