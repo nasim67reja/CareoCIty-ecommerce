@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialUserState = {
   backdropVisible: false,
   reviewOvarlayIsVisible: false,
+  mobileMenuIsVisible: false,
+  mobileSearchMenuIsVisible: false,
 };
 
 const ovarlaySlice = createSlice({
@@ -20,6 +22,12 @@ const ovarlaySlice = createSlice({
     },
     reviewOvarlayIsHidden(state) {
       state.reviewOvarlayIsVisible = false;
+    },
+    mobileMenuOpenHandler(state) {
+      state.mobileMenuIsVisible = !state.mobileMenuIsVisible;
+    },
+    mobileSearchMenuOpenHandler(state) {
+      state.mobileSearchMenuIsVisible = !state.mobileSearchMenuIsVisible;
     },
   },
 });

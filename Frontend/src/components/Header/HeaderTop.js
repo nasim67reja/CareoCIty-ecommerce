@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserImage from "../Account/UserImage";
 import CartIcon from "./CartIcon";
+import { overlayActions } from "../../store/ovarlay";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -41,23 +42,36 @@ export const Search = (props) => {
 const HeaderTop = () => {
   const loggedInUser = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+
   return (
     <div
       className="flex items-center
      justify-between gap-12 py-2"
     >
       <div className="customIcon flex  gap-6  lg:hidden">
-        <ion-icon name="menu-outline"></ion-icon>
-        <ion-icon name="search-outline"></ion-icon>
+        <span
+          onClick={() => {
+            dispatch(overlayActions.mobileMenuOpenHandler());
+            dispatch(overlayActions.backdropVisible());
+          }}
+        >
+          <ion-icon name="menu-outline"></ion-icon>
+        </span>
+        <span
+          onClick={() => dispatch(overlayActions.mobileSearchMenuOpenHandler())}
+        >
+          <ion-icon name="search-outline"></ion-icon>
+        </span>
       </div>
       <Link to="/" className="cursor-pointer text-white">
         <h2 className="own-class  text-2xl lg:text-3xl">CareoCity</h2>
         <p className="text-xs opacity-80">Quality Fun Shopping</p>
       </Link>
-      <Search classes={"hidden grow lg:flex "} classesBtn={"hi"} />
+      <Search classes="hidden grow lg:flex " classesBtn="hi" />
 
       <nav>
-        <ul className="hidden list-none items-center  gap-6 lg:flex ">
+        <ul className=" flex list-none  items-center gap-6 ">
           <li className="cursor-pointer text-white">
             {loggedInUser.user && (
               <Link to="/account">
@@ -66,11 +80,13 @@ const HeaderTop = () => {
             )}
             {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
           </li>
-          <li className="cursor-pointer text-white">More</li>
+          <li className="hidden cursor-pointer text-white lg:block">More</li>
           <CartIcon />
         </ul>
-        <div className="customIcon flex gap-4 lg:hidden">
-          <ion-icon name="cart-outline"></ion-icon>
+        <div className="customIcon  hidden gap-4 ">
+          {/* <ion-icon name="cart-outline"></ion-icon> */}
+          <CartIcon />
+
           <ion-icon name="ellipsis-vertical-outline"></ion-icon>
         </div>
       </nav>

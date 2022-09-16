@@ -1,6 +1,9 @@
+import ReactDOM from "react-dom";
 import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import MobileHeader from "./MobileHeader";
+import Backdrop from "../Reuse/Backdrop";
+
 const MainHeader = () => {
   return (
     <header className="bg-primary">
@@ -10,9 +13,14 @@ const MainHeader = () => {
       <div className="hidden h-10 bg-secondary lg:block">
         <HeaderBottom />
       </div>
-      <div className="lg:hidden">
-        <MobileHeader />
-      </div>
+      {ReactDOM.createPortal(
+        <Backdrop />,
+        document.getElementById("backdrop-root")
+      )}
+      {ReactDOM.createPortal(
+        <MobileHeader />,
+        document.getElementById("overlay-root")
+      )}
     </header>
   );
 };
