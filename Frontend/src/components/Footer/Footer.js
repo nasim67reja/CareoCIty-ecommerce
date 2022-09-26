@@ -61,7 +61,7 @@ const Footer = () => {
       </div>
       <div className="border-b border-tertiary bg-secondary">
         <div className="mx-auto max-w-[105rem] px-3">
-          <div className="grid grid-cols-5 gap-4  px-4 py-12">
+          <div className="grid grid-cols-1  gap-4 px-4  py-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {footer.map((col, i) => (
               <div key={i}>
                 <h3 className="mb-10 text-xl font-medium">{col.tittle}</h3>

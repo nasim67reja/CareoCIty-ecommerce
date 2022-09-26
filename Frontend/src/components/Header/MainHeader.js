@@ -10,7 +10,7 @@ const MainHeader = () => {
       <div className="mx-auto max-w-st px-4 md:px-5">
         <HeaderTop />
       </div>
-      <div className="hidden h-10 bg-secondary lg:block">
+      <div className="hidden h-10 bg-secondary  lg:block">
         <HeaderBottom />
       </div>
       {ReactDOM.createPortal(

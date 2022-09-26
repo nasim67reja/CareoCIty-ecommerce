@@ -120,34 +120,32 @@ export const SublinkContact = ({ parentLink, classN }) => {
 
 const HeaderBottom = () => {
   return (
-    <div className="w-full bg-secondary">
-      <div className="custom-container ">
-        <nav>
-          <ul className="flex gap-8 xl:gap-12">
-            {BottomNav.map((parentLink, i) => (
-              <WrapperLi
-                key={i}
+    <div className=" mx-auto max-w-st bg-secondary px-4 md:px-5 ">
+      <nav>
+        <ul className="flex gap-4 xl:gap-8">
+          {BottomNav.map((parentLink, i) => (
+            <WrapperLi
+              key={i}
+              parentLink={parentLink}
+              classCustom={"text-white"}
+            >
+              <Sublink
                 parentLink={parentLink}
-                classCustom={"text-white"}
-              >
-                <Sublink
-                  parentLink={parentLink}
-                  classSub={
-                    "absolute left-[5%] grid-cols-2 w-[90%] gap-8 rounded-b-lg cursor-pointer shadow-lg px-8 py-4 pt-12 group-hover:grid xl:grid-cols-4 hidden z-50 bg-white"
-                  }
-                />
+                classSub={
+                  "absolute left-[5%] grid-cols-2 w-[90%] gap-8 rounded-b-lg cursor-pointer shadow-lg px-8 py-4 pt-12 group-hover:grid xl:grid-cols-4 hidden z-50 bg-white"
+                }
+              />
 
-                <SublinkContact
-                  parentLink={parentLink}
-                  classN={
-                    "hidden absolute group-hover:block shadow-lg z-50 bg-white"
-                  }
-                />
-              </WrapperLi>
-            ))}
-          </ul>
-        </nav>
-      </div>
+              <SublinkContact
+                parentLink={parentLink}
+                classN={
+                  "hidden absolute group-hover:block shadow-lg z-50 bg-white"
+                }
+              />
+            </WrapperLi>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };

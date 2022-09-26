@@ -45,7 +45,7 @@ const ProductInfo = () => {
 
   return (
     <div className="bg-white px-4">
-      <div className="grid grid-cols-2  bg-white ">
+      <div className="grid grid-cols-1  border border-black bg-white md:grid-cols-2 ">
         {products && (
           <>
             <ImgSec product={product} />
