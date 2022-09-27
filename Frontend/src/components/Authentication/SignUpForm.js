@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URL } from "../../App";
 import { useState } from "react";
 import { Bars } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +44,7 @@ const SignUpForm = () => {
 
   const signUpPostCall = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/v1/users/signup", {
+      await axios.post(`${URL}/api/v1/users/signup`, {
         name: enteredName,
         email: enteredEmail,
         password: enteredPassword,

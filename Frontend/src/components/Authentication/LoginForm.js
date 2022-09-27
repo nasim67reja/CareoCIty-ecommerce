@@ -1,7 +1,8 @@
+import axios from "axios";
+import { URL } from "../../App";
 import { useState } from "react";
 import useInput from "../../hook/UseInput";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Bars } from "react-loader-spinner";
 
 const LoginForm = () => {
@@ -30,7 +31,7 @@ const LoginForm = () => {
 
   const logIn = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/v1/users/login", {
+      await axios.post(`${URL}/api/v1/users/login`, {
         email: enteredEmail,
         password: enteredPassword,
       });

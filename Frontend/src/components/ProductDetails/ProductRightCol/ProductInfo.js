@@ -8,6 +8,7 @@ import AddToCart from "./AddToCart";
 import ImgSec from "./ImgSec";
 import RelatedProd from "./RelatedProd";
 import Summary from "./Summary";
+import { URL } from "../../../App";
 
 const ProductInfo = () => {
   const [quantity, setQuantity] = useState(1);
@@ -24,7 +25,7 @@ const ProductInfo = () => {
     if (product) {
       try {
         const { data } = await axios.get(
-          `http://127.0.0.1:8000/api/v1/products/${product._id}`
+          `${URL}/api/v1/products/${product._id}`
         );
         dispatch(productsActions.storeProduct(data.data.data));
       } catch (error) {

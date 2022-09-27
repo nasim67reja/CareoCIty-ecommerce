@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { URL } from "../../../App";
 
 const CategoryNav = () => {
   const [category, setCategory] = useState("");
@@ -10,7 +11,7 @@ const CategoryNav = () => {
     // setError(null);
     try {
       const { data } = await axios.get(
-        "http://127.0.0.1:8000/api/v1/products/product-category"
+        `${URL}/api/v1/products/product-category`
       );
       setCategory(data.data.category);
     } catch (error) {

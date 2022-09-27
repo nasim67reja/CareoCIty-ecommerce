@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserImage from "../UserImage";
+import { URL } from "../../../App";
 
 const PersonalInfo = () => {
   const loggedInUser = useSelector((state) => state.user);
@@ -12,12 +13,9 @@ const PersonalInfo = () => {
 
   const updateName = async () => {
     try {
-      const { data } = await axios.patch(
-        "http://127.0.0.1:8000/api/v1/users/updateMe",
-        {
-          name: enteredName,
-        }
-      );
+      const { data } = await axios.patch(`${URL}/api/v1/users/updateMe`, {
+        name: enteredName,
+      });
       if (data.status === "success") {
         setTimeout(() => {
           document.location.reload();
@@ -117,7 +115,7 @@ const MyPass = () => {
   const updateMyPass = async () => {
     try {
       const { data } = await axios.patch(
-        "http://127.0.0.1:8000/api/v1/users/updateMyPassword",
+        `${URL}/api/v1/users/updateMyPassword`,
         {
           passwordCurrent: enteredCurPass,
           password: enteredNewPass,
@@ -220,7 +218,7 @@ const DeleteAcc = () => {
 
   const deleteAccount = async () => {
     try {
-      await axios.patch("http://127.0.0.1:8000/api/v1/users/deleteMe", {
+      await axios.patch(`${URL}/api/v1/users/deleteMe`, {
         password: enteredPass,
       });
       setShowResponse("Deleted Successfully ✔");

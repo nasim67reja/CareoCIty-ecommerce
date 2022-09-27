@@ -20,13 +20,16 @@ import { userActions } from "./store/currentUser";
 
 axios.defaults.withCredentials = true; //it's for getting and storing cookies in browser for future request
 
+export const URL = "https://careocity-ecommerce.onrender.com";
+const URLDEV = "http://127.0.0.1:8000";
+
 export default function App() {
   const dispatch = useDispatch();
   const curUserId = useSelector((state) => state.user.user)?.data.data.id;
 
   const getUser = useCallback(async () => {
     try {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/users/me");
+      const { data } = await axios.get(`${URL}/api/v1/users/me`);
       dispatch(userActions.storeUser(data));
     } catch (error) {
       console.log(`error: `, error);
@@ -41,7 +44,7 @@ export default function App() {
     if (curUserId) {
       try {
         const { data } = await axios.get(
-          `http://127.0.0.1:8000/api/v1/users/${curUserId}/carts`
+          `${URL}/api/v1/users/${curUserId}/carts`
         );
         data.data.data.forEach((el) => {
           dispatch(
@@ -66,7 +69,7 @@ export default function App() {
 
   const fetchAllProductsHandler = useCallback(async () => {
     try {
-      const { data } = await axios.get("http://127.0.0.1:8000/api/v1/products");
+      const { data } = await axios.get(`${URL}/api/v1/products`);
       data.data.data.forEach((el) => {
         dispatch(productsActions.storeProducts(data.data.data));
       });

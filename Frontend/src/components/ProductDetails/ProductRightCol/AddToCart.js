@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { itemActions } from "../../../store/cartItem";
+import { URL } from "../../../App";
 
 const AddToCart = ({ product, quantity }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const AddToCart = ({ product, quantity }) => {
     if (activeItem) {
       if (addCart && activeItem.new) {
         try {
-          await axios.post(" http://127.0.0.1:8000/api/v1/carts", {
+          await axios.post(`${URL}/api/v1/carts`, {
             product: activeItem.id,
             quantity: activeItem.quantity,
           });
@@ -36,12 +37,9 @@ const AddToCart = ({ product, quantity }) => {
         }
       } else if (!activeItem.new) {
         try {
-          await axios.patch(
-            `http://127.0.0.1:8000/api/v1/carts/${activeItem.cartId}`,
-            {
-              quantity: activeItem.quantity,
-            }
-          );
+          await axios.patch(`${URL}/api/v1/carts/${activeItem.cartId}`, {
+            quantity: activeItem.quantity,
+          });
         } catch (error) {
           console.log(`update: `, error);
         }

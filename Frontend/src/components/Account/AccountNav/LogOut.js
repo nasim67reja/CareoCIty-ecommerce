@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { URL } from "../../../App";
 
 const LogOut = () => {
   const navigate = useNavigate();
   const LogOut = async () => {
     try {
-      await axios.get("http://127.0.0.1:8000/api/v1/users/logout");
+      await axios.get(`${URL}/api/v1/users/logout`);
 
       setTimeout(() => {
         navigate("/login");
