@@ -13,6 +13,7 @@ const AddToCart = ({ product, quantity }) => {
     id: product._id,
     image: product.images[0],
     name: product.name,
+    categories: product.categories,
     rating: product.ratingsAverage,
     price: product.price,
     quantity,

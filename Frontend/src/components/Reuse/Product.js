@@ -34,7 +34,11 @@ const Product = ({ product, customClass }) => {
         }}
       >
         <img
-          src={mouseEnter ? product.images[0] : product.images[1]}
+          src={
+            mouseEnter
+              ? `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[0]}`
+              : `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
+          }
           alt=""
           crossOrigin="anonymous"
           className={`w-full cursor-pointer ${customClass}`}

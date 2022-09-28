@@ -20,7 +20,11 @@ const ListView = ({ product }) => {
               }}
             >
               <img
-                src={hoverOnImage ? product.images[1] : product.images[0]}
+                src={
+                  hoverOnImage
+                    ? `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[0]}`
+                    : `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
+                }
                 crossOrigin="anonymous"
                 alt={product.name}
                 className="h-[22rem] w-full"

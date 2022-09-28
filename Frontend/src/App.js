@@ -21,7 +21,7 @@ import { userActions } from "./store/currentUser";
 axios.defaults.withCredentials = true; //it's for getting and storing cookies in browser for future request
 
 export const URL = "https://careocity-ecommerce.onrender.com";
-const URLDEV = "http://127.0.0.1:8000";
+// const URLDEV = "http://127.0.0.1:8000";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -53,6 +53,7 @@ export default function App() {
               id: el.product.id,
               image: el.product.images[0],
               name: el.product.name,
+              categories: el.product.categories,
               rating: el.product.ratingsAverage,
               price: el.product.price,
               quantity: el.quantity,
