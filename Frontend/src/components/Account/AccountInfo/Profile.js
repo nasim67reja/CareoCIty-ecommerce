@@ -82,6 +82,31 @@ const PersonalInfo = () => {
 
 const ProfilePic = () => {
   const [profilePicshown, setProfilePicShown] = useState(false);
+  const [photo, setPhoto] = useState();
+
+  const uploadPhoto = async () => {
+    const formData = new FormData();
+    formData.append("photo", photo);
+    try {
+      const { data } = await axios.patch(`${URL}/api/v1/users/updateMe`, {
+        formData,
+      });
+      // if (data.status === "success") {
+      //   setTimeout(() => {
+      //     document.location.reload();
+      //   }, 1000);
+      // }
+      console.log(data);
+    } catch (error) {
+      console.log(`error: `, error);
+      // setError(error.response.data.message);
+    }
+  };
+
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    uploadPhoto();
+  };
 
   return (
     <div className="mb-8 border-b border-customBorder pb-4">
@@ -96,10 +121,30 @@ const ProfilePic = () => {
           </button>
         )}
       </div>
-      <div>
-        <h4 className="mb-2 opacity-80">Your Profile Photo</h4>
-        <UserImage imgHeight="h-36" />
-      </div>
+      <form
+        className="flex items-center justify-between"
+        onSubmit={formSubmissionHandler}
+        encType="multipart/form-data"
+      >
+        <div>
+          <h4 className="mb-2 opacity-80">Your Profile Photo</h4>
+          <UserImage imgHeight="h-36" />
+          {profilePicshown && (
+            <button className="mt-8 cursor-pointer rounded-sm bg-secondary px-4 py-1 text-lg text-white">
+              save
+            </button>
+          )}
+        </div>
+        {profilePicshown && (
+          <div>
+            <input
+              type="file"
+              filename="photo"
+              onChange={(e) => setPhoto(e.target.files[0])}
+            />
+          </div>
+        )}
+      </form>
     </div>
   );
 };
