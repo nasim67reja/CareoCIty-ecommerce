@@ -49,7 +49,7 @@ const ReviewOvarlay = () => {
   return (
     <>
       {reviewOvarlayIsVisible && (
-        <div className="fixed top-[30vh] left-[30vw] z-20 w-[40%] rounded-sm bg-white  shadow-lg">
+        <div className="fixed top-[30vh] left-[10%] z-20 w-[80%] rounded-sm bg-white shadow-lg md:left-[30vw]  md:w-[50%] xl:w-[40%]">
           <div className="relative p-6">
             <span
               className="absolute right-2 top-2 cursor-pointer"

@@ -44,20 +44,24 @@ const ovarlay = [
 
 const HeroOvarlay = () => {
   return (
-    <div className="relative top-[-20rem] mx-auto flex max-w-[110rem] justify-center gap-7 px-8">
+    <div className="relative top-[-20rem] mx-auto flex max-w-[110rem] justify-center gap-4 px-3 sm:gap-7  sm:px-8">
       {ovarlay.map((el, i) => (
         <div
           key={i}
-          className="flex w-[25rem] flex-col items-start justify-between bg-white py-4 px-8"
+          className={`flex w-[25rem] flex-col items-start justify-between bg-white py-4 px-8 ${
+            i === 3 ? "hidden xl:flex" : ""
+          } ${i === 2 ? "hidden lg:flex" : ""}`}
         >
-          <h3 className="my-4  text-2xl font-semibold">{el.title}</h3>
-          <div className="my-8 grid grid-cols-2 gap-6 gap-y-8">
+          <h3 className="my-2 text-xl  font-semibold md:my-4 lg:text-2xl">
+            {el.title}
+          </h3>
+          <div className="my-4 grid grid-cols-2 gap-6 gap-y-8  sm:my-8 ">
             {el.images.map((image, i) => (
               <div key={i} className="self-end ">
                 <img
                   src={image.link}
                   alt={image.name}
-                  className="h-22 mb-2 w-36"
+                  className="sm:h-22 h-18 mb-2  w-24 sm:w-36"
                 />
                 <p>{image.name}</p>
               </div>
