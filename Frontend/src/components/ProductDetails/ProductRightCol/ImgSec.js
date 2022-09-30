@@ -1,10 +1,9 @@
 import React, { useState } from "react";
+import { URL } from "../../../App";
 
 const ImgSec = ({ product }) => {
   const [imgSrc, setImgSrc] = useState(
-    product
-      ? `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
-      : ""
+    product ? `${URL}/Products/${product.categories}/${product.images[1]}` : ""
   );
 
   return (
@@ -14,7 +13,7 @@ const ImgSec = ({ product }) => {
         src={
           imgSrc
             ? imgSrc
-            : `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
+            : `${URL}/Products/${product.categories}/${product.images[1]}`
         }
         alt={product.name}
       />
@@ -23,7 +22,7 @@ const ImgSec = ({ product }) => {
           <img
             key={i}
             crossOrigin="anonymous"
-            src={`https://careocity-ecommerce.onrender.com/Products/${product.categories}/${image}`}
+            src={`${URL}/Products/${product.categories}/${image}`}
             alt={product.name}
             className="h-28 w-24 cursor-pointer"
             onClick={(e) => {

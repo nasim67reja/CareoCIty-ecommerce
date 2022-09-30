@@ -82,30 +82,29 @@ const PersonalInfo = () => {
 
 const ProfilePic = () => {
   const [profilePicshown, setProfilePicShown] = useState(false);
-  const [photo, setPhoto] = useState();
+  const [userPhoto, setUserPhoto] = useState({
+    photo: "",
+  });
 
-  const uploadPhoto = async () => {
+  const formSubmissionHandler = async (event) => {
+    event.preventDefault();
+
     const formData = new FormData();
-    formData.append("photo", photo);
+    formData.append("photo", userPhoto.photo);
     try {
-      const { data } = await axios.patch(`${URL}/api/v1/users/updateMe`, {
-        formData,
-      });
-      // if (data.status === "success") {
-      //   setTimeout(() => {
-      //     document.location.reload();
-      //   }, 1000);
-      // }
-      console.log(data);
+      const { data } = await axios.patch(
+        `${URL}/api/v1/users/updateMe`,
+        formData
+      );
+      if (data.status === "success") {
+        setTimeout(() => {
+          document.location.reload();
+        }, 1000);
+      }
     } catch (error) {
       console.log(`error: `, error);
       // setError(error.response.data.message);
     }
-  };
-
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
-    uploadPhoto();
   };
 
   return (
@@ -139,8 +138,9 @@ const ProfilePic = () => {
           <div>
             <input
               type="file"
-              filename="photo"
-              onChange={(e) => setPhoto(e.target.files[0])}
+              name="photo"
+              accept="image/*"
+              onChange={(e) => setUserPhoto({ photo: e.target.files[0] })}
             />
           </div>
         )}

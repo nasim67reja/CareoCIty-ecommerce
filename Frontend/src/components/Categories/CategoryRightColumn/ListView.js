@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { URL } from "../../../App";
 import RatingStar from "../../Reuse/RatingStar";
 
 const ListView = ({ product }) => {
@@ -22,8 +23,8 @@ const ListView = ({ product }) => {
               <img
                 src={
                   hoverOnImage
-                    ? `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[0]}`
-                    : `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
+                    ? `${URL}/Products/${product.categories}/${product.images[0]}`
+                    : `${URL}/Products/${product.categories}/${product.images[1]}`
                 }
                 crossOrigin="anonymous"
                 alt={product.name}

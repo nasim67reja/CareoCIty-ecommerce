@@ -5,6 +5,7 @@ import Backdrop from "../../Reuse/Backdrop";
 import { overlayActions } from "../../../store/ovarlay";
 import ReviewOvarlay from "../../Reuse/ReviewOvarlay";
 import RatingStar from "../../Reuse/RatingStar";
+import { URL } from "../../../App";
 
 const Reviews = () => {
   const product = useSelector((state) => state.allProducts.Product);
@@ -65,7 +66,7 @@ const Reviews = () => {
             <div className="h-12 w-12">
               {review.user.photo ? (
                 <img
-                  src={review.user.photo}
+                  src={`${URL}/img/users/${review.user.photo}`}
                   alt="user-pic"
                   crossOrigin="anonymous"
                   className="rounded-full"

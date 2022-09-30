@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { URL } from "../../App";
 import { itemActions } from "../../store/cartItem";
 
 export const CartItem = ({ item }) => {
@@ -19,6 +20,7 @@ export const CartItem = ({ item }) => {
     dispatch(itemActions.deleteItem(item.id));
     deleteItemFromCart();
   };
+
   return (
     <div className="relative flex items-center gap-3 border-b border-customBorder pb-3">
       <span
@@ -29,7 +31,8 @@ export const CartItem = ({ item }) => {
       </span>
       <img
         className="w-16"
-        src={item.image}
+        // src={item.image}
+        src={`${URL}/Products/${item.categories}/${item.image}`}
         alt={item.name}
         crossOrigin="anonymous"
       />
@@ -91,42 +94,6 @@ const CartIcon = () => {
       )}
       {/*  */}
     </li>
-    // <div>
-    //   {cartItems.length > 0 && (
-    //     <div className="customI   translate-y-[2px] cursor-pointer text-white">
-    //       <div className="relative">
-    //         <div className="absolute -right-3 -top-3 rounded-full bg-orange-400 px-2 py-[1px]">
-    //           {cartTotalItem}
-    //         </div>
-    //         <Link to="/cart" className="">
-    //           <ion-icon name="cart-outline"></ion-icon>
-    //         </Link>
-    //       </div>
-    //       <div className="absolute  top-0 left-0 bg-white text-black">
-    //         hello world
-    //       </div>
-    //       {ovarlayCartIsShown && (
-    //         <div className="absolute right-0  top-0  z-50 w-96 rounded-sm bg-white px-6 py-6 text-primary shadow-md group-hover:block">
-    //           <div className="flex flex-col   ">
-    //             {cartItems.map((item, i) => (
-    //               <CartItem key={i} item={item} />
-    //             ))}
-    //           </div>
-    //           <div className="flex justify-between ">
-    //             <h2 className="mb-4 font-semibold">SUBTOTAL</h2>
-    //             <p className="text-[#828282]">$ {totalPrice}</p>
-    //           </div>
-    //           <Link
-    //             to="/cart"
-    //             className=" float-right rounded-sm border border-customBorder bg-blue-600 px-3 py-1 text-white transition-all hover:bg-white hover:text-primary"
-    //           >
-    //             view cart
-    //           </Link>
-    //         </div>
-    //       )}
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 

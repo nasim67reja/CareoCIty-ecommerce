@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import RatingStar from "../Reuse/RatingStar";
 import { itemActions } from "../../store/cartItem";
+import { URL } from "../../App";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const CartItem = ({ item }) => {
             <div className="w-1/4 md:w-[15%] lg:w-[12%]">
               <img
                 // src={item.image}
-                src={`https://careocity-ecommerce.onrender.com/Products/${item.categories}/${item.image}`}
+                src={`${URL}/Products/${item.categories}/${item.image}`}
                 alt={item.name}
                 crossOrigin="anonymous"
                 className="w-full xl:w-[80%]"

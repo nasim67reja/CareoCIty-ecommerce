@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { URL } from "../../App";
 import RatingStar from "./RatingStar";
 
 const Product = ({ product, customClass }) => {
@@ -36,8 +37,8 @@ const Product = ({ product, customClass }) => {
         <img
           src={
             mouseEnter
-              ? `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[0]}`
-              : `https://careocity-ecommerce.onrender.com/Products/${product.categories}/${product.images[1]}`
+              ? `${URL}/Products/${product.categories}/${product.images[0]}`
+              : `${URL}/Products/${product.categories}/${product.images[1]}`
           }
           alt=""
           crossOrigin="anonymous"
