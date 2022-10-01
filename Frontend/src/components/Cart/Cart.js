@@ -39,7 +39,7 @@ const Cart = ({ customClass }) => {
       {isLoggedIn && !isLoading && (
         <div className={`mx-auto  px-4 py-12 ${customClass}`}>
           <div>
-            <div className="grid grid-cols-[32%_17%_17%_17%_17%]  bg-white text-[#828282]">
+            <div className="grid bg-white  text-[#828282] sm:grid-cols-[32%_17%_17%_17%_17%]">
               {["PRODUCT", "PRICE", "QUANTITY", "TOTAL", "REMOVE"].map(
                 (el, i) => (
                   <div key={i} className="border-b border-customBorder pb-5">

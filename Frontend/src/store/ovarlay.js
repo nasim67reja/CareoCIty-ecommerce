@@ -5,6 +5,7 @@ const initialUserState = {
   reviewOvarlayIsVisible: false,
   menuIsVisible: false,
   searchMenuIsVisible: false,
+  accountMenu: false,
 };
 
 const ovarlaySlice = createSlice({
@@ -34,6 +35,9 @@ const ovarlaySlice = createSlice({
     },
     searchMenuHiddenHandler(state) {
       state.searchMenuIsVisible = false;
+    },
+    accountMenuController(state, action) {
+      state.accountMenu = action.payload;
     },
   },
 });

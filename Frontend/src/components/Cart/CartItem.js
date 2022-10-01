@@ -10,7 +10,7 @@ const CartItem = ({ item }) => {
 
   const deleteItemFromCart = async () => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/v1/carts/${item.cartId}`);
+      await axios.delete(`${URL}/api/v1/carts/${item.cartId}`);
     } catch (error) {
       console.log(`update: `, error);
     }
@@ -23,7 +23,7 @@ const CartItem = ({ item }) => {
 
   const increaseCartItem = async () => {
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/v1/carts/${item.cartId}`, {
+      await axios.patch(`${URL}/api/v1/carts/${item.cartId}`, {
         quantity: item.quantity + 1,
       });
     } catch (error) {
@@ -37,7 +37,7 @@ const CartItem = ({ item }) => {
 
   const decreaseCartItem = async () => {
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/v1/carts/${item.cartId}`, {
+      await axios.patch(`${URL}/api/v1/carts/${item.cartId}`, {
         quantity: item.quantity - 1,
       });
     } catch (error) {
@@ -51,7 +51,7 @@ const CartItem = ({ item }) => {
 
   const updateCartItem = async () => {
     try {
-      await axios.patch(`http://127.0.0.1:8000/api/v1/carts/${item.cartId}`, {
+      await axios.patch(`${URL}/api/v1/carts/${item.cartId}`, {
         quantity: item.quantity,
       });
     } catch (error) {

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import LogOut from "./LogOut";
 
 const accountNav = [
   { name: "My Account", link: "profile" },
@@ -29,6 +30,9 @@ const AccountNav = () => {
             </NavLink>
           </li>
         ))}
+        <li>
+          <LogOut />
+        </li>
       </ul>
     </div>
   );

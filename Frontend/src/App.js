@@ -17,6 +17,7 @@ import Profile from "./components/Account/AccountInfo/Profile";
 import { productsActions } from "./store/allProducts";
 import { itemActions } from "./store/cartItem";
 import { userActions } from "./store/currentUser";
+import { overlayActions } from "./store/ovarlay";
 
 axios.defaults.withCredentials = true; //it's for getting and storing cookies in browser for future request
 
@@ -86,26 +87,32 @@ export default function App() {
     fetchAllCartItem();
   }, [fetchAllProductsHandler, fetchAllCartItem]);
 
+  const accountHandler = (e) => {
+    if (!e.target.closest(".closets"))
+      dispatch(overlayActions.accountMenuController(false));
+  };
   return (
     <Fragment>
-      <Routes>
-        <Route path="/" element={<Main />}>
-          <Route index element={<MainBody />} />
-          <Route path="cart" element={<CartPage />} />
-          <Route path="account" element={<Account />}>
-            <Route index element={<Profile />} />
-            <Route path=":accountId" element={<AccountInfo />} />
+      <div onClick={accountHandler}>
+        <Routes>
+          <Route path="/" element={<Main />}>
+            <Route index element={<MainBody />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="account" element={<Account />}>
+              <Route index element={<Profile />} />
+              <Route path=":accountId" element={<AccountInfo />} />
+            </Route>
+            <Route path=":categoriesId" element={<Categories />}></Route>
+            <Route
+              path=":categoriesId/:productId"
+              element={<ProductDetails />}
+            ></Route>
           </Route>
-          <Route path=":categoriesId" element={<Categories />}></Route>
-          <Route
-            path=":categoriesId/:productId"
-            element={<ProductDetails />}
-          ></Route>
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="*" element={<div>Invalid route</div>} />
-      </Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<div>Invalid route</div>} />
+        </Routes>
+      </div>
     </Fragment>
   );
 }

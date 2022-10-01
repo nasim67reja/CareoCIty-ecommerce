@@ -23,11 +23,8 @@ const LogOut = () => {
 
   return (
     <>
-      <button
-        className="absolute bottom-4 left-2 rounded-md bg-white py-2 px-4"
-        onClick={logoutHandler}
-      >
-        <span className="mr-3">
+      <button className=" rounded-md bg-white py-2 " onClick={logoutHandler}>
+        <span className="mr-2 inline-block translate-y-[2px]">
           <ion-icon name="log-out-outline"></ion-icon>
         </span>
         <span>Log Out</span>

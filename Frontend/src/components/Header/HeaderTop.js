@@ -5,6 +5,7 @@ import UserImage from "../Account/UserImage";
 import CartIcon from "./CartIcon";
 import { overlayActions } from "../../store/ovarlay";
 import Loading from "../Reuse/Loading";
+import LogOut from "../Account/AccountNav/LogOut";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -50,6 +51,9 @@ const HeaderTop = () => {
 
   let isLoading = false;
   if (loggedInUser.user === null) isLoading = true;
+
+  const profileMenuIsOpen = useSelector((state) => state.overlay.accountMenu);
+  // console.log(profileMenuIsOpen);
 
   return (
     <div
@@ -97,9 +101,45 @@ const HeaderTop = () => {
             {!isLoading && (
               <>
                 {loggedInUser.user && (
-                  <Link to="/account">
-                    <UserImage imgHeight="h-7 md:h-8" />
-                  </Link>
+                  <div className="closets relative">
+                    <div
+                      onClick={() =>
+                        dispatch(
+                          overlayActions.accountMenuController(
+                            !profileMenuIsOpen
+                          )
+                        )
+                      }
+                    >
+                      <UserImage imgHeight="h-7 md:h-8" />
+                    </div>
+                    {profileMenuIsOpen && (
+                      <ul
+                        className="absolute top-10 right-0 z-10 flex w-52 flex-col gap-3 border border-customBorder bg-white px-4 py-4 text-black"
+                        onClick={() =>
+                          dispatch(overlayActions.accountMenuController(false))
+                        }
+                      >
+                        <li>
+                          <Link to="account/profile">My Account</Link>
+                        </li>
+                        <li>
+                          <Link to="account/my-order">My Order</Link>
+                        </li>
+                        <li>
+                          <Link to="account/ratings&reviews">
+                            My Ratings & Reviews
+                          </Link>
+                        </li>
+                        <li className="mb-2 border-b border-customBorder pb-4">
+                          <Link to="account/cart">My Cart</Link>
+                        </li>
+                        <li>
+                          <LogOut />
+                        </li>
+                      </ul>
+                    )}
+                  </div>
                 )}
                 {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
               </>
