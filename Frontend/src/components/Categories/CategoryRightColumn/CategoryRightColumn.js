@@ -2,6 +2,7 @@ import React from "react";
 import CateProd from "./CateProd";
 import CateHeader from "./CateHeader";
 import { useSelector } from "react-redux";
+import Loading from "../../Reuse/Loading";
 
 const CategoryRightColumn = ({ params }) => {
   const products = useSelector((state) => state.allProducts.allProducts);
@@ -21,11 +22,24 @@ const CategoryRightColumn = ({ params }) => {
     return product[0]?.categories === params;
   });
 
+  let loading = false;
+  if (!products) loading = true;
+
   return (
-    <div className="h">
-      <CateHeader />
-      <CateProd category={Category} />
-    </div>
+    <>
+      {loading && (
+        <div className="flex h-screen items-center justify-center gap-2">
+          <Loading height="20" width="20" />
+          <div>Loading..</div>
+        </div>
+      )}
+      {!loading && (
+        <div className="h">
+          <CateHeader />
+          <CateProd category={Category} />
+        </div>
+      )}
+    </>
   );
 };
 

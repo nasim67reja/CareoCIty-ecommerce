@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserImage from "../Account/UserImage";
 import CartIcon from "./CartIcon";
 import { overlayActions } from "../../store/ovarlay";
+import Loading from "../Reuse/Loading";
 
 export const Search = (props) => {
   const [focusInput, setFocusInput] = useState(false);
@@ -47,6 +48,9 @@ const HeaderTop = () => {
 
   const dispatch = useDispatch();
 
+  let isLoading = false;
+  if (loggedInUser.user === null) isLoading = true;
+
   return (
     <div
       className="flex items-center
@@ -72,7 +76,15 @@ const HeaderTop = () => {
           <ion-icon name="search-outline"></ion-icon>
         </span>
       </div>
-      <Link to="/" className="cursor-pointer text-white">
+      <Link
+        to="/"
+        onClick={() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 200);
+        }}
+        className="cursor-pointer text-white"
+      >
         <h2 className="text-[1.1rem] sm:text-xl md:text-2xl">CareoCity</h2>
         <p className="text-[0.65rem] opacity-80">Quality Fun Shopping</p>
       </Link>
@@ -81,13 +93,19 @@ const HeaderTop = () => {
       <nav>
         <ul className=" flex list-none  items-center gap-3 md:gap-4 ">
           <li className="cursor-pointer text-white">
-            {loggedInUser.user && (
-              <Link to="/account">
-                <UserImage imgHeight="h-7 md:h-8" />
-              </Link>
+            {isLoading && <Loading height={25} width={25} />}
+            {!isLoading && (
+              <>
+                {loggedInUser.user && (
+                  <Link to="/account">
+                    <UserImage imgHeight="h-7 md:h-8" />
+                  </Link>
+                )}
+                {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
+              </>
             )}
-            {!loggedInUser.user && <Link to="/login">Login& Register</Link>}
           </li>
+
           <li className="hidden cursor-pointer text-sm text-white lg:block">
             More
           </li>

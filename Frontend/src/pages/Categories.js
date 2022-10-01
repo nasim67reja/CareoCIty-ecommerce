@@ -5,7 +5,6 @@ import CategoryRightColumn from "../components/Categories/CategoryRightColumn/Ca
 
 const Categories = () => {
   const params = useParams();
-  // let content = params.categoriesId;
 
   return (
     <div className="mx-auto grid max-w-st grid-cols-[24%_74%] gap-10  px-8 py-12">
