@@ -47,7 +47,6 @@ const ProductInfo = () => {
 
   let loading = false;
   if (!products) loading = true;
-  console.log(loading);
 
   return (
     <>

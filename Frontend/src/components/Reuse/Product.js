@@ -60,7 +60,7 @@ const Product = ({ product, customClass }) => {
       </div>
       <div className="flex gap-1">
         <span>
-          <RatingStar rating={product.ratingsAverage}></RatingStar>
+          <RatingStar rating={product.ratingsAverage} />
         </span>
         <span className="text-sm text-[#888]">
           ({product.ratingsQuantity}) review

@@ -12,6 +12,8 @@ const AccountInfo = () => {
   if (params.accountId === "cart") content = <MyCart />;
   if (params.accountId === "ratings&reviews") content = <RatingsReviews />;
 
+  if (params.accountId === "my-order") content = <RatingsReviews />;
+
   return <>{content}</>;
 };
 

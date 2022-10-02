@@ -5,21 +5,8 @@ import RatingStar from "../Reuse/RatingStar";
 import { itemActions } from "../../store/cartItem";
 import { URL } from "../../App";
 
-const CartItem = ({ item }) => {
+const CartProductQuantity = ({ item }) => {
   const dispatch = useDispatch();
-
-  const deleteItemFromCart = async () => {
-    try {
-      await axios.delete(`${URL}/api/v1/carts/${item.cartId}`);
-    } catch (error) {
-      console.log(`update: `, error);
-    }
-  };
-
-  const deleteItemHandler = () => {
-    dispatch(itemActions.deleteItem(item.id));
-    deleteItemFromCart();
-  };
 
   const increaseCartItem = async () => {
     try {
@@ -66,6 +53,48 @@ const CartItem = ({ item }) => {
   };
 
   return (
+    <div className="flex w-20">
+      <button
+        className="border border-customBorder px-3"
+        onClick={decreaseHandler}
+      >
+        -
+      </button>
+      <input
+        className="w-10 border border-customBorder px-2 focus:outline-none"
+        type="number"
+        min="1"
+        value={item.quantity}
+        onChange={updateQuantityHandler}
+      />
+      <button
+        className="border border-customBorder px-3"
+        onClick={increaseHandler}
+      >
+        +
+      </button>
+    </div>
+  );
+};
+
+const CartItem = ({ item, number }) => {
+  const dispatch = useDispatch();
+
+  const deleteItemFromCart = async () => {
+    try {
+      await axios.delete(`${URL}/api/v1/carts/${item.cartId}`);
+    } catch (error) {
+      console.log(`update: `, error);
+    }
+  };
+
+  const deleteItemHandler = () => {
+    dispatch(itemActions.deleteItem(item.id));
+    deleteItemFromCart();
+  };
+
+  console.log(number);
+  return (
     <>
       {item && (
         <>
@@ -82,41 +111,27 @@ const CartItem = ({ item }) => {
             <div className="pr-2">
               <p className="mb-2 text-sm">{item.name}</p>
               <RatingStar rating={item.rating} />
+
+              <div className="mt-4 flex items-center sm:hidden">
+                <CartProductQuantity item={item} />
+              </div>
             </div>
           </div>
-          <div className="flex items-center border-b border-customBorder  text-sm">
+
+          <div className="hidden items-center border-b border-customBorder text-sm  sm:flex">
             $ {item.price}
           </div>
-          <div className="flex items-center border-b border-customBorder ">
-            <div className="flex w-20">
-              <button
-                className="border border-customBorder px-3"
-                onClick={decreaseHandler}
-              >
-                -
-              </button>
-              <input
-                className="w-10 border border-customBorder px-2 focus:outline-none"
-                type="number"
-                min="1"
-                value={item.quantity}
-                onChange={updateQuantityHandler}
-              />
-              <button
-                className="border border-customBorder px-3"
-                onClick={increaseHandler}
-              >
-                +
-              </button>
-            </div>
+          <div className="hidden items-center border-b border-customBorder sm:flex">
+            <CartProductQuantity item={item} />
           </div>
-          <div className="flex items-center border-b border-customBorder">
-            $ {item.quantity * item.price}
-          </div>
-          <div className="flex items-center border-b border-customBorder">
+          <div className={`flex items-center border-b border-customBorder`}>
             <span className="cursor-pointer" onClick={deleteItemHandler}>
               <ion-icon name="trash-outline"></ion-icon>
             </span>
+          </div>
+
+          <div className=" flex items-center border-b border-customBorder">
+            $ {item.quantity * item.price}
           </div>
         </>
       )}

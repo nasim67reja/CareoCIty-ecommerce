@@ -1,18 +1,9 @@
 import React from "react";
-import { Audio } from "react-loader-spinner";
 
 const RatingsReviews = () => {
   return (
-    <div>
-      <Audio
-        height="80"
-        width="80"
-        radius="9"
-        color="green"
-        ariaLabel="loading"
-        wrapperStyle
-        wrapperClass
-      />
+    <div className="flex h-[50vh] items-center justify-center text-lg sm:text-2xl">
+      Still not Implemented 😢. But sure, will be implement in future 💪
     </div>
   );
 };

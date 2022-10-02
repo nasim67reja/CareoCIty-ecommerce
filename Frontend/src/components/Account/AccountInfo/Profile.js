@@ -319,7 +319,7 @@ const DeleteAcc = () => {
 
 const Profile = () => {
   return (
-    <div className=" rounded-sm border-t-2 border-orange-500 bg-white p-8 pr-[25vw] shadow-sm">
+    <div className=" rounded-sm border-t-2 border-orange-500 bg-white p-8 pr-4 shadow-sm sm:pr-[25vw]">
       <PersonalInfo />
       <ProfilePic />
       <MyPass />
