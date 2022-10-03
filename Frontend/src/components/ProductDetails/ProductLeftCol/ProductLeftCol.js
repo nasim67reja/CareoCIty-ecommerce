@@ -3,7 +3,7 @@ import TopRated from "./TopRated";
 
 const ProductLeftCol = () => {
   return (
-    <div>
+    <div className="hidden md:block">
       <TopRated />
       <div>
         <img src={ads} alt="" />

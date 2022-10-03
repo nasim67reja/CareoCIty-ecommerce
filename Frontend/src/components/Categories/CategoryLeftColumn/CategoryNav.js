@@ -24,6 +24,8 @@ const CategoryNav = () => {
   let loading = false;
   if (!category) loading = true;
 
+  const [topRatedProductIsOpen, setTopRatedProductIsOpen] = useState(true);
+
   return (
     <>
       {loading && (
@@ -33,9 +35,28 @@ const CategoryNav = () => {
         </div>
       )}
       {!loading && (
-        <div className="  border border-customBorder">
-          <h3 className="bg-secondary py-3 px-4 text-white">Category</h3>
-          <ul className="flex flex-col gap-2 ">
+        <div className="mb-8 border border-customBorder bg-white ">
+          <div
+            className="relative  cursor-pointer p-2"
+            onClick={() => setTopRatedProductIsOpen((prevSt) => !prevSt)}
+          >
+            <h3 className="py-2 px-4 text-xl font-medium text-blue-600">
+              Category
+            </h3>
+            <span className="absolute right-3 top-5">
+              {topRatedProductIsOpen ? (
+                <ion-icon name="chevron-up-outline"></ion-icon>
+              ) : (
+                <ion-icon name="chevron-down-outline"></ion-icon>
+              )}
+            </span>
+          </div>
+
+          <ul
+            className={`flex flex-col gap-2 overflow-hidden transition-all duration-300  ${
+              topRatedProductIsOpen ? "h-56 py-4" : "h-0 py-0"
+            } `}
+          >
             {category &&
               category.map((el, i) => (
                 <li key={i} className="border-b border-customBorder">
