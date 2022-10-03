@@ -6,7 +6,7 @@ const ProductLeftCol = () => {
     <div className="hidden md:block">
       <TopRated />
       <div>
-        <img src={ads} alt="" />
+        <img src={ads} alt="women" />
       </div>
     </div>
   );
