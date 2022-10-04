@@ -1,60 +1,104 @@
-# E-commerce API
+# CareoCity (frontend)
 
-## Get all the product
+### Problem I faced
 
-- Make a get request in this `http://127.0.0.1:8000/api/v1/products` route for getting all the products
+- `crossOrigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
 
-## Get a single Product
+- set `autoFocus` attribute in an input element. then By default the input element will be focused
 
-- Put the product id after the previous route like `http://127.0.0.1:8000/api/v1/products/62fb44698e3c2935a1730326` Note that here `62fb44698e3c2935a1730326` refers to the product id which ones you want to get. and make a get request
+- change navigation programmetically
 
-## Update a Product
+```js
+setTimeout(() => {
+  navigate("/");
+  // window.location.assign("/");
+}, 1500);
+```
 
-- the route is same as get a single product route but only differnce is you have to make a patch request with update content in body
+- reload the page automatically
 
-## Delete a Product
+```js
+setTimeout(() => {
+  document.location.reload();
+}, 1000);
+```
 
-- It's also same route like update or get a single product. put the id after get all product route and make a delete request
+for more check [this](https://www.freecodecamp.org/news/refresh-the-page-in-javascript-js-reload-window-tutorial/)
 
-## Filtering,Sorting,Limiting,Pagination
+- When I was trying to delete the user account by user, i was facing a problem it was not working
+  Because i was forgot to do this `await user.save({ validateBeforeSave: false });`
+  it took me almost 1 hour to figure out this
 
-- All the features(filtering,sorting,limiting,pagination) are available.
-- Filtering => `http://127.0.0.1:8000/api/v1/products?categories=Man`
-- Sorting => `http://127.0.0.1:8000/api/v1/products?sort=price`
-- Limiting => `http://127.0.0.1:8000/api/v1/products?fields=name,price,ratingsAverage`
-- Pagination => `http://127.0.0.1:8000/api/v1/products?page=1&limit=2`
+- `httpOnly:true` means we can not manipulate cookie in browser
 
-## alias Route
+- working with query param was a biggest difficulty for me but after spending 2 days,
+  I have figure out it properly
 
-### Top Rated
+- Custom grid template column `grid-cols-20/80` for more check [this](https://stackoverflow.com/questions/67242334/tailwind-css-how-to-make-a-grid-with-two-columns-where-the-1st-column-has-20)
 
-- to get top 10 rated products hit a `get` request in this route `http://127.0.0.1:8000/api/v1/products/top-10-rated`
+### react-router scroll to top on every transition
 
-## Authentication
+- I have an issue when navigating into another page, its position will remain like the page before. So it won't
+  scroll to top automatically. I've also tried to use window.scrollTo(0, 0) on onChange router. I've also used
+  scrollBehavior to fix this issue but it didn't work.
 
-### Sign Up Route
+- for this problem , i have implemented a solution where each link i add this
 
-- `http://127.0.0.1:8000/api/v1/users/signup` hit a post request with this `name email password passwordConfirm passwordChangedAt` property
+```js
+<Link
+        to={`/${product.categories}/${product.name}`}
+        className="w-full"
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
 
-### Log In
+```
 
-- `http://127.0.0.1:8000/api/v1/users/login` hit a post request with `email & password` property
+- here is a nice solution for this problem
 
-### Forgot password
+```js
+const Wrapper = ({ children }) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children;
+};
+```
 
-- `http://127.0.0.1:8000/api/v1/users/forgotPassword` Hit this route a post request with your email
+For more check [this](https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition)
 
-### reset password
+### React.createPortal()
 
-- `http://127.0.0.1:8000/api/v1/users/resetPassword/238493824` Hit this route a patch request with your new password and confirm password.
-  **_note that here 238493824 is the resettoken_**
+- at first import this `import ReactDOM from "react-dom";`
+- then write the component
 
-### Update Current User password
+```js
+const Ovarlay = () => {
+  return <div>I am backdrop from backdrop-root</div>;
+};
+```
 
-- `http://127.0.0.1:8000/api/v1/users/updateMyPassword` hit a patch request on this route with `passwordCurrent password and passwordConfirm` data
+- then inject this as you want
 
-## User Data
+```js
+{
+  ReactDOM.createPortal(<Ovarlay />, document.getElementById("backdrop-root"));
+}
+```
 
-### Get All User
+- in `public >index.html` file write this `<div id="backdrop-root"></div>`
+- now you will find your ovarlay element in here no matter
+  where in the react component you put the ovarlay component
 
-- For getting all the user hit a get request in this `http://127.0.0.1:8000/api/v1/users` route
+### Prevent scroll when modal is open
+
+```js
+useEffect(() => {
+  if (backdrop) document.body.style.overflow = "hidden";
+  else document.body.style.overflow = "unset";
+}, [backdrop]);
+```
+
+- for more check [this](https://stackoverflow.com/questions/54989513/react-prevent-scroll-when-modal-is-open)
