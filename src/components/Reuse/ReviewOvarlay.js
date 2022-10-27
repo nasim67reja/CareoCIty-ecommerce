@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { overlayActions } from "../../store/ovarlay";
+import { URL } from "../../App";
 
 const ReviewOvarlay = () => {
   const [review, setReview] = useState("");
@@ -25,7 +26,7 @@ const ReviewOvarlay = () => {
   const postReview = async () => {
     try {
       const { data } = await axios.post(
-        `http://127.0.0.1:8000/api/v1/products/${product?._id}/reviews`,
+        `${URL}/api/v1/products/${product?._id}/reviews`,
         {
           review: review,
           rating: +rating,
@@ -35,7 +36,7 @@ const ReviewOvarlay = () => {
       if (data.status === "success") {
         setTimeout(() => {
           document.location.reload();
-        }, 1500);
+        }, 500);
       }
     } catch (error) {
       console.log(`error: `, error.response);

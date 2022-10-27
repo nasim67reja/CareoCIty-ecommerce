@@ -21,7 +21,6 @@ const ProductInfo = () => {
   const [product] = products
     ? products.filter((product) => product.name === params.productId)
     : "";
-
   const getProduct = useCallback(async () => {
     if (product) {
       try {
