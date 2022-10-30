@@ -42,7 +42,7 @@ const HeroSlider = () => {
     <div>
       <div className="mx-auto h-[44rem] max-w-[110rem] ">
         <div className="relative h-full  w-full overflow-hidden  p-4">
-          {/* <div
+          <div
             className="absolute right-5 top-[50%] z-10 flex translate-y-[-50%] cursor-pointer items-center justify-center bg-slate-400"
             onClick={nextSlideHandler}
           >
@@ -54,7 +54,7 @@ const HeroSlider = () => {
             onClick={prevSlideHandler}
           >
             <ion-icon name="chevron-back-outline" size="large"></ion-icon>
-          </div> */}
+          </div>
 
           <img
             src={bg1}

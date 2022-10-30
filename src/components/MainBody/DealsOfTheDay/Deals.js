@@ -41,19 +41,23 @@ const Deals = () => {
 
   return (
     <>
-      <div className=" mt-[-15rem]">
-        {isLoading && <Loading classes="my-8" />}
+      {/* <div className=" mt-[-15rem]">
+       */}
+      <div className="relative z-10 mt-[-15rem]">
+        {isLoading && <Loading classes="my-8" height="30" width="30" />}
         <Slider data={Electronics} />
       </div>
       <div>
-        {isLoadingForTopRated && <Loading classes="my-8" />}
+        {isLoadingForTopRated && (
+          <Loading classes="my-8" height="30" width="30" />
+        )}
         {!isLoadingForTopRated && (
           <Slider data={topRated} title={"Top Rated"} route="top-rated" />
         )}
       </div>
       {[Man, Women, Home].map((el, i) => (
         <div key={i}>
-          {isLoading && <Loading classes="my-8" />}
+          {isLoading && <Loading classes="my-8" height="30" width="30" />}
           <Slider data={el} />
         </div>
       ))}

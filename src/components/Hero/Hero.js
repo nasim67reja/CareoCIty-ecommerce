@@ -4,7 +4,7 @@ import HeroSlider from "./HeroSlider";
 
 const Hero = () => {
   return (
-    <section className="relative z-[-1] bg-backg">
+    <section className="relative  bg-backg">
       <HeroSlider />
       <HeroOvarlay />
     </section>

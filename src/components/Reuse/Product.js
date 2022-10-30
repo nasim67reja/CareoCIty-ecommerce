@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { URL } from "../../App";
 import RatingStar from "./RatingStar";
 
+export const truncateString = (str, num) => {
+  if (str?.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+};
+
 const Product = ({ product, customClass }) => {
   const [mouseEnter, setMouseEnter] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  const truncateString = (str, num) => {
-    if (str?.length > num) {
-      return str.slice(0, num) + "...";
-    } else {
-      return str;
-    }
-  };
   const name = truncateString(product?.name, 28);
   return (
     <div className="relative flex h-full w-full  flex-col  items-center gap-1 ">
