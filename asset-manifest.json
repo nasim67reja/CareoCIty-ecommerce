@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CareoCIty-ecommerce/static/css/main.9810cf6a.css",
-    "main.js": "/CareoCIty-ecommerce/static/js/main.9720b17d.js",
+    "main.css": "/CareoCIty-ecommerce/static/css/main.78866771.css",
+    "main.js": "/CareoCIty-ecommerce/static/js/main.e9eed055.js",
     "static/media/bga1.jpg": "/CareoCIty-ecommerce/static/media/bga1.37d4ac43b62e630ad9af.jpg",
     "static/media/feet_1.png": "/CareoCIty-ecommerce/static/media/feet_1.8a8ab62f65845faf079b.png",
     "static/media/bga3.jpg": "/CareoCIty-ecommerce/static/media/bga3.1374bbdc2d0ac4a76d5f.jpg",
@@ -10,16 +10,19 @@
     "static/media/blog2.webp": "/CareoCIty-ecommerce/static/media/blog2.46351694427da3f80ddd.webp",
     "static/media/style.jpg": "/CareoCIty-ecommerce/static/media/style.8fa5c89f6aa617cdcf4b.jpg",
     "static/media/shop-layout.webp": "/CareoCIty-ecommerce/static/media/shop-layout.124623826221930b8399.webp",
+    "static/media/toys.webp": "/CareoCIty-ecommerce/static/media/toys.c1ba01f59467a4a4cf53.webp",
+    "static/media/women.webp": "/CareoCIty-ecommerce/static/media/women.b7ef1337794a94c647b1.webp",
     "static/media/foodProcessor.webp": "/CareoCIty-ecommerce/static/media/foodProcessor.abf4cf1d776ad59ef7cd.webp",
+    "static/media/bag.webp": "/CareoCIty-ecommerce/static/media/bag.03371a58bd75a9439f9f.webp",
     "static/media/tv.webp": "/CareoCIty-ecommerce/static/media/tv.9109f70dfd42f7e5bf42.webp",
     "static/media/heat.webp": "/CareoCIty-ecommerce/static/media/heat.68026013b41de645000c.webp",
     "static/media/lipsticks.webp": "/CareoCIty-ecommerce/static/media/lipsticks.4bed9745cd47079a8b1b.webp",
     "index.html": "/CareoCIty-ecommerce/index.html",
-    "main.9810cf6a.css.map": "/CareoCIty-ecommerce/static/css/main.9810cf6a.css.map",
-    "main.9720b17d.js.map": "/CareoCIty-ecommerce/static/js/main.9720b17d.js.map"
+    "main.78866771.css.map": "/CareoCIty-ecommerce/static/css/main.78866771.css.map",
+    "main.e9eed055.js.map": "/CareoCIty-ecommerce/static/js/main.e9eed055.js.map"
   },
   "entrypoints": [
-    "static/css/main.9810cf6a.css",
-    "static/js/main.9720b17d.js"
+    "static/css/main.78866771.css",
+    "static/js/main.e9eed055.js"
   ]
 }
