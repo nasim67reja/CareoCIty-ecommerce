@@ -3,7 +3,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { URL } from "../../../App";
 import Loading from "../../Reuse/Loading";
+import Adds from "./Adds";
 import Slider from "./Slider";
+
+import foodProcessor from "../../../assets/adds/foodProcessor.webp";
+import heat from "../../../assets/adds/heat.webp";
+import tv from "../../../assets/adds/tv.webp";
+
+import bag from "../../../assets/offers/bag.webp";
+import toys from "../../../assets/offers/toys.webp";
+import women from "../../../assets/offers/women.webp";
 
 const Deals = () => {
   const [topRated, setTopRated] = useState([]);
@@ -41,12 +50,11 @@ const Deals = () => {
 
   return (
     <>
-      {/* <div className=" mt-[-15rem]">
-       */}
       <div className="relative z-10 mt-[-15rem]">
         {isLoading && <Loading classes="my-8" height="30" width="30" />}
         <Slider data={Electronics} />
       </div>
+      <Adds text="Your ads  here" img1={foodProcessor} img2={heat} img3={tv} />
       <div>
         {isLoadingForTopRated && (
           <Loading classes="my-8" height="30" width="30" />
@@ -55,6 +63,13 @@ const Deals = () => {
           <Slider data={topRated} title={"Top Rated"} route="top-rated" />
         )}
       </div>
+      <Adds
+        text="Your special offers here"
+        img1={bag}
+        img2={toys}
+        img3={women}
+      />
+
       {[Man, Women, Home].map((el, i) => (
         <div key={i}>
           {isLoading && <Loading classes="my-8" height="30" width="30" />}

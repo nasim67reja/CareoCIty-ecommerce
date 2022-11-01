@@ -132,7 +132,7 @@ const HeroOvarlay = () => {
                         ? `/${image.category}/${image.name}`
                         : `${image.name}`
                     }
-                    className="inline-block cursor-pointer self-end "
+                    className="flex h-full cursor-pointer flex-col justify-between"
                   >
                     <img
                       crossOrigin="anonymous"

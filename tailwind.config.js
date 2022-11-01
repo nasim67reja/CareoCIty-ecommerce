@@ -21,7 +21,7 @@ module.exports = {
       },
       maxWidth: {
         pf: "80rem",
-        st: "105rem",
+        st: "110rem",
       },
     },
   },
