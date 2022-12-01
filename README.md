@@ -1,5 +1,8 @@
 # CareoCity (frontend)
 
+- Live link [careocity](https://nasim67reja.github.io/CareoCIty-ecommerce/)
+- Github URL [github](https://github.com/nasim67reja/CareoCIty-ecommerce)
+
 ### Problem I faced
 
 - `crossOrigin="anonymous"` add this to your image tag. otherwise fetch image will not work for more check [this](https://stackoverflow.com/questions/70695881/neterr-blocked-by-response-notsameoriginafterdefaultedtosameoriginbycoep-200)
@@ -102,3 +105,63 @@ useEffect(() => {
 ```
 
 - for more check [this](https://stackoverflow.com/questions/54989513/react-prevent-scroll-when-modal-is-open)
+
+## Stripe Payment
+
+Backend
+
+```js
+exports.getCheckoutSession = catchAsync(async (req, res, next) => {
+  //   1) Get the currently ordered product
+  const product = await Product.findById(req.params.productId);
+
+  // 2) Create checkout session
+  const session = await stripe.checkout.sessions.create({
+    expand: ["line_items"],
+    payment_method_types: ["card"],
+    success_url: `https://nasim67reja.github.io/CareoCIty-ecommerce/`,
+    cancel_url: `https://nasim67reja.github.io/CareoCIty-ecommerce/#/${product.categories}`,
+    customer_email: req.user.email,
+    client_reference_id: req.params.productId,
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          unit_amount: product.price * 100,
+          product_data: {
+            name: `${product.name} `,
+            description: product.summary,
+            images: [
+              `https://e-commerceapi.up.railway.app/Products/${product.categories}/${product.images[0]}`,
+            ],
+          },
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+  });
+
+  // 3) Create session as response
+  res.status(200).json({
+    status: "success",
+    session,
+  });
+});
+```
+
+Front end
+
+```js
+const buyProduct = useCallback(async () => {
+  try {
+    const session = await axios.get(
+      `${URL}/api/v1/orders//checkout-session/${product}`
+    );
+
+    window.location.replace(session.data.session.url);
+  } catch (error) {
+    console.log(`error: `, error.response);
+  }
+}, [product]);
+```

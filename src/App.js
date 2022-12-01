@@ -35,6 +35,7 @@ export default function App() {
   const getUser = useCallback(async () => {
     try {
       const { data } = await axios.get(`${URL}/api/v1/users/me`);
+
       dispatch(userActions.storeUser(data));
     } catch (error) {
       dispatch(userActions.storeUser(undefined));
