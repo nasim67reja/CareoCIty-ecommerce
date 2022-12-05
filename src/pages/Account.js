@@ -17,17 +17,33 @@ const Account = () => {
   return (
     <>
       {loading && (
-        <div className="flex h-screen items-center justify-center gap-2">
+        <div className="flex h-screen items-center justify-center gap-1">
           <Loading height="20" width="20" />
-          <div>Loading..</div>
+          <div className="text-gray-500">Loading ...</div>
         </div>
       )}
       {!loading && isLoggedIn && (
         <div className="mx-auto  max-w-[100rem]  px-4 py-12">
           <div className="mx-2 mt-8 grid grid-cols-1  justify-start gap-20 md:mx-0 md:grid-cols-[18%_70%]">
-            <div className="relative  hidden flex-col gap-4 md:flex">
+            <div className="relative  hidden flex-col gap-6 md:flex">
               <AccountHead />
               <AccountNav />
+              {user.data.data.role === "admin" && (
+                <div
+                  className="flex
+              flex-auto items-end justify-center  pb-4"
+                >
+                  <div className="w-full cursor-pointer rounded-sm bg-white py-3 text-center text-gray-500 shadow-lg">
+                    <a
+                      href="https://nasim67reja.github.io/react-admin-dashboard/#/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      switch to Dashboard ➡
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
             <Outlet />
           </div>
