@@ -92,15 +92,10 @@ const ProfilePic = () => {
     const formData = new FormData();
     formData.append("photo", userPhoto.photo);
     try {
-      const { data } = await axios.patch(
-        `${URL}/api/v1/users/updateMe`,
-        formData
-      );
-      if (data.status === "success") {
-        setTimeout(() => {
-          document.location.reload();
-        }, 200);
-      }
+      await axios.patch(`${URL}/api/v1/users/updateMe`, formData);
+      setTimeout(() => {
+        document.location.reload();
+      }, 100);
     } catch (error) {
       console.log(`error: `, error);
       // setError(error.response.data.message);
