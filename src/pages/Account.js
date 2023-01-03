@@ -35,7 +35,7 @@ const Account = () => {
                 >
                   <div className="w-full cursor-pointer rounded-sm bg-white py-3 text-center text-gray-500 shadow-lg">
                     <a
-                      href="https://nasim67reja.github.io/react-admin-dashboard/#/"
+                      href="https://nasim67reja.github.io/careocity-dashboard/#/"
                       target="_blank"
                       rel="noreferrer"
                     >

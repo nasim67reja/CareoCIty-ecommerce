@@ -48,6 +48,11 @@ const Deals = () => {
   let isLoadingForTopRated = false;
   if (topRated.length < 1) isLoadingForTopRated = true;
 
+  const topSell = products
+    ?.slice()
+    .sort((a, b) => b.sell - a.sell)
+    .slice(0, 10);
+
   return (
     <>
       <div className="relative z-10 mt-[-15rem]">
@@ -60,7 +65,7 @@ const Deals = () => {
           <Loading classes="my-8" height="30" width="30" />
         )}
         {!isLoadingForTopRated && (
-          <Slider data={topRated} title={"Top Rated"} route="top-rated" />
+          <Slider data={topRated} title="Top Rated" route="top-rated" />
         )}
       </div>
       <Adds
@@ -69,6 +74,12 @@ const Deals = () => {
         img2={toys}
         img3={women}
       />
+
+      {topSell ? (
+        <Slider data={topSell} title="Top Sell" route="top-sell" />
+      ) : (
+        <Loading classes="my-8" height="30" width="30" />
+      )}
 
       {[Man, Women, Home].map((el, i) => (
         <div key={i}>

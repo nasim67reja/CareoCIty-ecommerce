@@ -9,8 +9,15 @@ import { URL } from "../../../App";
 
 const Reviews = () => {
   const product = useSelector((state) => state.allProducts.Product);
+  const curUser = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
+
+  let canIGiveAReview = false;
+  curUser?.data.data.orders.forEach((el) => {
+    if (el.product._id === product?.id) canIGiveAReview = true;
+  });
+
   const writeReviewHandler = () => {
     dispatch(overlayActions.backdropVisible());
     dispatch(overlayActions.reviewOvarlayIsVisible());
@@ -46,7 +53,11 @@ const Reviews = () => {
           ) : (
             <p>No reviews yet</p>
           )}
-          <button onClick={writeReviewHandler}> Write a review</button>
+
+          {/* 👇👇👇👇👇👇👇👇👇👇 */}
+          {canIGiveAReview && (
+            <button onClick={writeReviewHandler}> Write a review</button>
+          )}
           {ReactDOM.createPortal(
             <Backdrop />,
             document.getElementById("backdrop-root")

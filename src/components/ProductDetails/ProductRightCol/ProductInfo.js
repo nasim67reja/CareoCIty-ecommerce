@@ -135,9 +135,6 @@ const ProductInfo = () => {
                   </ul>
                   <div className="mt-6 flex gap-4">
                     <AddToCart product={product} quantity={quantity} />
-                    {/* <button className="rounded-sm border border-orange-400 py-2 px-4 text-sm transition-all hover:bg-blue-500 hover:text-white">
-                      Buy it now
-                    </button> */}
                     <BuyProduct />
                   </div>
                 </div>
