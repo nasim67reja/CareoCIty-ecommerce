@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CareoCIty-ecommerce/static/css/main.50a2353c.css",
-    "main.js": "/CareoCIty-ecommerce/static/js/main.03660730.js",
+    "main.js": "/CareoCIty-ecommerce/static/js/main.32c537eb.js",
     "static/media/bga1.jpg": "/CareoCIty-ecommerce/static/media/bga1.37d4ac43b62e630ad9af.jpg",
     "static/media/feet_1.png": "/CareoCIty-ecommerce/static/media/feet_1.8a8ab62f65845faf079b.png",
     "static/media/bga3.jpg": "/CareoCIty-ecommerce/static/media/bga3.1374bbdc2d0ac4a76d5f.jpg",
@@ -19,10 +19,10 @@
     "static/media/lipsticks.webp": "/CareoCIty-ecommerce/static/media/lipsticks.4bed9745cd47079a8b1b.webp",
     "index.html": "/CareoCIty-ecommerce/index.html",
     "main.50a2353c.css.map": "/CareoCIty-ecommerce/static/css/main.50a2353c.css.map",
-    "main.03660730.js.map": "/CareoCIty-ecommerce/static/js/main.03660730.js.map"
+    "main.32c537eb.js.map": "/CareoCIty-ecommerce/static/js/main.32c537eb.js.map"
   },
   "entrypoints": [
     "static/css/main.50a2353c.css",
-    "static/js/main.03660730.js"
+    "static/js/main.32c537eb.js"
   ]
 }
