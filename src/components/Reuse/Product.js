@@ -41,7 +41,7 @@ const Product = ({ product, customClass }) => {
               ? `${URL}/Products/${product.categories}/${product.images[0]}`
               : `${URL}/Products/${product.categories}/${product.images[1]}`
           }
-          alt=""
+          alt="product_image"
           crossOrigin="anonymous"
           className={`w-full cursor-pointer ${customClass}`}
           onMouseEnter={() => setMouseEnter(true)}
