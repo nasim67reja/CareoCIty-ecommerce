@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { URL } from "../../../App";
 import { LoadingText } from "../../Reuse/Loading";
 import { truncateString } from "../../Reuse/Product";
@@ -36,8 +37,13 @@ const RatingsReviews = () => {
               <h3 className="text-base font-semibold ">Status </h3>
               {curUser.data.data.orders.map((el, i) => (
                 <Fragment key={i}>
-                  <div>{truncateString(el._id, 17)}</div>
-                  <div className="flex gap-2">
+                  <div className="flex items-center">
+                    {truncateString(el._id, 17)}
+                  </div>
+                  <Link
+                    className="flex cursor-pointer items-center gap-2 "
+                    to={`/${el.product.categories}/${el.product.name}`}
+                  >
                     <span className="inline-block w-[20%]">
                       <img
                         className="w-full rounded-[50%]"
@@ -47,10 +53,12 @@ const RatingsReviews = () => {
                       />
                     </span>
                     <span>{truncateString(el.product.name, 22)}</span>
+                  </Link>
+                  <div className="flex items-center">
+                    {formatDate(el.createdAt)}
                   </div>
-                  <div>{formatDate(el.createdAt)}</div>
-                  <div>{el.price}</div>
-                  <div>
+                  <div className="flex items-center">{el.price}</div>
+                  <div className="flex items-center">
                     <span
                       className={`${
                         el.status === "pending"

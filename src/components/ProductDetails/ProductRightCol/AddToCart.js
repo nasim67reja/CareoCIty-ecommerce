@@ -55,6 +55,7 @@ const AddToCart = ({ product, quantity }) => {
     dispatch(itemActions.storeItem(item));
     setAddCart(true);
   };
+
   return (
     <button
       className="flex items-center gap-2 rounded-sm border border-orange-400 py-2 px-4 text-sm transition-all hover:bg-blue-500 hover:text-white"

@@ -43,14 +43,14 @@ const HeroSlider = () => {
       <div className="mx-auto h-[44rem] max-w-[110rem] ">
         <div className="relative h-full  w-full overflow-hidden  p-4">
           <div
-            className="absolute right-5 top-[50%] z-10 flex translate-y-[-50%] cursor-pointer items-center justify-center bg-slate-400"
+            className="absolute right-0 top-[50%] z-10 flex h-full translate-y-[-50%] cursor-pointer items-center justify-center px-6 hover:bg-[rgba(0,0,100,0.2)] lg:px-8"
             onClick={nextSlideHandler}
           >
             <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
           </div>
 
           <div
-            className="absolute top-[50%] z-10 translate-y-[-50%]  cursor-pointer bg-slate-400"
+            className="absolute left-0 top-[50%] z-10 flex h-full translate-y-[-50%] cursor-pointer items-center justify-center px-6 hover:bg-[rgba(0,0,100,0.2)] lg:px-8"
             onClick={prevSlideHandler}
           >
             <ion-icon name="chevron-back-outline" size="large"></ion-icon>

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { URL } from "../../App";
 import RatingStar from "./RatingStar";
+import { itemActions } from "../../store/cartItem";
 
 export const truncateString = (str, num) => {
   if (str?.length > num) {
@@ -16,6 +19,58 @@ const Product = ({ product, customClass }) => {
   const [clicked, setClicked] = useState(false);
 
   const name = truncateString(product?.name, 28);
+
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.cart);
+  const [activeItem] = cartItems.filter((item) => item.change === true);
+
+  let item = {
+    id: product._id,
+    image: product.images[0],
+    name: product.name,
+    categories: product.categories,
+    rating: product.ratingsAverage,
+    price: product.price,
+    quantity: 1,
+    change: false,
+    new: true,
+  };
+  const [addCart, setAddCart] = useState(false);
+
+  const postCartItem = useCallback(async () => {
+    if (activeItem) {
+      if (addCart && activeItem.new) {
+        try {
+          await axios.post(`${URL}/api/v1/carts`, {
+            product: activeItem.id,
+            quantity: activeItem.quantity,
+          });
+          setTimeout(() => {
+            document.location.reload();
+          }, 500);
+        } catch (error) {
+          console.log(`error: `, error.response);
+        }
+      } else if (!activeItem.new) {
+        try {
+          await axios.patch(`${URL}/api/v1/carts/${activeItem.cartId}`, {
+            quantity: activeItem.quantity,
+          });
+        } catch (error) {
+          console.log(`update: `, error);
+        }
+      }
+    }
+  }, [addCart, activeItem]);
+  useEffect(() => {
+    postCartItem();
+  }, [postCartItem]);
+
+  const addToCartHandler = () => {
+    dispatch(itemActions.storeItem(item));
+    setAddCart(true);
+  };
+
   return (
     <div className="relative flex h-full w-full  flex-col  items-center gap-1 ">
       <div
@@ -25,7 +80,11 @@ const Product = ({ product, customClass }) => {
         {clicked ? (
           <ion-icon name="heart" size="large"></ion-icon>
         ) : (
-          <ion-icon name="heart-outline" size="large"></ion-icon>
+          <ion-icon
+            name="heart-outline"
+            size="large"
+            onClick={addToCartHandler}
+          ></ion-icon>
         )}
       </div>
       <Link

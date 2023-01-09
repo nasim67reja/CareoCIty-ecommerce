@@ -19,7 +19,7 @@ const MobileHeader = () => {
   return (
     <>
       {menuIsVisible || searchMenuIsVisible ? (
-        <div className="scroller  ani absolute top-0  z-10 h-screen w-[60%] overflow-y-auto bg-white shadow-xl">
+        <div className="scroller  ani absolute top-0  z-[12] h-screen w-[60%] overflow-y-auto bg-white shadow-xl">
           {searchMenuIsVisible && (
             <div className="p-2">
               <span
