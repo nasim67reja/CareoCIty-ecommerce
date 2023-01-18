@@ -25,8 +25,8 @@ axios.defaults.withCredentials = true; //it's for getting and storing cookies in
 // export const URL = "https://careocityapps.herokuapp.com";
 // export const URL = "https://cryptic-anchorage-43168.herokuapp.com";
 
-// export const URL = "http://127.0.0.1:8000";
-export const URL = "https://e-commerceapi.up.railway.app";
+export const URL = "http://127.0.0.1:8000";
+// export const URL = "https://e-commerceapi.up.railway.app";
 
 export default function App() {
   const dispatch = useDispatch();
