@@ -80,14 +80,15 @@ const Slider = ({ data, title, route }) => {
             </div>
 
             <div
-              className="sliderIconarr absolute -right-1 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-l-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
+              className="sliderIconarr absolute right-0 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-l-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
               onClick={decreaseTranslateXHandler}
             >
               <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
             </div>
 
             <div
-              className="sec relative mb-10  h-[24rem] overflow-scroll scroll-smooth "
+              style={{ scrollbarWidth: "none" }} // For firefox hide the scrollbar
+              className="sec scrollbar-hide relative  mb-10 h-[24rem] overflow-scroll scroll-smooth "
               ref={parentWidth}
             >
               {data.map((product, i) => (
