@@ -19,7 +19,7 @@ const PersonalInfo = () => {
       if (data.status === "success") {
         setTimeout(() => {
           document.location.reload();
-        }, 200);
+        }, 0);
       }
     } catch (error) {
       console.log(`error: `, error);
@@ -95,7 +95,7 @@ const ProfilePic = () => {
       await axios.patch(`${URL}/api/v1/users/updateMe`, formData);
       setTimeout(() => {
         document.location.reload();
-      }, 100);
+      }, 0);
     } catch (error) {
       console.log(`error: `, error);
       // setError(error.response.data.message);
@@ -166,7 +166,7 @@ const MyPass = () => {
         setShowResponse("Updated Successfully ✔");
         setTimeout(() => {
           document.location.reload();
-        }, 200);
+        }, 0);
       }
     } catch (error) {
       console.log(`error: `, error);
@@ -264,7 +264,7 @@ const DeleteAcc = () => {
       setShowResponse("Deleted Successfully ✔");
       setTimeout(() => {
         navigate("/login");
-      }, 200);
+      }, 0);
     } catch (error) {
       console.log(`error: `, error);
       setShowResponse(error.response.data.message);
