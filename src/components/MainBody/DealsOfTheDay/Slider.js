@@ -64,15 +64,15 @@ const Slider = ({ data, title, route }) => {
     <>
       {data && (
         <div className=" mx-auto max-w-[110rem]  rounded-lg  bg-white">
-          <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
+          {/* <div className="mb-6 flex items-center justify-between border-b border-[#dcdcdc] p-4">
             <h2 className="fontm text-xl">{title || data[0]?.categories}</h2>
             <button className="rounded border bg-blue-600 px-3 py-2 text-white transition-all hover:bg-white hover:text-primary">
               <Link to={`/${route || data[0]?.categories}`}>View all</Link>
             </button>
-          </div>
+          </div> */}
 
           <div className="group relative w-full ">
-            <div
+            {/* <div
               className="sliderIconarr absolute left-0 top-[50%] z-10 hidden translate-y-[-50%] cursor-pointer items-center justify-center rounded-r-md bg-backg px-2 py-7 shadow-lg hover:bg-blue-400 group-hover:flex "
               onClick={increaseTranslateXHandler}
             >
@@ -84,7 +84,7 @@ const Slider = ({ data, title, route }) => {
               onClick={decreaseTranslateXHandler}
             >
               <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
-            </div>
+            </div> */}
 
             <div
               style={{ scrollbarWidth: "none" }} // For firefox hide the scrollbar

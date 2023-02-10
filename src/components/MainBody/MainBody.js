@@ -5,7 +5,7 @@ import Deals from "./DealsOfTheDay/Deals";
 const MainBody = () => {
   return (
     <div>
-      <Hero></Hero>
+      <Hero />
       <Deals />
     </div>
   );
